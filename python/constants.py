@@ -6,6 +6,7 @@ Constants and templates for generating HTML files from GEDCOM data.
 # File paths
 GEDCOM_FILE = 'ged/family_tree.ged'
 OUTPUT_DIR = 'ppl'
+SURNAMES_DIR = 'surnames'
 
 # HTML Templates
 HTML_TEMPLATE = """<!DOCTYPE html>
@@ -401,9 +402,75 @@ INDIVIDUALS_HTML_TEMPLATE = """<!DOCTYPE html>
 """
 
 SURNAME_ENTRY_TEMPLATE = """                    <tr>
-                        <td class="ColumnSurname"><a href="#" title="{surname}">{surname}</a></td>
+                        <td class="ColumnSurname"><a href="{surname_path}" title="{surname}">{surname}</a></td>
                         <td class="ColumnName">
 {given_names}</td>
+                    </tr>
+"""
+
+SURNAME_PAGE_TEMPLATE = """<!DOCTYPE html>
+<html xml:lang="en-GB" lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+<head lang="en-GB">
+    <title>My Family Tree - Surname - {surname}</title>
+    <meta charset="UTF-8" />
+    <meta name ="viewport" content="width=device-width; height=device-height; initial-scale=1.0; minimum-scale=0.5; maximum-scale=10.0; user-scalable=yes" />
+    <meta name ="apple-mobile-web-app-capable" content="yes" />
+    <meta name="author" content="" />
+    <link href="../images/favicon2.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="../css/narrative-print.css" media="print" rel="stylesheet" type="text/css" />
+    <link href="../css/narrative-screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <script>function navFunction() {{ var x = document.getElementById("dropmenu"); if (x.className === "nav") {{ x.className += " responsive"; }} else {{ x.className = "nav"; }} }}</script>
+</head>
+<body>
+    <div id="outerwrapper">
+        <div id="header">
+            <a href="javascript:void(0);" class="navIcon" onclick="navFunction()">&#8801;</a>
+            <h1 id="SiteTitle">My Family Tree</h1>
+        </div>
+        <div class="wrappernav" id="nav" role="navigation">
+            <div class="container">
+                <ul class="nav" id="dropmenu">
+                    <li><a href="../individuals.html" title="Individuals">Individuals</a></li>
+                    <li class="CurrentSection"><a href="../index.html" title="Surnames">Surnames</a></li>
+                    <li><a href="../interactive_graph.html" title="Interactive Graph">Interactive Graph</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content" id="SurnameDetail">
+            <h3>{surname}</h3>
+            <p id="description">
+            This page contains an index of all the individuals in the database with the surname of {surname}. Selecting the person&#8217;s name will take you to that person&#8217;s individual page.
+            </p>
+            <table class="infolist primobjlist surname">
+                <thead>
+                    <tr>
+                        <th class="ColumnName">Name</th>
+                        <th class="ColumnDate">Birth</th>
+                    </tr>
+                </thead>
+                <tbody>
+{individual_entries}
+                </tbody>
+            </table>
+        </div>
+        <div class="fullclear"></div>
+        <div id="footer">
+            <p id="createdate">
+            Generated on {current_date}
+            </p>
+            <p id="copyright">
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+"""
+
+SURNAME_INDIVIDUAL_ENTRY_TEMPLATE = """                    <tr>
+                        <td class="ColumnName">
+                            <a href="{individual_path}">{individual_name}</a>
+                        </td>
+                        <td class="ColumnBirth">{birth_date}</td>
                     </tr>
 """
 

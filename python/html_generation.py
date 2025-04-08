@@ -3,8 +3,9 @@
 Functions for generating HTML content from GEDCOM data.
 """
 
+import os
 from datetime import datetime
-from utils import generate_id_from_pointer, get_relative_path
+from utils import generate_id_from_pointer, get_relative_path, get_surname_file_path, get_surname_relative_path
 from data_extraction import (
     get_name, get_gender, get_birth_data, get_death_data, get_occupation,
     get_attributes, get_parents, get_families
@@ -14,7 +15,8 @@ from constants import (
     PARENT_ROW_TEMPLATE, SIBLING_ROW_TEMPLATE, FAMILIES_TEMPLATE,
     FAMILY_ROW_TEMPLATE, CHILD_ROW_TEMPLATE, PEDIGREE_TEMPLATE,
     ANCESTORS_TEMPLATE, INDEX_HTML_TEMPLATE, INDIVIDUALS_HTML_TEMPLATE,
-    SURNAME_ENTRY_TEMPLATE, INDIVIDUAL_ENTRY_TEMPLATE
+    SURNAME_ENTRY_TEMPLATE, INDIVIDUAL_ENTRY_TEMPLATE, SURNAME_PAGE_TEMPLATE,
+    SURNAME_INDIVIDUAL_ENTRY_TEMPLATE, SURNAMES_DIR
 )
 
 def generate_parents_section(gedcom_parser, individual, individual_id):
@@ -455,8 +457,8 @@ def generate_html_for_individual(gedcom_parser, individual):
 
     return html_content
 
-def generate_index_html(individuals_data):
-    """Generate the index.html file with surname index."""
+def generate_surname_pages(individuals_data):
+    """Generate HTML files for each surname."""
     # Group individuals by surname
     surnames = {}
     for individual_id, data in individuals_data.items():
@@ -467,6 +469,53 @@ def generate_index_html(individuals_data):
                 if surname not in surnames:
                     surnames[surname] = []
                 surnames[surname].append((individual_id, data))
+
+    # Create surnames directory if it doesn't exist
+    os.makedirs(SURNAMES_DIR, exist_ok=True)
+
+    # Generate a page for each surname
+    for surname, individuals in surnames.items():
+        # Sort individuals by name
+        sorted_individuals = sorted(individuals, key=lambda x: x[1]['name'])
+
+        # Generate individual entries
+        individual_entries = ""
+        for individual_id, data in sorted_individuals:
+            name = data['name']
+            # Extract given name from the full name
+            given_name = name.split(',')[1].strip() if ',' in name else name
+            birth_date = data.get('birth_date', '')
+            individual_path = "../" + get_relative_path(individual_id)
+
+            individual_entries += SURNAME_INDIVIDUAL_ENTRY_TEMPLATE.format(
+                individual_path=individual_path,
+                individual_name=given_name,
+                birth_date=birth_date
+            )
+
+        # Get current date for footer
+        current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        # Fill in the template
+        html_content = SURNAME_PAGE_TEMPLATE.format(
+            surname=surname,
+            individual_entries=individual_entries,
+            current_date=current_date
+        )
+
+        # Write to file
+        file_path = get_surname_file_path(surname)
+        with open(file_path, 'w', encoding='utf-8') as f:
+            f.write(html_content)
+
+        print(f"Generated surname page for {surname} at {file_path}")
+
+    return surnames
+
+def generate_index_html(individuals_data):
+    """Generate the index.html file with surname index."""
+    # Generate surname pages first and get the surnames dictionary
+    surnames = generate_surname_pages(individuals_data)
 
     # Sort surnames
     sorted_surnames = sorted(surnames.keys())
@@ -488,9 +537,13 @@ def generate_index_html(individuals_data):
         # Remove trailing comma and space
         given_names_html = given_names_html.rstrip(', ')
 
+        # Get the surname page path
+        surname_path = get_surname_relative_path(surname)
+
         # Add surname entry
         surname_entries += SURNAME_ENTRY_TEMPLATE.format(
             surname=surname,
+            surname_path=surname_path,
             given_names=given_names_html
         )
 
