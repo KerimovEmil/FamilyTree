@@ -281,15 +281,6 @@ PEDIGREE_TEMPLATE = """
 </div>
 """
 
-ANCESTORS_TEMPLATE = """
-<div class="subsection" id="ancestors">
-    <h4>Ancestors</h4>
-    <div id="ancestortree" class="ancestortree">
-        {ancestors_content}
-    </div>
-</div>
-"""
-
 # Index and individuals page templates
 INDEX_HTML_TEMPLATE = """<!DOCTYPE html>
 <html xml:lang="en-GB" lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
@@ -495,8 +486,6 @@ PEDIGREE_TEMPLATE = """
 ANCESTORS_TEMPLATE = """
 <div class="subsection" id="ancestors">
     <h4>Ancestors</h4>
-    <div id="ancestortree" class="ancestortree">
-        {ancestors_content}
-    </div>
+    {ancestors_content}
 </div>
 """
