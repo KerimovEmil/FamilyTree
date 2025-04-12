@@ -51,8 +51,8 @@ def main():
             individual_id = generate_id_from_pointer(element.get_pointer())
             name = get_name(element)
             surname, given_name = extract_name_parts(name)
-            birth_date, _ = get_birth_data(element)
-            death_date, _ = get_death_data(element)
+            birth_date = get_birth_data(element)
+            death_date = get_death_data(element)
 
             # Determine file path using the new structure
             file_path = get_individual_file_path(surname, given_name, individual_id)

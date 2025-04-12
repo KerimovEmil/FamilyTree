@@ -396,12 +396,6 @@ table.IndividualList td.ColumnSurname {
     background-color: #EEE;
 }
 
-/* Places
------------------------------------------------------ */
-#Places table.infolist td.ColumnName {
-    background-color: #EEE;
-}
-
 /* Events
 ----------------------------------------------------- */
 #EventList table.infolist tr.BeginType td {

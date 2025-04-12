@@ -5,15 +5,12 @@ Functions for generating HTML content from GEDCOM data with new directory struct
 
 import os
 from datetime import datetime
-from utils import (
-    generate_id_from_pointer, get_individual_relative_path
-)
+from utils import generate_id_from_pointer
 from data_extraction import (
-    get_name, get_gender, get_birth_data, get_death_data, get_occupation,
-    get_attributes, get_parents, get_families
+    get_name, get_gender, get_birth_data, get_death_data, get_parents, get_families
 )
 from constants import (
-    HTML_TEMPLATE, DEATH_TEMPLATE, OCCUPATION_TEMPLATE, PARENTS_TEMPLATE,
+    HTML_TEMPLATE, PARENTS_TEMPLATE,
     PARENT_ROW_TEMPLATE, SIBLING_ROW_TEMPLATE, FAMILIES_TEMPLATE,
     FAMILY_ROW_TEMPLATE, CHILD_ROW_TEMPLATE, PEDIGREE_TEMPLATE,
     ANCESTORS_TEMPLATE, INDEX_HTML_TEMPLATE, INDIVIDUALS_HTML_TEMPLATE,
@@ -53,8 +50,8 @@ def generate_parents_section(gedcom_parser, individual, individual_id, individua
         father_id = generate_id_from_pointer(father.get_pointer())
         father_path = get_path_for_individual(father_id, individuals_data)
         father_name = get_name(father)
-        father_birth, _ = get_birth_data(father)
-        father_death, _ = get_death_data(father)
+        father_birth = get_birth_data(father)
+        father_death = get_death_data(father)
 
         parents_rows.append(PARENT_ROW_TEMPLATE.format(
             relation="Father",
@@ -70,8 +67,8 @@ def generate_parents_section(gedcom_parser, individual, individual_id, individua
         mother_id = generate_id_from_pointer(mother.get_pointer())
         mother_path = get_path_for_individual(mother_id, individuals_data)
         mother_name = get_name(mother)
-        mother_birth, _ = get_birth_data(mother)
-        mother_death, _ = get_death_data(mother)
+        mother_birth = get_birth_data(mother)
+        mother_death = get_death_data(mother)
 
         parents_rows.append(PARENT_ROW_TEMPLATE.format(
             relation="Mother",
@@ -83,8 +80,8 @@ def generate_parents_section(gedcom_parser, individual, individual_id, individua
 
     # Add self row
     individual_name = get_name(individual)
-    individual_birth, _ = get_birth_data(individual)
-    individual_death, _ = get_death_data(individual)
+    individual_birth = get_birth_data(individual)
+    individual_death = get_death_data(individual)
 
     parents_rows.append(f"""
 <tr>
@@ -101,8 +98,8 @@ def generate_parents_section(gedcom_parser, individual, individual_id, individua
         sibling_id = generate_id_from_pointer(sibling.get_pointer())
         sibling_path = get_path_for_individual(sibling_id, individuals_data)
         sibling_name = get_name(sibling)
-        sibling_birth, _ = get_birth_data(sibling)
-        sibling_death, _ = get_death_data(sibling)
+        sibling_birth = get_birth_data(sibling)
+        sibling_death = get_death_data(sibling)
         sibling_gender = get_gender(sibling)
 
         relation = "Sister" if sibling_gender == "female" else "Brother"
@@ -147,8 +144,8 @@ def generate_families_section(gedcom_parser, individual, individual_id, individu
         spouse_id = generate_id_from_pointer(spouse.get_pointer())
         spouse_path = get_path_for_individual(spouse_id, individuals_data)
         spouse_name = get_name(spouse)
-        spouse_birth, _ = get_birth_data(spouse)
-        spouse_death, _ = get_death_data(spouse)
+        spouse_birth = get_birth_data(spouse)
+        spouse_death = get_death_data(spouse)
 
         # Generate children rows
         children_rows = []
@@ -156,8 +153,8 @@ def generate_families_section(gedcom_parser, individual, individual_id, individu
             child_id = generate_id_from_pointer(child.get_pointer())
             child_path = get_path_for_individual(child_id, individuals_data)
             child_name = get_name(child)
-            child_birth, _ = get_birth_data(child)
-            child_death, _ = get_death_data(child)
+            child_birth = get_birth_data(child)
+            child_death = get_death_data(child)
 
             children_rows.append(CHILD_ROW_TEMPLATE.format(
                 child_path=child_path,
@@ -188,22 +185,8 @@ def generate_html_for_individual_new_structure(gedcom_parser, element, individua
     individual_id = generate_id_from_pointer(element.get_pointer())
     name = get_name(element)
     gender = get_gender(element)
-    birth_date, birth_place = get_birth_data(element)
-    death_date, death_place = get_death_data(element)
-    occupation = get_occupation(element)
-
-    # Generate death section if applicable
-    death_section = ""
-    if death_date:
-        death_section = DEATH_TEMPLATE.format(
-            death_date=death_date,
-            death_place=death_place
-        )
-
-    # Generate occupation section if applicable
-    occupation_section = ""
-    if occupation and occupation != "&nbsp;":
-        occupation_section = OCCUPATION_TEMPLATE.format(occupation=occupation)
+    birth_date = get_birth_data(element)
+    death_date = get_death_data(element)
 
     # Generate parents section
     parents_section = generate_parents_section(gedcom_parser, element, individual_id, individuals_data)
@@ -225,9 +208,6 @@ def generate_html_for_individual_new_structure(gedcom_parser, element, individua
         name=name,
         gender=gender,
         birth_date=birth_date,
-        birth_place=birth_place,
-        death_section=death_section,
-        occupation_section=occupation_section,
         married_name_section="",
         parents_section=parents_section,
         families_section=families_section,
@@ -445,8 +425,8 @@ def generate_pedigree_section(gedcom_parser, element, individual_id, individuals
 def generate_ancestors_section(gedcom_parser, element, individual_id, individuals_data):
     """Generate the HTML for the ancestors section."""
     name = get_name(element)
-    birth_date, _ = get_birth_data(element)
-    death_date, _ = get_death_data(element)
+    birth_date = get_birth_data(element)
+    death_date = get_death_data(element)
     gender_class = "male" if get_gender(element) == "male" else "female"
 
     # Get parents information
@@ -473,8 +453,8 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
         father_id = generate_id_from_pointer(father.get_pointer())
         father_path = get_path_for_individual(father_id, individuals_data)
         father_name = get_name(father)
-        father_birth, _ = get_birth_data(father)
-        father_death, _ = get_death_data(father)
+        father_birth = get_birth_data(father)
+        father_death = get_death_data(father)
 
         ancestors_content += f'''
         <div class="bvline" style="top: 100px; left: 285px; width: 15px"></div>
@@ -494,8 +474,8 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
         mother_id = generate_id_from_pointer(mother.get_pointer())
         mother_path = get_path_for_individual(mother_id, individuals_data)
         mother_name = get_name(mother)
-        mother_birth, _ = get_birth_data(mother)
-        mother_death, _ = get_death_data(mother)
+        mother_birth = get_birth_data(mother)
+        mother_death = get_death_data(mother)
 
         ancestors_content += f'''
         <div class="bvline" style="top: 100px; left: 285px; width: 15px"></div>

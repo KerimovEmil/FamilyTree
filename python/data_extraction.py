@@ -37,48 +37,38 @@ def get_gender(individual):
         return "unknown"
 
 def get_birth_data(individual):
-    """Extract birth date and place from an individual element."""
+    """Extract birth date from an individual element."""
     birth_data = individual.get_birth_data()
     birth_date = ""
-    birth_place = "&nbsp;"
 
     if birth_data:
         # The python-gedcom library returns a tuple (date, place, sources)
-        if isinstance(birth_data, tuple) and len(birth_data) >= 2:
+        if isinstance(birth_data, tuple):
             if birth_data[0]:  # date
                 birth_date = birth_data[0]
-            if birth_data[1]:  # place
-                birth_place = birth_data[1]
         # For backward compatibility, also handle dictionary format
         elif isinstance(birth_data, dict):
             if 'date' in birth_data:
                 birth_date = birth_data['date']
-            if 'place' in birth_data:
-                birth_place = birth_data['place']
 
-    return birth_date, birth_place
+    return birth_date
 
 def get_death_data(individual):
-    """Extract death date and place from an individual element."""
+    """Extract death date from an individual element."""
     death_data = individual.get_death_data()
     death_date = ""
-    death_place = "&nbsp;"
 
     if death_data:
         # The python-gedcom library returns a tuple (date, place, sources)
-        if isinstance(death_data, tuple) and len(death_data) >= 2:
+        if isinstance(death_data, tuple):
             if death_data[0]:  # date
                 death_date = death_data[0]
-            if death_data[1]:  # place
-                death_place = death_data[1]
         # For backward compatibility, also handle dictionary format
         elif isinstance(death_data, dict):
             if 'date' in death_data:
                 death_date = death_data['date']
-            if 'place' in death_data:
-                death_place = death_data['place']
 
-    return death_date, death_place
+    return death_date
 
 def get_occupation(individual):
     """Extract occupation from an individual element."""

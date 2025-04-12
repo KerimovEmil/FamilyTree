@@ -70,9 +70,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                             Birth
                             </td>
                             <td class="ColumnDate">{birth_date}</td>
-                            <td class="ColumnPlace">
-                                {birth_place}
-                            </td>
                             <td class="ColumnDescription">&nbsp;</td>
                             <td class="ColumnSources" rowspan="2">
                             &nbsp;
@@ -87,8 +84,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                                 </td>
                             </tr>
                         </tr>
-                        {death_section}
-                        {occupation_section}
                     </tbody>
                 </table>
             </div>
@@ -109,54 +104,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     </div>
 </body>
 </html>
-"""
-
-OCCUPATION_TEMPLATE = """
-<tr>
-    <td class="ColumnEvent">
-    Occupation
-    </td>
-    <td class="ColumnDate">&nbsp;</td>
-    <td class="ColumnPlace">&nbsp;</td>
-    <td class="ColumnDescription">{occupation}</td>
-    <td class="ColumnSources" rowspan="2">
-    &nbsp;
-    </td>
-    <tr>
-        <td class="ColumnEvent">
-
-        </td>
-        <td class="ColumnNotes" colspan="3">
-            <div>
-            </div>
-        </td>
-    </tr>
-</tr>
-"""
-
-DEATH_TEMPLATE = """
-<tr>
-    <td class="ColumnEvent">
-    Death
-    </td>
-    <td class="ColumnDate">{death_date}</td>
-    <td class="ColumnPlace">
-        {death_place}
-    </td>
-    <td class="ColumnDescription">&nbsp;</td>
-    <td class="ColumnSources" rowspan="2">
-    &nbsp;
-    </td>
-    <tr>
-        <td class="ColumnEvent">
-
-        </td>
-        <td class="ColumnNotes" colspan="3">
-            <div>
-            </div>
-        </td>
-    </tr>
-</tr>
 """
 
 MARRIED_NAME_TEMPLATE = """
