@@ -62,9 +62,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                         <tr>
                             <th class="ColumnEvent">Event</th>
                             <th class="ColumnDate">Date</th>
-                            <th class="ColumnPlace">Place</th>
-                            <th class="ColumnDescription">Description</th>
-                            <th class="ColumnSources">Sources</th>
                             </tr>
                     </thead>
                     <tbody>
@@ -97,29 +94,13 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             </div>
             {parents_section}
             {families_section}
-            <div class="subsection" id="attributes">
-                <h4>Attributes</h4>
-                <table class="infolist attrlist">
-                    <thead>
-                        <tr>
-                            <th class="ColumnType">Type</th>
-                            <th class="ColumnValue">Value</th>
-                            <th class="ColumnNotes">Notes</th>
-                            <th class="ColumnSources">Sources</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {attributes_section}
-                    </tbody>
-                </table>
-            </div>
             {pedigree_section}
             {ancestors_section}
         </div>
         <div class="fullclear"></div>
         <div id="footer">
             <p id="createdate">
-            Generated on {current_date}
+            Inspired by GRAMPS software. Generated on {current_date}
             </p>
             <p id="copyright">
 
@@ -197,7 +178,6 @@ PARENTS_TEMPLATE = """
                 <th class="ColumnValue">Name</th>
                 <th class="ColumnValue">Birth date</th>
                 <th class="ColumnValue">Death date</th>
-                <th class="ColumnValue">Relation within this family (if not by birth)</th>
             </tr>
         </thead>
         <tbody>
