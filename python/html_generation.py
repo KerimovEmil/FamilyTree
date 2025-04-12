@@ -438,13 +438,13 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
 
     # Start with the current individual
     ancestors_content = f'''
-    <div id="treeContainer" style="width:614px; height:300px; top: 0px">
-    <div class="boxbg {gender_class} AncCol0" style="top: 80px; left: 6px;">
+    <div id="treeContainer" style="width:1234px; height:900px; top: 0px">
+    <div class="boxbg {gender_class} AncCol0" style="top: 417px; left: 6px;">
         <a class="noThumb" href="../../{get_path_for_individual(individual_id, individuals_data)}">
         {name}<br/>*{birth_date or ''}<br/>+{death_date or '...'}
         </a>
     </div>
-    <div class="shadow" style="top: 85px; left: 10px;"></div>
+    <div class="shadow" style="top: 422px; left: 10px;"></div>
     '''
 
     # Add father if available
@@ -457,16 +457,146 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
         father_death = get_death_data(father)
 
         ancestors_content += f'''
-        <div class="bvline" style="top: 100px; left: 285px; width: 15px"></div>
-        <div class="gvline" style="top: 105px; left: 285px; width: 20px"></div>
-
-        <div class="boxbg male AncCol1" style="top: 5px; left: 316px;">
+        <div class="bvline" style="top: 437px; left: 285px; width: 15px"></div>
+        <div class="gvline" style="top: 442px; left: 285px; width: 20px"></div>
+        <div class="boxbg male AncCol1" style="top: 230px; left: 316px;">
             <a class="noThumb" href="../../../FamilyTree/{father_path}">
             {father_name}<br/>*{father_birth or ''}<br/>+{father_death or '...'}
             </a>
         </div>
-        <div class="shadow" style="top: 10px; left: 320px;"></div>
+        <div class="shadow" style="top: 235px; left: 320px;"></div>
+        <div class="bvline" style="top: 250px; left: 300px; width: 15px;"></div>
+        <div class="bhline" style="top: 250px; left: 300px; height: 188px;"></div>
         '''
+
+        # Add paternal grandfather (father's father) if available
+        father_parents_info = get_parents(gedcom_parser, father)
+        if father_parents_info and father_parents_info['father']:
+            paternal_grandfather = father_parents_info['father']
+            paternal_grandfather_id = generate_id_from_pointer(paternal_grandfather.get_pointer())
+            paternal_grandfather_path = get_path_for_individual(paternal_grandfather_id, individuals_data)
+            paternal_grandfather_name = get_name(paternal_grandfather)
+            paternal_grandfather_birth = get_birth_data(paternal_grandfather)
+            paternal_grandfather_death = get_death_data(paternal_grandfather)
+
+            ancestors_content += f'''
+            <div class="bvline" style="top: 250px; left: 595px; width: 15px"></div>
+            <div class="gvline" style="top: 255px; left: 595px; width: 20px"></div>
+            <div class="boxbg male AncCol2" style="top: 80px; left: 626px;">
+                <a class="noThumb" href="../../../FamilyTree/{paternal_grandfather_path}">
+                {paternal_grandfather_name}<br/>*{paternal_grandfather_birth or ''}<br/>+{paternal_grandfather_death or '...'}
+                </a>
+            </div>
+            <div class="shadow" style="top: 85px; left: 630px;"></div>
+            <div class="bvline" style="top: 100px; left: 610px; width: 15px;"></div>
+            <div class="bhline" style="top: 100px; left: 610px; height: 151px;"></div>
+            '''
+
+            # Add paternal great-grandfather (father's father's father) if available
+            paternal_grandfather_parents_info = get_parents(gedcom_parser, paternal_grandfather)
+            if paternal_grandfather_parents_info and paternal_grandfather_parents_info['father']:
+                paternal_great_grandfather = paternal_grandfather_parents_info['father']
+                paternal_great_grandfather_id = generate_id_from_pointer(paternal_great_grandfather.get_pointer())
+                paternal_great_grandfather_path = get_path_for_individual(paternal_great_grandfather_id, individuals_data)
+                paternal_great_grandfather_name = get_name(paternal_great_grandfather)
+                paternal_great_grandfather_birth = get_birth_data(paternal_great_grandfather)
+                paternal_great_grandfather_death = get_death_data(paternal_great_grandfather)
+
+                ancestors_content += f'''
+                <div class="bvline" style="top: 100px; left: 905px; width: 15px"></div>
+                <div class="gvline" style="top: 105px; left: 905px; width: 20px"></div>
+                <div class="boxbg male AncCol3" style="top: 5px; left: 936px;">
+                    <a class="noThumb" href="../../../FamilyTree/{paternal_great_grandfather_path}">
+                    {paternal_great_grandfather_name}<br/>*{paternal_great_grandfather_birth or ''}<br/>+{paternal_great_grandfather_death or '...'}
+                    </a>
+                </div>
+                <div class="shadow" style="top: 10px; left: 940px;"></div>
+                <div class="bvline" style="top: 25px; left: 920px; width: 15px;"></div>
+                <div class="bhline" style="top: 25px; left: 920px; height: 76px;"></div>
+                '''
+
+            # Add paternal great-grandmother (father's father's mother) if available
+            if paternal_grandfather_parents_info and paternal_grandfather_parents_info['mother']:
+                paternal_great_grandmother = paternal_grandfather_parents_info['mother']
+                paternal_great_grandmother_id = generate_id_from_pointer(paternal_great_grandmother.get_pointer())
+                paternal_great_grandmother_path = get_path_for_individual(paternal_great_grandmother_id, individuals_data)
+                paternal_great_grandmother_name = get_name(paternal_great_grandmother)
+                paternal_great_grandmother_birth = get_birth_data(paternal_great_grandmother)
+                paternal_great_grandmother_death = get_death_data(paternal_great_grandmother)
+
+                ancestors_content += f'''
+                <div class="boxbg female AncCol3" style="top: 155px; left: 936px;">
+                    <a class="noThumb" href="../../../FamilyTree/{paternal_great_grandmother_path}">
+                    {paternal_great_grandmother_name}<br/>*{paternal_great_grandmother_birth or ''}<br/>+{paternal_great_grandmother_death or '...'}
+                    </a>
+                </div>
+                <div class="shadow" style="top: 160px; left: 940px;"></div>
+                <div class="bvline" style="top: 175px; left: 920px; width: 15px;"></div>
+                <div class="bhline" style="top: 100px; left: 920px; height: 76px;"></div>
+                '''
+
+        # Add paternal grandmother (father's mother) if available
+        if father_parents_info and father_parents_info['mother']:
+            paternal_grandmother = father_parents_info['mother']
+            paternal_grandmother_id = generate_id_from_pointer(paternal_grandmother.get_pointer())
+            paternal_grandmother_path = get_path_for_individual(paternal_grandmother_id, individuals_data)
+            paternal_grandmother_name = get_name(paternal_grandmother)
+            paternal_grandmother_birth = get_birth_data(paternal_grandmother)
+            paternal_grandmother_death = get_death_data(paternal_grandmother)
+
+            ancestors_content += f'''
+            <div class="boxbg female AncCol2" style="top: 380px; left: 626px;">
+                <a class="noThumb" href="../../../FamilyTree/{paternal_grandmother_path}">
+                {paternal_grandmother_name}<br/>*{paternal_grandmother_birth or ''}<br/>+{paternal_grandmother_death or '...'}
+                </a>
+            </div>
+            <div class="shadow" style="top: 385px; left: 630px;"></div>
+            <div class="bvline" style="top: 400px; left: 610px; width: 15px;"></div>
+            <div class="bhline" style="top: 250px; left: 610px; height: 151px;"></div>
+            '''
+
+            # Add paternal great-grandfather (father's mother's father) if available
+            paternal_grandmother_parents_info = get_parents(gedcom_parser, paternal_grandmother)
+            if paternal_grandmother_parents_info and paternal_grandmother_parents_info['father']:
+                paternal_great_grandfather2 = paternal_grandmother_parents_info['father']
+                paternal_great_grandfather2_id = generate_id_from_pointer(paternal_great_grandfather2.get_pointer())
+                paternal_great_grandfather2_path = get_path_for_individual(paternal_great_grandfather2_id, individuals_data)
+                paternal_great_grandfather2_name = get_name(paternal_great_grandfather2)
+                paternal_great_grandfather2_birth = get_birth_data(paternal_great_grandfather2)
+                paternal_great_grandfather2_death = get_death_data(paternal_great_grandfather2)
+
+                ancestors_content += f'''
+                <div class="bvline" style="top: 400px; left: 905px; width: 15px"></div>
+                <div class="gvline" style="top: 405px; left: 905px; width: 20px"></div>
+                <div class="boxbg male AncCol3" style="top: 305px; left: 936px;">
+                    <a class="noThumb" href="../../../FamilyTree/{paternal_great_grandfather2_path}">
+                    {paternal_great_grandfather2_name}<br/>*{paternal_great_grandfather2_birth or ''}<br/>+{paternal_great_grandfather2_death or '...'}
+                    </a>
+                </div>
+                <div class="shadow" style="top: 310px; left: 940px;"></div>
+                <div class="bvline" style="top: 325px; left: 920px; width: 15px;"></div>
+                <div class="bhline" style="top: 325px; left: 920px; height: 76px;"></div>
+                '''
+
+            # Add paternal great-grandmother (father's mother's mother) if available
+            if paternal_grandmother_parents_info and paternal_grandmother_parents_info['mother']:
+                paternal_great_grandmother2 = paternal_grandmother_parents_info['mother']
+                paternal_great_grandmother2_id = generate_id_from_pointer(paternal_great_grandmother2.get_pointer())
+                paternal_great_grandmother2_path = get_path_for_individual(paternal_great_grandmother2_id, individuals_data)
+                paternal_great_grandmother2_name = get_name(paternal_great_grandmother2)
+                paternal_great_grandmother2_birth = get_birth_data(paternal_great_grandmother2)
+                paternal_great_grandmother2_death = get_death_data(paternal_great_grandmother2)
+
+                ancestors_content += f'''
+                <div class="boxbg female AncCol3" style="top: 455px; left: 936px;">
+                    <a class="noThumb" href="../../../FamilyTree/{paternal_great_grandmother2_path}">
+                    {paternal_great_grandmother2_name}<br/>*{paternal_great_grandmother2_birth or ''}<br/>+{paternal_great_grandmother2_death or '...'}
+                    </a>
+                </div>
+                <div class="shadow" style="top: 460px; left: 940px;"></div>
+                <div class="bvline" style="top: 475px; left: 920px; width: 15px;"></div>
+                <div class="bhline" style="top: 400px; left: 920px; height: 76px;"></div>
+                '''
 
     # Add mother if available
     if parents_info['mother']:
@@ -478,15 +608,143 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
         mother_death = get_death_data(mother)
 
         ancestors_content += f'''
-        <div class="bvline" style="top: 100px; left: 285px; width: 15px"></div>
-        <div class="pvline" style="top: 105px; left: 285px; width: 20px"></div>
-
-        <div class="boxbg female AncCol1" style="top: 155px; left: 316px;">
+        <div class="boxbg female AncCol1" style="top: 605px; left: 316px;">
             <a class="noThumb" href="../../../FamilyTree/{mother_path}">
             {mother_name}<br/>*{mother_birth or ''}<br/>+{mother_death or '...'}
             </a>
         </div>
-        <div class="shadow" style="top: 160px; left: 320px;"></div>
+        <div class="shadow" style="top: 610px; left: 320px;"></div>
+        <div class="bvline" style="top: 625px; left: 300px; width: 15px;"></div>
+        <div class="bhline" style="top: 437px; left: 300px; height: 188px;"></div>
         '''
+
+        # Add maternal grandfather (mother's father) if available
+        mother_parents_info = get_parents(gedcom_parser, mother)
+        if mother_parents_info and mother_parents_info['father']:
+            maternal_grandfather = mother_parents_info['father']
+            maternal_grandfather_id = generate_id_from_pointer(maternal_grandfather.get_pointer())
+            maternal_grandfather_path = get_path_for_individual(maternal_grandfather_id, individuals_data)
+            maternal_grandfather_name = get_name(maternal_grandfather)
+            maternal_grandfather_birth = get_birth_data(maternal_grandfather)
+            maternal_grandfather_death = get_death_data(maternal_grandfather)
+
+            ancestors_content += f'''
+            <div class="bvline" style="top: 625px; left: 595px; width: 15px"></div>
+            <div class="gvline" style="top: 630px; left: 595px; width: 20px"></div>
+            <div class="boxbg male AncCol2" style="top: 530px; left: 626px;">
+                <a class="noThumb" href="../../../FamilyTree/{maternal_grandfather_path}">
+                {maternal_grandfather_name}<br/>*{maternal_grandfather_birth or ''}<br/>+{maternal_grandfather_death or '...'}
+                </a>
+            </div>
+            <div class="shadow" style="top: 535px; left: 630px;"></div>
+            <div class="bvline" style="top: 550px; left: 610px; width: 15px;"></div>
+            <div class="bhline" style="top: 550px; left: 610px; height: 76px;"></div>
+            '''
+
+            # Add maternal great-grandfather (mother's father's father) if available
+            maternal_grandfather_parents_info = get_parents(gedcom_parser, maternal_grandfather)
+            if maternal_grandfather_parents_info and maternal_grandfather_parents_info['father']:
+                maternal_great_grandfather = maternal_grandfather_parents_info['father']
+                maternal_great_grandfather_id = generate_id_from_pointer(maternal_great_grandfather.get_pointer())
+                maternal_great_grandfather_path = get_path_for_individual(maternal_great_grandfather_id, individuals_data)
+                maternal_great_grandfather_name = get_name(maternal_great_grandfather)
+                maternal_great_grandfather_birth = get_birth_data(maternal_great_grandfather)
+                maternal_great_grandfather_death = get_death_data(maternal_great_grandfather)
+
+                ancestors_content += f'''
+                <div class="bvline" style="top: 550px; left: 905px; width: 15px"></div>
+                <div class="gvline" style="top: 555px; left: 905px; width: 20px"></div>
+                <div class="boxbg male AncCol3" style="top: 455px; left: 936px;">
+                    <a class="noThumb" href="../../../FamilyTree/{maternal_great_grandfather_path}">
+                    {maternal_great_grandfather_name}<br/>*{maternal_great_grandfather_birth or ''}<br/>+{maternal_great_grandfather_death or '...'}
+                    </a>
+                </div>
+                <div class="shadow" style="top: 460px; left: 940px;"></div>
+                <div class="bvline" style="top: 475px; left: 920px; width: 15px;"></div>
+                <div class="bhline" style="top: 475px; left: 920px; height: 76px;"></div>
+                '''
+
+            # Add maternal great-grandmother (mother's father's mother) if available
+            if maternal_grandfather_parents_info and maternal_grandfather_parents_info['mother']:
+                maternal_great_grandmother = maternal_grandfather_parents_info['mother']
+                maternal_great_grandmother_id = generate_id_from_pointer(maternal_great_grandmother.get_pointer())
+                maternal_great_grandmother_path = get_path_for_individual(maternal_great_grandmother_id, individuals_data)
+                maternal_great_grandmother_name = get_name(maternal_great_grandmother)
+                maternal_great_grandmother_birth = get_birth_data(maternal_great_grandmother)
+                maternal_great_grandmother_death = get_death_data(maternal_great_grandmother)
+
+                ancestors_content += f'''
+                <div class="boxbg female AncCol3" style="top: 605px; left: 936px;">
+                    <a class="noThumb" href="../../../FamilyTree/{maternal_great_grandmother_path}">
+                    {maternal_great_grandmother_name}<br/>*{maternal_great_grandmother_birth or ''}<br/>+{maternal_great_grandmother_death or '...'}
+                    </a>
+                </div>
+                <div class="shadow" style="top: 610px; left: 940px;"></div>
+                <div class="bvline" style="top: 625px; left: 920px; width: 15px;"></div>
+                <div class="bhline" style="top: 550px; left: 920px; height: 76px;"></div>
+                '''
+
+        # Add maternal grandmother (mother's mother) if available
+        if mother_parents_info and mother_parents_info['mother']:
+            maternal_grandmother = mother_parents_info['mother']
+            maternal_grandmother_id = generate_id_from_pointer(maternal_grandmother.get_pointer())
+            maternal_grandmother_path = get_path_for_individual(maternal_grandmother_id, individuals_data)
+            maternal_grandmother_name = get_name(maternal_grandmother)
+            maternal_grandmother_birth = get_birth_data(maternal_grandmother)
+            maternal_grandmother_death = get_death_data(maternal_grandmother)
+
+            ancestors_content += f'''
+            <div class="boxbg female AncCol2" style="top: 680px; left: 626px;">
+                <a class="noThumb" href="../../../FamilyTree/{maternal_grandmother_path}">
+                {maternal_grandmother_name}<br/>*{maternal_grandmother_birth or ''}<br/>+{maternal_grandmother_death or '...'}
+                </a>
+            </div>
+            <div class="shadow" style="top: 685px; left: 630px;"></div>
+            <div class="bvline" style="top: 700px; left: 610px; width: 15px;"></div>
+            <div class="bhline" style="top: 625px; left: 610px; height: 76px;"></div>
+            '''
+
+            # Add maternal great-grandfather (mother's mother's father) if available
+            maternal_grandmother_parents_info = get_parents(gedcom_parser, maternal_grandmother)
+            if maternal_grandmother_parents_info and maternal_grandmother_parents_info['father']:
+                maternal_great_grandfather2 = maternal_grandmother_parents_info['father']
+                maternal_great_grandfather2_id = generate_id_from_pointer(maternal_great_grandfather2.get_pointer())
+                maternal_great_grandfather2_path = get_path_for_individual(maternal_great_grandfather2_id, individuals_data)
+                maternal_great_grandfather2_name = get_name(maternal_great_grandfather2)
+                maternal_great_grandfather2_birth = get_birth_data(maternal_great_grandfather2)
+                maternal_great_grandfather2_death = get_death_data(maternal_great_grandfather2)
+
+                ancestors_content += f'''
+                <div class="bvline" style="top: 700px; left: 905px; width: 15px"></div>
+                <div class="gvline" style="top: 705px; left: 905px; width: 20px"></div>
+                <div class="boxbg male AncCol3" style="top: 605px; left: 936px;">
+                    <a class="noThumb" href="../../../FamilyTree/{maternal_great_grandfather2_path}">
+                    {maternal_great_grandfather2_name}<br/>*{maternal_great_grandfather2_birth or ''}<br/>+{maternal_great_grandfather2_death or '...'}
+                    </a>
+                </div>
+                <div class="shadow" style="top: 610px; left: 940px;"></div>
+                <div class="bvline" style="top: 625px; left: 920px; width: 15px;"></div>
+                <div class="bhline" style="top: 625px; left: 920px; height: 76px;"></div>
+                '''
+
+            # Add maternal great-grandmother (mother's mother's mother) if available
+            if maternal_grandmother_parents_info and maternal_grandmother_parents_info['mother']:
+                maternal_great_grandmother2 = maternal_grandmother_parents_info['mother']
+                maternal_great_grandmother2_id = generate_id_from_pointer(maternal_great_grandmother2.get_pointer())
+                maternal_great_grandmother2_path = get_path_for_individual(maternal_great_grandmother2_id, individuals_data)
+                maternal_great_grandmother2_name = get_name(maternal_great_grandmother2)
+                maternal_great_grandmother2_birth = get_birth_data(maternal_great_grandmother2)
+                maternal_great_grandmother2_death = get_death_data(maternal_great_grandmother2)
+
+                ancestors_content += f'''
+                <div class="boxbg female AncCol3" style="top: 755px; left: 936px;">
+                    <a class="noThumb" href="../../../FamilyTree/{maternal_great_grandmother2_path}">
+                    {maternal_great_grandmother2_name}<br/>*{maternal_great_grandmother2_birth or ''}<br/>+{maternal_great_grandmother2_death or '...'}
+                    </a>
+                </div>
+                <div class="shadow" style="top: 760px; left: 940px;"></div>
+                <div class="bvline" style="top: 775px; left: 920px; width: 15px;"></div>
+                <div class="bhline" style="top: 700px; left: 920px; height: 76px;"></div>
+                '''
 
     return ANCESTORS_TEMPLATE.format(ancestors_content=ancestors_content)

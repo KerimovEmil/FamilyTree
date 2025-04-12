@@ -47,6 +47,7 @@ Females     Web_Gender_Female.png
     vertical-align: middle;
     overflow: visible;
     z-index:1;
+    margin-bottom: 200px; /* Add more space at the bottom */
 }
 #treeContainer div.boxbg {
     position:absolute;
@@ -183,7 +184,12 @@ Females     Web_Gender_Female.png
 .shadow {
     display:none;
 }
-#tree div div.bvline {
+
+/* Make sure all connecting lines are visible */
+.bvline, .bhline, .gvline, .pvline {
+    display: block !important;
+}
+#tree div div.bvline, .bvline {
     position:absolute;
     z-index:2;
     height:1px;
@@ -191,7 +197,7 @@ Females     Web_Gender_Female.png
     padding:0;
     background-color: #00029D;
 }
-#tree div div.bhline {
+#tree div div.bhline, .bhline {
     position:absolute;
     z-index:2;
     width:1px;
@@ -199,6 +205,11 @@ Females     Web_Gender_Female.png
     padding:0;
     background-color: #00029D;
 }
-.ghline, .gvline {
-    display:none;
+.ghline, .gvline, .pvline {
+    position:absolute;
+    z-index:2;
+    height:1px;
+    margin:0 0 0 16px;
+    padding:0;
+    background-color: #00029D;
 }
