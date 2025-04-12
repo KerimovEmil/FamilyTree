@@ -308,7 +308,7 @@ INDEX_HTML_TEMPLATE = """<!DOCTYPE html>
         <div class="fullclear"></div>
         <div id="footer">
             <p id="createdate">
-            Generated on {current_date}
+            Inspired by GRAMPS software. Generated on {current_date}
             </p>
             <p id="copyright">
             </p>
@@ -364,7 +364,7 @@ INDIVIDUALS_HTML_TEMPLATE = """<!DOCTYPE html>
         <div class="fullclear"></div>
         <div id="footer">
             <p id="createdate">
-            Generated on {current_date}
+            Inspired by GRAMPS software. Generated on {current_date}
             </p>
             <p id="copyright">
             </p>
@@ -429,7 +429,7 @@ SURNAME_PAGE_TEMPLATE = """<!DOCTYPE html>
         <div class="fullclear"></div>
         <div id="footer">
             <p id="createdate">
-            Generated on {current_date}
+            Inspired by GRAMPS software. Generated on {current_date}
             </p>
             <p id="copyright">
             </p>
