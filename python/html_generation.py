@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """
-Functions for generating HTML content from GEDCOM data.
+Functions for generating HTML content from GEDCOM data with new directory structure.
 """
 
 import os
 from datetime import datetime
-from utils import generate_id_from_pointer, get_relative_path, get_surname_file_path, get_surname_relative_path
+from utils import (
+    generate_id_from_pointer, get_individual_relative_path
+)
 from data_extraction import (
     get_name, get_gender, get_birth_data, get_death_data, get_occupation,
     get_attributes, get_parents, get_families
@@ -19,7 +21,25 @@ from constants import (
     SURNAME_INDIVIDUAL_ENTRY_TEMPLATE, SURNAMES_DIR
 )
 
-def generate_parents_section(gedcom_parser, individual, individual_id):
+def extract_name_parts(name):
+    """Extract surname and given name from a full name."""
+    if ',' in name:
+        surname, given_name = name.split(',', 1)
+        return surname.strip(), given_name.strip()
+    else:
+        # Handle cases where there's no comma in the name
+        return "Unknown", name
+
+def get_path_for_individual(individual_id, individuals_data):
+    """Get the path for an individual using the new structure."""
+    if individual_id in individuals_data and 'path' in individuals_data[individual_id]:
+        return individuals_data[individual_id]['path']
+    else:
+        # Fallback to old path structure if not found
+        print(f"Warning: Could not find path for individual {individual_id}")
+        return f"ppl/{individual_id[0]}/{individual_id[1]}/{individual_id}.html"
+
+def generate_parents_section(gedcom_parser, individual, individual_id, individuals_data):
     """Generate the HTML for the parents section."""
     parents_info = get_parents(gedcom_parser, individual)
     if not parents_info:
@@ -31,7 +51,7 @@ def generate_parents_section(gedcom_parser, individual, individual_id):
     if parents_info['father']:
         father = parents_info['father']
         father_id = generate_id_from_pointer(father.get_pointer())
-        father_path = get_relative_path(father_id)
+        father_path = get_path_for_individual(father_id, individuals_data)
         father_name = get_name(father)
         father_birth, _ = get_birth_data(father)
         father_death, _ = get_death_data(father)
@@ -48,7 +68,7 @@ def generate_parents_section(gedcom_parser, individual, individual_id):
     if parents_info['mother']:
         mother = parents_info['mother']
         mother_id = generate_id_from_pointer(mother.get_pointer())
-        mother_path = get_relative_path(mother_id)
+        mother_path = get_path_for_individual(mother_id, individuals_data)
         mother_name = get_name(mother)
         mother_birth, _ = get_birth_data(mother)
         mother_death, _ = get_death_data(mother)
@@ -79,7 +99,7 @@ def generate_parents_section(gedcom_parser, individual, individual_id):
     # Add siblings rows
     for sibling in parents_info['siblings']:
         sibling_id = generate_id_from_pointer(sibling.get_pointer())
-        sibling_path = get_relative_path(sibling_id)
+        sibling_path = get_path_for_individual(sibling_id, individuals_data)
         sibling_name = get_name(sibling)
         sibling_birth, _ = get_birth_data(sibling)
         sibling_death, _ = get_death_data(sibling)
@@ -87,7 +107,7 @@ def generate_parents_section(gedcom_parser, individual, individual_id):
 
         relation = "Sister" if sibling_gender == "female" else "Brother"
 
-        sibling_link = f'<a href="../../../{sibling_path}">{sibling_name}</a>'
+        sibling_link = f'<a href="../../{sibling_path}">{sibling_name}</a>'
 
         parents_rows.append(SIBLING_ROW_TEMPLATE.format(
             relation=relation,
@@ -98,7 +118,7 @@ def generate_parents_section(gedcom_parser, individual, individual_id):
 
     return PARENTS_TEMPLATE.format(parents_rows=''.join(parents_rows))
 
-def generate_families_section(gedcom_parser, individual, individual_id):
+def generate_families_section(gedcom_parser, individual, individual_id, individuals_data):
     """Generate the HTML for the families section."""
     families_info = get_families(gedcom_parser, individual)
     if not families_info:
@@ -125,7 +145,7 @@ def generate_families_section(gedcom_parser, individual, individual_id):
             continue
 
         spouse_id = generate_id_from_pointer(spouse.get_pointer())
-        spouse_path = get_relative_path(spouse_id)
+        spouse_path = get_path_for_individual(spouse_id, individuals_data)
         spouse_name = get_name(spouse)
         spouse_birth, _ = get_birth_data(spouse)
         spouse_death, _ = get_death_data(spouse)
@@ -134,7 +154,7 @@ def generate_families_section(gedcom_parser, individual, individual_id):
         children_rows = []
         for child in children:
             child_id = generate_id_from_pointer(child.get_pointer())
-            child_path = get_relative_path(child_id)
+            child_path = get_path_for_individual(child_id, individuals_data)
             child_name = get_name(child)
             child_birth, _ = get_birth_data(child)
             child_death, _ = get_death_data(child)
@@ -163,219 +183,14 @@ def generate_families_section(gedcom_parser, individual, individual_id):
 
     return FAMILIES_TEMPLATE.format(families_rows=''.join(families_rows))
 
-def generate_pedigree_section(gedcom_parser, individual, individual_id):
-    """Generate a pedigree section showing ancestors and descendants."""
-    # Get parents information
-    parents_info = get_parents(gedcom_parser, individual)
-
-    # Get families information (spouses and children)
-    families_info = get_families(gedcom_parser, individual)
-
-    # If no parents and no families, return empty string
-    if (not parents_info or (not parents_info['father'] and not parents_info['mother'])) and not families_info:
-        return ""
-
-    # Get individual details
-    name = get_name(individual)
-
-    # Start building the pedigree content
-    pedigree_content = ""
-
-    # If we have parents, show the father as the root
-    if parents_info and parents_info['father']:
-        father = parents_info['father']
-        father_id = generate_id_from_pointer(father.get_pointer())
-        father_name = get_name(father)
-        father_path = get_relative_path(father_id)
-
-        # Start with father
-        pedigree_content += f"""<li>
-            <a href="../../../{father_path}">{father_name}</a>
-            <ol>"""
-
-        # Add mother if available
-        if parents_info['mother']:
-            mother = parents_info['mother']
-            mother_id = generate_id_from_pointer(mother.get_pointer())
-            mother_name = get_name(mother)
-            mother_path = get_relative_path(mother_id)
-
-            pedigree_content += f"""<li class="spouse">
-                <a href="../../../{mother_path}">{mother_name}</a>
-                <ol>"""
-
-        # Add this person
-        pedigree_content += f"""<li class="thisperson">
-            {name}"""
-    else:
-        # If no parents, start with this person
-        pedigree_content += f"""<li class="thisperson">
-            {name}"""
-
-    # Add spouses and children if available
-    if families_info:
-        pedigree_content += """<ol class="spouselist">"""
-
-        for family in families_info:
-            spouse = None
-            gender = get_gender(individual)
-
-            # Determine spouse based on individual's gender
-            if gender == "male":
-                spouse = family['wife']
-            else:
-                spouse = family['husband']
-
-            # If spouse exists, add spouse and children
-            if spouse:
-                spouse_id = generate_id_from_pointer(spouse.get_pointer())
-                spouse_name = get_name(spouse)
-                spouse_path = get_relative_path(spouse_id)
-
-                pedigree_content += f"""<li class="spouse">
-                    <a href="../../../{spouse_path}">{spouse_name}</a>"""
-
-                # Add children if available
-                children = family['children']
-                if children:
-                    pedigree_content += """<ol>"""
-
-                    for child in children:
-                        child_id = generate_id_from_pointer(child.get_pointer())
-                        child_name = get_name(child)
-                        child_path = get_relative_path(child_id)
-
-                        pedigree_content += f"""<li>
-                            <a href="../../../{child_path}">{child_name}</a>
-                        </li>"""
-
-                    pedigree_content += """</ol>"""
-
-                pedigree_content += """</li>"""
-
-        pedigree_content += """</ol>"""
-
-    # Close the tags
-    if parents_info and parents_info['father'] and parents_info['mother']:
-        # Close this person, mother, and father tags
-        pedigree_content += """</li></ol></li></ol></li>"""
-    elif parents_info and parents_info['father']:
-        # Close this person and father tags
-        pedigree_content += """</li></ol></li>"""
-    else:
-        # Close this person tag
-        pedigree_content += """</li>"""
-
-    return PEDIGREE_TEMPLATE.format(pedigree_content=pedigree_content)
-
-def generate_ancestors_section(gedcom_parser, individual, individual_id):
-    """Generate an ancestors tree section."""
-    parents_info = get_parents(gedcom_parser, individual)
-    if not parents_info or (not parents_info['father'] and not parents_info['mother']):
-        return ""
-
-    # Get individual details
-    name = get_name(individual)
-    birth_date, _ = get_birth_data(individual)
-    death_date, _ = get_death_data(individual)
-    gender = get_gender(individual)
-    gender_class = "male" if gender == "male" else "female"
-
-    # Format dates
-    birth_display = f"*{birth_date}" if birth_date else "*"
-    death_display = f"+{death_date}" if death_date else "+..."
-
-    # Start building the ancestors tree
-    ancestors_content = f"""
-    <div class="boxbg {gender_class} AncCol0" style="top: 80px; left: 6px;">
-        <a class="noThumb" href="../../../{get_relative_path(individual_id)}">
-        {name}<br/>{birth_display}<br/>{death_display}
-        </a>
-    </div>
-    <div class="shadow" style="top: 85px; left: 10px;"></div>
-    """
-
-    # Add father if available
-    father = parents_info['father']
-    mother = parents_info['mother']
-
-    # Only add connecting lines if we have at least one parent
-    if father or mother:
-        ancestors_content += """
-        <div class="bvline" style="top: 100px; left: 285px; width: 15px"></div>
-        <div class="gvline" style="top: 105px; left: 285px; width: 20px"></div>
-        """
-
-    # Add father details
-    if father:
-        father_id = generate_id_from_pointer(father.get_pointer())
-        father_name = get_name(father)
-        father_birth, _ = get_birth_data(father)
-        father_death, _ = get_death_data(father)
-
-        # Format dates
-        father_birth_display = f"*{father_birth}" if father_birth else "*"
-        father_death_display = f"+{father_death}" if father_death else "+..."
-
-        ancestors_content += f"""
-        <div class="boxbg male AncCol1" style="top: 5px; left: 316px;">
-            <a class="noThumb" href="../../../{get_relative_path(father_id)}">
-            {father_name}<br/>{father_birth_display}<br/>{father_death_display}
-            </a>
-        </div>
-        <div class="shadow" style="top: 10px; left: 320px;"></div>
-        <div class="bvline" style="top: 25px; left: 300px; width: 15px;"></div>
-        """
-
-    # Add connecting lines between parents if both exist
-    if father and mother:
-        ancestors_content += """
-        <div class="bhline" style="top: 25px; left: 300px; height: 76px;"></div>
-        """
-
-    # Add mother details
-    if mother:
-        mother_id = generate_id_from_pointer(mother.get_pointer())
-        mother_name = get_name(mother)
-        mother_birth, _ = get_birth_data(mother)
-        mother_death, _ = get_death_data(mother)
-
-        # Format dates
-        mother_birth_display = f"*{mother_birth}" if mother_birth else "*"
-        mother_death_display = f"+{mother_death}" if mother_death else "+..."
-
-        ancestors_content += f"""
-        <div class="boxbg female AncCol1" style="top: 155px; left: 316px;">
-            <a class="noThumb" href="../../../{get_relative_path(mother_id)}">
-            {mother_name}<br/>{mother_birth_display}<br/>{mother_death_display}
-            </a>
-        </div>
-        <div class="shadow" style="top: 160px; left: 320px;"></div>
-        <div class="bvline" style="top: 175px; left: 300px; width: 15px;"></div>
-        """
-
-    # Add final connecting line if both parents exist
-    if father and mother:
-        ancestors_content += """
-        <div class="bhline" style="top: 100px; left: 300px; height: 76px;"></div>
-        """
-
-    # Set appropriate container width based on number of generations
-    container_width = 614 if (father or mother) else 300
-
-    # Wrap the content in the container div
-    ancestors_content = f'<div id="treeContainer" style="width:{container_width}px; height:300px; top: 0px">{ancestors_content}</div>'
-
-    return ANCESTORS_TEMPLATE.format(ancestors_content=ancestors_content)
-
-def generate_html_for_individual(gedcom_parser, individual):
-    """Generate HTML content for an individual."""
-    individual_id = generate_id_from_pointer(individual.get_pointer())
-    name = get_name(individual)
-    gender = get_gender(individual)
-    birth_date, birth_place = get_birth_data(individual)
-    death_date, death_place = get_death_data(individual)
-    occupation = get_occupation(individual)
+def generate_html_for_individual_new_structure(gedcom_parser, element, individuals_data):
+    """Generate HTML content for an individual with new path structure."""
+    individual_id = generate_id_from_pointer(element.get_pointer())
+    name = get_name(element)
+    gender = get_gender(element)
+    birth_date, birth_place = get_birth_data(element)
+    death_date, death_place = get_death_data(element)
+    occupation = get_occupation(element)
 
     # Generate death section if applicable
     death_section = ""
@@ -390,53 +205,20 @@ def generate_html_for_individual(gedcom_parser, individual):
     if occupation and occupation != "&nbsp;":
         occupation_section = OCCUPATION_TEMPLATE.format(occupation=occupation)
 
-    # Generate married name section if applicable
-    married_name_section = ""
-    # This would require more complex logic to determine married names
-
-    # Generate attributes section
-    attributes = get_attributes(individual)
-    attributes_section = ""
-    for attr in attributes:
-        attributes_section += f"""
-<tr>
-    <td class="ColumnType">{attr['type']}</td>
-    <td class="ColumnValue">{attr['value']}</td>
-    <td class="ColumnNotes"><div>{attr['notes']}</div></td>
-    <td class="ColumnSources">{attr['sources']}</td>
-</tr>
-"""
-
     # Generate parents section
-    parents_section = generate_parents_section(gedcom_parser, individual, individual_id)
+    parents_section = generate_parents_section(gedcom_parser, element, individual_id, individuals_data)
 
     # Generate families section
-    families_section = generate_families_section(gedcom_parser, individual, individual_id)
+    families_section = generate_families_section(gedcom_parser, element, individual_id, individuals_data)
 
     # Generate pedigree section
-    pedigree_section = generate_pedigree_section(gedcom_parser, individual, individual_id)
+    pedigree_section = generate_pedigree_section(gedcom_parser, element, individual_id, individuals_data)
 
     # Generate ancestors section
-    ancestors_section = generate_ancestors_section(gedcom_parser, individual, individual_id)
+    ancestors_section = generate_ancestors_section(gedcom_parser, element, individual_id, individuals_data)
 
     # Get current date for footer
     current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-    # Fix name format if it's still a tuple string
-    if isinstance(name, str) and name.startswith("(") and name.endswith(")"):
-        # Try to extract the name from the tuple string
-        try:
-            # Convert string representation of tuple to actual tuple
-            name_tuple = eval(name)
-            if isinstance(name_tuple, tuple) and len(name_tuple) == 2:
-                given_name, surname = name_tuple
-                if surname:
-                    name = f"{surname}, {given_name}"
-                else:
-                    name = given_name
-        except:
-            # If eval fails, just use the name as is
-            pass
 
     # Fill in the HTML template
     html_content = HTML_TEMPLATE.format(
@@ -446,10 +228,10 @@ def generate_html_for_individual(gedcom_parser, individual):
         birth_place=birth_place,
         death_section=death_section,
         occupation_section=occupation_section,
-        married_name_section=married_name_section,
+        married_name_section="",
         parents_section=parents_section,
         families_section=families_section,
-        attributes_section=attributes_section,
+        attributes_section="",
         pedigree_section=pedigree_section,
         ancestors_section=ancestors_section,
         current_date=current_date
@@ -457,65 +239,16 @@ def generate_html_for_individual(gedcom_parser, individual):
 
     return html_content
 
-def generate_surname_pages(individuals_data):
-    """Generate HTML files for each surname."""
+def generate_index_html_new_structure(individuals_data):
+    """Generate the index.html file with surname index using new paths."""
     # Group individuals by surname
     surnames = {}
     for individual_id, data in individuals_data.items():
-        name = data['name']
-        if ',' in name:
-            surname = name.split(',')[0].strip()
-            if surname and surname != '___':
-                if surname not in surnames:
-                    surnames[surname] = []
-                surnames[surname].append((individual_id, data))
-
-    # Create surnames directory if it doesn't exist
-    os.makedirs(SURNAMES_DIR, exist_ok=True)
-
-    # Generate a page for each surname
-    for surname, individuals in surnames.items():
-        # Sort individuals by name
-        sorted_individuals = sorted(individuals, key=lambda x: x[1]['name'])
-
-        # Generate individual entries
-        individual_entries = ""
-        for individual_id, data in sorted_individuals:
-            name = data['name']
-            # Extract given name from the full name
-            given_name = name.split(',')[1].strip() if ',' in name else name
-            birth_date = data.get('birth_date', '')
-            individual_path = "../" + get_relative_path(individual_id)
-
-            individual_entries += SURNAME_INDIVIDUAL_ENTRY_TEMPLATE.format(
-                individual_path=individual_path,
-                individual_name=given_name,
-                birth_date=birth_date
-            )
-
-        # Get current date for footer
-        current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-        # Fill in the template
-        html_content = SURNAME_PAGE_TEMPLATE.format(
-            surname=surname,
-            individual_entries=individual_entries,
-            current_date=current_date
-        )
-
-        # Write to file
-        file_path = get_surname_file_path(surname)
-        with open(file_path, 'w', encoding='utf-8') as f:
-            f.write(html_content)
-
-        print(f"Generated surname page for {surname} at {file_path}")
-
-    return surnames
-
-def generate_index_html(individuals_data):
-    """Generate the index.html file with surname index."""
-    # Generate surname pages first and get the surnames dictionary
-    surnames = generate_surname_pages(individuals_data)
+        surname = data.get('surname', 'Unknown')
+        if surname and surname != '___':
+            if surname not in surnames:
+                surnames[surname] = []
+            surnames[surname].append((individual_id, data))
 
     # Sort surnames
     sorted_surnames = sorted(surnames.keys())
@@ -529,16 +262,16 @@ def generate_index_html(individuals_data):
         # Generate given names HTML
         given_names_html = ""
         for individual_id, data in individuals:
-            name = data['name']
-            given_name = name.split(',')[1].strip() if ',' in name else name
-            path = get_relative_path(individual_id)
+            given_name = data.get('given_name', '')
+            path = data.get('path', '')
+            name = data.get('name', '')
             given_names_html += f'<a href="{path}" title="{name}">{given_name}</a>, '
 
         # Remove trailing comma and space
         given_names_html = given_names_html.rstrip(', ')
 
         # Get the surname page path
-        surname_path = get_surname_relative_path(surname)
+        surname_path = f"surnames/{surname.lower().replace(' ', '_')}.html"
 
         # Add surname entry
         surname_entries += SURNAME_ENTRY_TEMPLATE.format(
@@ -560,20 +293,20 @@ def generate_index_html(individuals_data):
     with open('index.html', 'w', encoding='utf-8') as f:
         f.write(html_content)
 
-    print("Generated index.html")
+    print("Generated index.html with new paths")
 
-def generate_individuals_html(individuals_data):
-    """Generate the individuals.html file with all individuals."""
+def generate_individuals_html_new_structure(individuals_data):
+    """Generate the individuals.html file with all individuals using new paths."""
     # Sort individuals by name
     sorted_individuals = sorted(individuals_data.items(), key=lambda x: x[1]['name'])
 
     # Generate individual entries
     individual_entries = ""
     for individual_id, data in sorted_individuals:
-        name = data['name']
+        name = data.get('name', '')
         birth_date = data.get('birth_date', '')
         death_date = data.get('death_date', '')
-        path = get_relative_path(individual_id)
+        path = data.get('path', '')
 
         individual_entries += INDIVIDUAL_ENTRY_TEMPLATE.format(
             path=path,
@@ -595,4 +328,185 @@ def generate_individuals_html(individuals_data):
     with open('individuals.html', 'w', encoding='utf-8') as f:
         f.write(html_content)
 
-    print("Generated individuals.html")
+    print("Generated individuals.html with new paths")
+
+def generate_surname_pages_new_structure(individuals_data):
+    """Generate HTML files for each surname."""
+    # Create the surnames directory if it doesn't exist
+    os.makedirs(SURNAMES_DIR, exist_ok=True)
+
+    # Group individuals by surname
+    surnames = {}
+    for individual_id, data in individuals_data.items():
+        surname = data.get('surname', '___')
+        if surname not in surnames:
+            surnames[surname] = []
+        surnames[surname].append(data)
+
+    # Generate a page for each surname
+    for surname, individuals in surnames.items():
+        # Sort individuals by given name
+        sorted_individuals = sorted(individuals, key=lambda x: x.get('given_name', ''))
+
+        # Generate individual entries
+        individual_entries = ""
+        for data in sorted_individuals:
+            given_name = data.get('given_name', '')
+            birth_date = data.get('birth_date', '')
+            path = data.get('path', '')
+
+            individual_entries += SURNAME_INDIVIDUAL_ENTRY_TEMPLATE.format(
+                path=path,
+                given_name=given_name,
+                birth_date=birth_date
+            )
+
+        # Get current date for footer
+        current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        # Fill in the template
+        html_content = SURNAME_PAGE_TEMPLATE.format(
+            surname=surname,
+            individual_entries=individual_entries,
+            current_date=current_date
+        )
+
+        # Create a safe filename
+        safe_surname = surname.lower().replace(' ', '_')
+        file_path = os.path.join(SURNAMES_DIR, f"{safe_surname}.html")
+
+        # Write to file
+        with open(file_path, 'w', encoding='utf-8') as f:
+            f.write(html_content)
+
+        print(f"Generated surname page for {surname} at {file_path}")
+
+def generate_pedigree_section(gedcom_parser, element, individual_id, individuals_data):
+    """Generate the HTML for the pedigree section."""
+    name = get_name(element)
+
+    # Get families information
+    families_info = get_families(gedcom_parser, element)
+    if not families_info:
+        return ""
+
+    # Start with the current individual
+    pedigree_content = f'<li class="thisperson">\n            {name}'
+
+    # Add spouses and children if any
+    spouses_list = []
+    for family in families_info:
+        husband = family['husband']
+        wife = family['wife']
+        children = family['children']
+
+        # Determine spouse based on individual's gender
+        individual_gender = get_gender(element)
+        if individual_gender == "male":
+            spouse = wife
+        else:
+            spouse = husband
+
+        # Skip if no spouse
+        if not spouse:
+            continue
+
+        spouse_id = generate_id_from_pointer(spouse.get_pointer())
+        spouse_path = get_path_for_individual(spouse_id, individuals_data)
+        spouse_name = get_name(spouse)
+
+        # Create spouse entry
+        spouse_entry = f'<li class="spouse">\n                    <a href="../../../FamilyTree/{spouse_path}">{spouse_name}</a>'
+
+        # Add children if any
+        if children:
+            children_list = []
+            for child in children:
+                child_id = generate_id_from_pointer(child.get_pointer())
+                child_path = get_path_for_individual(child_id, individuals_data)
+                child_name = get_name(child)
+
+                children_list.append(f'<li>\n                            <a href="../../../FamilyTree/{child_path}">{child_name}</a>\n                        </li>')
+
+            if children_list:
+                spouse_entry += '<ol>' + ''.join(children_list) + '</ol>'
+
+        spouse_entry += '</li>'
+        spouses_list.append(spouse_entry)
+
+    # Add spouses list if any
+    if spouses_list:
+        pedigree_content += '<ol class="spouselist">' + ''.join(spouses_list) + '</ol>'
+
+    pedigree_content += '</li>'
+
+    return PEDIGREE_TEMPLATE.format(pedigree_content=pedigree_content)
+
+def generate_ancestors_section(gedcom_parser, element, individual_id, individuals_data):
+    """Generate the HTML for the ancestors section."""
+    name = get_name(element)
+    birth_date, _ = get_birth_data(element)
+    death_date, _ = get_death_data(element)
+    gender_class = "male" if get_gender(element) == "male" else "female"
+
+    # Get parents information
+    parents_info = get_parents(gedcom_parser, element)
+
+    # If no parents, return empty string
+    if not parents_info or (not parents_info['father'] and not parents_info['mother']):
+        return ""
+
+    # Start with the current individual
+    ancestors_content = f'''
+    <div id="treeContainer" style="width:614px; height:300px; top: 0px">
+    <div class="boxbg {gender_class} AncCol0" style="top: 80px; left: 6px;">
+        <a class="noThumb" href="../../{get_path_for_individual(individual_id, individuals_data)}">
+        {name}<br/>*{birth_date or ''}<br/>+{death_date or '...'}
+        </a>
+    </div>
+    <div class="shadow" style="top: 85px; left: 10px;"></div>
+    '''
+
+    # Add father if available
+    if parents_info['father']:
+        father = parents_info['father']
+        father_id = generate_id_from_pointer(father.get_pointer())
+        father_path = get_path_for_individual(father_id, individuals_data)
+        father_name = get_name(father)
+        father_birth, _ = get_birth_data(father)
+        father_death, _ = get_death_data(father)
+
+        ancestors_content += f'''
+        <div class="bvline" style="top: 100px; left: 285px; width: 15px"></div>
+        <div class="gvline" style="top: 105px; left: 285px; width: 20px"></div>
+
+        <div class="boxbg male AncCol1" style="top: 5px; left: 316px;">
+            <a class="noThumb" href="../../../FamilyTree/{father_path}">
+            {father_name}<br/>*{father_birth or ''}<br/>+{father_death or '...'}
+            </a>
+        </div>
+        <div class="shadow" style="top: 10px; left: 320px;"></div>
+        '''
+
+    # Add mother if available
+    if parents_info['mother']:
+        mother = parents_info['mother']
+        mother_id = generate_id_from_pointer(mother.get_pointer())
+        mother_path = get_path_for_individual(mother_id, individuals_data)
+        mother_name = get_name(mother)
+        mother_birth, _ = get_birth_data(mother)
+        mother_death, _ = get_death_data(mother)
+
+        ancestors_content += f'''
+        <div class="bvline" style="top: 100px; left: 285px; width: 15px"></div>
+        <div class="pvline" style="top: 105px; left: 285px; width: 20px"></div>
+
+        <div class="boxbg female AncCol1" style="top: 155px; left: 316px;">
+            <a class="noThumb" href="../../../FamilyTree/{mother_path}">
+            {mother_name}<br/>*{mother_birth or ''}<br/>+{mother_death or '...'}
+            </a>
+        </div>
+        <div class="shadow" style="top: 160px; left: 320px;"></div>
+        '''
+
+    return ANCESTORS_TEMPLATE.format(ancestors_content=ancestors_content)

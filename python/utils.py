@@ -44,3 +44,29 @@ def get_surname_relative_path(surname):
     # and removing any special characters
     safe_surname = re.sub(r'[^\w\s]', '', surname).lower().replace(' ', '_')
     return f"{SURNAMES_DIR}/{safe_surname}.html"
+
+def get_individual_file_path(surname, given_name, individual_id):
+    """Generate the file path for an individual based on surname and given name."""
+    # Convert surname and given name to safe filenames
+    safe_surname = re.sub(r'[^\w\s]', '', surname).lower().replace(' ', '_')
+    safe_given_name = re.sub(r'[^\w\s]', '', given_name).lower().replace(' ', '_')
+
+    # Create a unique filename using the individual_id as a suffix to handle duplicates
+    filename = f"{safe_given_name}_{individual_id[:8]}.html"
+
+    # Create the directory path
+    dir_path = os.path.join(OUTPUT_DIR, safe_surname)
+
+    return os.path.join(dir_path, filename)
+
+def get_individual_relative_path(surname, given_name, individual_id):
+    """Generate the relative path for an individual based on surname and given name."""
+    # Convert surname and given name to safe filenames
+    safe_surname = re.sub(r'[^\w\s]', '', surname).lower().replace(' ', '_')
+    safe_given_name = re.sub(r'[^\w\s]', '', given_name).lower().replace(' ', '_')
+
+    # Create a unique filename using the individual_id as a suffix to handle duplicates
+    filename = f"{safe_given_name}_{individual_id[:8]}.html"
+
+    # Return the path relative to the root directory
+    return f"{OUTPUT_DIR}/{safe_surname}/{filename}"

@@ -17,11 +17,11 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <meta name ="viewport" content="width=device-width; height=device-height; initial-scale=1.0; minimum-scale=0.5; maximum-scale=10.0; user-scalable=yes" />
     <meta name ="apple-mobile-web-app-capable" content="yes" />
     <meta name="author" content="" />
-    <link href="../../../images/favicon2.ico" rel="shortcut icon" type="image/x-icon" />
-    <link href="../../../css/narrative-print.css" media="print" rel="stylesheet" type="text/css" />
-    <link href="../../../css/narrative-screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../../images/favicon2.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="../../css/narrative-print.css" media="print" rel="stylesheet" type="text/css" />
+    <link href="../../css/narrative-screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../../css/ancestortree.css" media="screen" rel="stylesheet" type="text/css" />
     <script>function navFunction() {{ var x = document.getElementById("dropmenu"); if (x.className === "nav") {{ x.className += " responsive"; }} else {{ x.className = "nav"; }} }}</script>
-    <link href="../../../css/ancestortree.css" media="screen" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="outerwrapper">
@@ -32,9 +32,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         <div class="wrappernav" id="nav" role="navigation">
             <div class="container">
                 <ul class="nav" id="dropmenu">
-                    <li class = "CurrentSection"><a href="../../../individuals.html" title="Individuals">Individuals</a></li>
-                    <li><a href="../../../index.html" title="Surnames">Surnames</a></li>
-                    <li><a href="../../../interactive_graph.html" title="Interactive Graph">Interactive Graph</a></li>
+                    <li class = "CurrentSection"><a href="../../individuals.html" title="Individuals">Individuals</a></li>
+                    <li><a href="../../index.html" title="Surnames">Surnames</a></li>
+                    <li><a href="../../interactive_graph.html" title="Interactive Graph">Interactive Graph</a></li>
                 </ul>
             </div>
         </div>
@@ -210,7 +210,7 @@ PARENTS_TEMPLATE = """
 PARENT_ROW_TEMPLATE = """
 <tr>
     <td class="ColumnAttribute">{relation}</td>
-    <td class="ColumnValue" /><a href="../../../{parent_path}">{parent_name}</a><td class="ColumnDate" />{parent_birth}<td class="ColumnDate" />{parent_death}
+    <td class="ColumnValue" /><a href="../../../FamilyTree/{parent_path}">{parent_name}</a><td class="ColumnDate" />{parent_birth}<td class="ColumnDate" />{parent_death}
 </tr>
 """
 
@@ -241,7 +241,7 @@ FAMILY_ROW_TEMPLATE = """
     <td class="ColumnType">Married</td>
     <td class="ColumnAttribute">{spouse_relation}</td>
     <td class="ColumnValue">
-        <a href="../../../{spouse_path}">{spouse_name}</a>
+        <a href="../../../FamilyTree/{spouse_path}">{spouse_name}</a>
      ( *
     {spouse_birth}
      +
@@ -269,7 +269,7 @@ FAMILY_ROW_TEMPLATE = """
 """
 
 CHILD_ROW_TEMPLATE = """
-<tr><td /><a href="../../../{child_path}">{child_name}</a><td>{child_birth}</td><td>{child_death}</td></tr>
+<tr><td /><a href="../../../FamilyTree/{child_path}">{child_name}</a><td>{child_birth}</td><td>{child_death}</td></tr>
 """
 
 PEDIGREE_TEMPLATE = """
@@ -282,9 +282,11 @@ PEDIGREE_TEMPLATE = """
 """
 
 ANCESTORS_TEMPLATE = """
-<div class="subsection" id="tree">
+<div class="subsection" id="ancestors">
     <h4>Ancestors</h4>
-    {ancestors_content}
+    <div id="ancestortree" class="ancestortree">
+        {ancestors_content}
+    </div>
 </div>
 """
 
@@ -468,7 +470,7 @@ SURNAME_PAGE_TEMPLATE = """<!DOCTYPE html>
 
 SURNAME_INDIVIDUAL_ENTRY_TEMPLATE = """                    <tr>
                         <td class="ColumnName">
-                            <a href="{individual_path}">{individual_name}</a>
+                            <a href="../{path}">{given_name}</a>
                         </td>
                         <td class="ColumnBirth">{birth_date}</td>
                     </tr>
@@ -479,4 +481,22 @@ INDIVIDUAL_ENTRY_TEMPLATE = """                    <tr>
                         <td class="ColumnDate">{birth_date}</td>
                         <td class="ColumnDate">{death_date}</td>
                     </tr>
+"""
+
+PEDIGREE_TEMPLATE = """
+<div class="subsection" id="pedigree">
+    <h4>Pedigree</h4>
+    <ol class="pedigreegen">
+        {pedigree_content}
+    </ol>
+</div>
+"""
+
+ANCESTORS_TEMPLATE = """
+<div class="subsection" id="ancestors">
+    <h4>Ancestors</h4>
+    <div id="ancestortree" class="ancestortree">
+        {ancestors_content}
+    </div>
+</div>
 """
