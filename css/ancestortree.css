@@ -205,11 +205,6 @@ Females     Web_Gender_Female.png
     padding:0;
     background-color: #00029D;
 }
-.ghline, .gvline, .pvline {
-    position:absolute;
-    z-index:2;
-    height:1px;
-    margin:0 0 0 16px;
-    padding:0;
-    background-color: #00029D;
+.ghline, .gvline {
+    display:none;
 }
