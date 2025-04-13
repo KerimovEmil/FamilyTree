@@ -1666,12 +1666,12 @@
 2 DATE 26 NOV 2014
 3 TIME 18:10:27
 0 @I6000000003244792575@ INDI
-1 NAME Safuri /Muzafarova/
-2 GIVN Safuri
+1 NAME Safura /Muzafarova/
+2 GIVN Safura
 2 SURN Muzafarova
-1 NAME Safuri /Muzafarova/
+1 NAME Safura /Muzafarova/
 2 TYPE married
-2 GIVN Safuri
+2 GIVN Safura
 2 SURN Muzafarova
 1 SEX F
 1 BIRT Y
@@ -3043,6 +3043,7 @@
 1 BIRT
 2 DATE 1954
 1 DEAT Y
+2 DATE 2012
 1 FAMC @F6000000004370927754@
 2 PEDI birth
 1 FAMS @F6000000004371323752@
