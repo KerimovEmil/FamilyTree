@@ -421,13 +421,13 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
 
     # Start with the current individual
     ancestors_content = f'''
-    <div id="treeContainer" style="width:1234px; height:900px; top: 0px">
-    <div class="boxbg {gender_class} AncCol0" style="top: 417px; left: 6px;">
+    <div id="treeContainer" style="width:1234px; height:1200px; top: 0px">
+    <div class="boxbg {gender_class} AncCol0" style="top: 530px; left: 6px;">
         <a class="noThumb" href="../../{get_path_for_individual(individual_id, individuals_data)}">
         {name}<br/>*{birth_date or ''}<br/>+{death_date or '...'}
         </a>
     </div>
-    <div class="shadow" style="top: 422px; left: 10px;"></div>
+    <div class="shadow" style="top: 535px; left: 10px;"></div>
     '''
 
     # Add father if available
@@ -440,8 +440,8 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
         father_death = get_death_data(father)
 
         ancestors_content += f'''
-        <div class="bvline" style="top: 437px; left: 285px; width: 15px"></div>
-        <div class="gvline" style="top: 442px; left: 285px; width: 20px"></div>
+        <div class="bvline" style="top: 550px; left: 285px; width: 15px"></div>
+        <div class="gvline" style="top: 555px; left: 285px; width: 20px"></div>
         <div class="boxbg male AncCol1" style="top: 230px; left: 316px;">
             <a class="noThumb" href="../../../FamilyTree/{father_path}">
             {father_name}<br/>*{father_birth or ''}<br/>+{father_death or '...'}
@@ -449,7 +449,7 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
         </div>
         <div class="shadow" style="top: 235px; left: 320px;"></div>
         <div class="bvline" style="top: 250px; left: 300px; width: 15px;"></div>
-        <div class="bhline" style="top: 250px; left: 300px; height: 188px;"></div>
+        <div class="bhline" style="top: 250px; left: 300px; height: 301px;"></div>
         '''
 
         # Add paternal grandfather (father's father) if available
@@ -591,14 +591,14 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
         mother_death = get_death_data(mother)
 
         ancestors_content += f'''
-        <div class="boxbg female AncCol1" style="top: 605px; left: 316px;">
+        <div class="boxbg female AncCol1" style="top: 830px; left: 316px;">
             <a class="noThumb" href="../../../FamilyTree/{mother_path}">
             {mother_name}<br/>*{mother_birth or ''}<br/>+{mother_death or '...'}
             </a>
         </div>
-        <div class="shadow" style="top: 610px; left: 320px;"></div>
-        <div class="bvline" style="top: 625px; left: 300px; width: 15px;"></div>
-        <div class="bhline" style="top: 437px; left: 300px; height: 188px;"></div>
+        <div class="shadow" style="top: 835px; left: 320px;"></div>
+        <div class="bvline" style="top: 850px; left: 300px; width: 15px;"></div>
+        <div class="bhline" style="top: 550px; left: 300px; height: 301px;"></div>
         '''
 
         # Add maternal grandfather (mother's father) if available
@@ -612,16 +612,16 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
             maternal_grandfather_death = get_death_data(maternal_grandfather)
 
             ancestors_content += f'''
-            <div class="bvline" style="top: 625px; left: 595px; width: 15px"></div>
-            <div class="gvline" style="top: 630px; left: 595px; width: 20px"></div>
-            <div class="boxbg male AncCol2" style="top: 530px; left: 626px;">
+            <div class="bvline" style="top: 850px; left: 595px; width: 15px"></div>
+            <div class="gvline" style="top: 855px; left: 595px; width: 20px"></div>
+            <div class="boxbg male AncCol2" style="top: 680px; left: 626px;">
                 <a class="noThumb" href="../../../FamilyTree/{maternal_grandfather_path}">
                 {maternal_grandfather_name}<br/>*{maternal_grandfather_birth or ''}<br/>+{maternal_grandfather_death or '...'}
                 </a>
             </div>
-            <div class="shadow" style="top: 535px; left: 630px;"></div>
-            <div class="bvline" style="top: 550px; left: 610px; width: 15px;"></div>
-            <div class="bhline" style="top: 550px; left: 610px; height: 76px;"></div>
+            <div class="shadow" style="top: 685px; left: 630px;"></div>
+            <div class="bvline" style="top: 700px; left: 610px; width: 15px;"></div>
+            <div class="bhline" style="top: 700px; left: 610px; height: 151px;"></div>
             '''
 
             # Add maternal great-grandfather (mother's father's father) if available
@@ -635,16 +635,16 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
                 maternal_great_grandfather_death = get_death_data(maternal_great_grandfather)
 
                 ancestors_content += f'''
-                <div class="bvline" style="top: 550px; left: 905px; width: 15px"></div>
-                <div class="gvline" style="top: 555px; left: 905px; width: 20px"></div>
-                <div class="boxbg male AncCol3" style="top: 455px; left: 936px;">
+                <div class="bvline" style="top: 700px; left: 905px; width: 15px"></div>
+                <div class="gvline" style="top: 705px; left: 905px; width: 20px"></div>
+                <div class="boxbg male AncCol3" style="top: 605px; left: 936px;">
                     <a class="noThumb" href="../../../FamilyTree/{maternal_great_grandfather_path}">
                     {maternal_great_grandfather_name}<br/>*{maternal_great_grandfather_birth or ''}<br/>+{maternal_great_grandfather_death or '...'}
                     </a>
                 </div>
-                <div class="shadow" style="top: 460px; left: 940px;"></div>
-                <div class="bvline" style="top: 475px; left: 920px; width: 15px;"></div>
-                <div class="bhline" style="top: 475px; left: 920px; height: 76px;"></div>
+                <div class="shadow" style="top: 610px; left: 940px;"></div>
+                <div class="bvline" style="top: 625px; left: 920px; width: 15px;"></div>
+                <div class="bhline" style="top: 625px; left: 920px; height: 76px;"></div>
                 '''
 
             # Add maternal great-grandmother (mother's father's mother) if available
@@ -657,14 +657,14 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
                 maternal_great_grandmother_death = get_death_data(maternal_great_grandmother)
 
                 ancestors_content += f'''
-                <div class="boxbg female AncCol3" style="top: 605px; left: 936px;">
+                <div class="boxbg female AncCol3" style="top: 755px; left: 936px;">
                     <a class="noThumb" href="../../../FamilyTree/{maternal_great_grandmother_path}">
                     {maternal_great_grandmother_name}<br/>*{maternal_great_grandmother_birth or ''}<br/>+{maternal_great_grandmother_death or '...'}
                     </a>
                 </div>
-                <div class="shadow" style="top: 610px; left: 940px;"></div>
-                <div class="bvline" style="top: 625px; left: 920px; width: 15px;"></div>
-                <div class="bhline" style="top: 550px; left: 920px; height: 76px;"></div>
+                <div class="shadow" style="top: 760px; left: 940px;"></div>
+                <div class="bvline" style="top: 775px; left: 920px; width: 15px;"></div>
+                <div class="bhline" style="top: 700px; left: 920px; height: 76px;"></div>
                 '''
 
         # Add maternal grandmother (mother's mother) if available
@@ -677,14 +677,14 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
             maternal_grandmother_death = get_death_data(maternal_grandmother)
 
             ancestors_content += f'''
-            <div class="boxbg female AncCol2" style="top: 680px; left: 626px;">
+            <div class="boxbg female AncCol2" style="top: 980px; left: 626px;">
                 <a class="noThumb" href="../../../FamilyTree/{maternal_grandmother_path}">
                 {maternal_grandmother_name}<br/>*{maternal_grandmother_birth or ''}<br/>+{maternal_grandmother_death or '...'}
                 </a>
             </div>
-            <div class="shadow" style="top: 685px; left: 630px;"></div>
-            <div class="bvline" style="top: 700px; left: 610px; width: 15px;"></div>
-            <div class="bhline" style="top: 625px; left: 610px; height: 76px;"></div>
+            <div class="shadow" style="top: 985px; left: 630px;"></div>
+            <div class="bvline" style="top: 1000px; left: 610px; width: 15px;"></div>
+            <div class="bhline" style="top: 850px; left: 610px; height: 151px;"></div>
             '''
 
             # Add maternal great-grandfather (mother's mother's father) if available
@@ -698,16 +698,16 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
                 maternal_great_grandfather2_death = get_death_data(maternal_great_grandfather2)
 
                 ancestors_content += f'''
-                <div class="bvline" style="top: 700px; left: 905px; width: 15px"></div>
-                <div class="gvline" style="top: 705px; left: 905px; width: 20px"></div>
-                <div class="boxbg male AncCol3" style="top: 605px; left: 936px;">
+                <div class="bvline" style="top: 1000px; left: 905px; width: 15px"></div>
+                <div class="gvline" style="top: 1005px; left: 905px; width: 20px"></div>
+                <div class="boxbg male AncCol3" style="top: 905px; left: 936px;">
                     <a class="noThumb" href="../../../FamilyTree/{maternal_great_grandfather2_path}">
                     {maternal_great_grandfather2_name}<br/>*{maternal_great_grandfather2_birth or ''}<br/>+{maternal_great_grandfather2_death or '...'}
                     </a>
                 </div>
-                <div class="shadow" style="top: 610px; left: 940px;"></div>
-                <div class="bvline" style="top: 625px; left: 920px; width: 15px;"></div>
-                <div class="bhline" style="top: 625px; left: 920px; height: 76px;"></div>
+                <div class="shadow" style="top: 910px; left: 940px;"></div>
+                <div class="bvline" style="top: 925px; left: 920px; width: 15px;"></div>
+                <div class="bhline" style="top: 925px; left: 920px; height: 76px;"></div>
                 '''
 
             # Add maternal great-grandmother (mother's mother's mother) if available
@@ -720,14 +720,14 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
                 maternal_great_grandmother2_death = get_death_data(maternal_great_grandmother2)
 
                 ancestors_content += f'''
-                <div class="boxbg female AncCol3" style="top: 755px; left: 936px;">
+                <div class="boxbg female AncCol3" style="top: 1055px; left: 936px;">
                     <a class="noThumb" href="../../../FamilyTree/{maternal_great_grandmother2_path}">
                     {maternal_great_grandmother2_name}<br/>*{maternal_great_grandmother2_birth or ''}<br/>+{maternal_great_grandmother2_death or '...'}
                     </a>
                 </div>
-                <div class="shadow" style="top: 760px; left: 940px;"></div>
-                <div class="bvline" style="top: 775px; left: 920px; width: 15px;"></div>
-                <div class="bhline" style="top: 700px; left: 920px; height: 76px;"></div>
+                <div class="shadow" style="top: 1060px; left: 940px;"></div>
+                <div class="bvline" style="top: 1075px; left: 920px; width: 15px;"></div>
+                <div class="bhline" style="top: 1000px; left: 920px; height: 76px;"></div>
                 '''
 
     return ANCESTORS_TEMPLATE.format(ancestors_content=ancestors_content)
