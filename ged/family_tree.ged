@@ -1093,6 +1093,7 @@
 1 OCCU
 1 FAMC @F6000000003244630985@
 2 PEDI birth
+1 FAMS @F0113@
 1 CHAN
 2 DATE 23 MAR 2025
 3 TIME 20:53:09
@@ -1240,9 +1241,6 @@
 1 FAMC @F6000000003244630985@
 2 PEDI birth
 1 FAMS @F0067@
-1 CHAN
-2 DATE 14 JUN 2020
-3 TIME 16:35:25
 0 @I6000000003244652287@ INDI
 1 NAME Azad /Kerimov/
 2 GIVN Azad
@@ -1261,16 +1259,18 @@
 2 DATE 26 NOV 2014
 3 TIME 18:07:28
 0 @I6000000003244652590@ INDI
-1 NAME Samear /Zeinalov/
-2 GIVN Samear
+1 NAME Samir /Zeinalov/
+2 GIVN Samir
 2 SURN Zeinalov
-1 NAME Samear /Zeinalov/
+1 NAME Samir /Zeinalov/
 2 TYPE married
-2 GIVN Samear
+2 GIVN Samir
 2 SURN Zeinalov
 1 SEX M
 1 BIRT
 2 DATE 31 MAR 1965
+1 DEAT
+2 DATE 2018
 1 FAMC @F6000000003692775971@
 2 PEDI birth
 1 FAMS @F6000000003244630985@
@@ -6054,10 +6054,30 @@
 3 TIME 22:58:25
 0 @N0003@ NOTE Records not imported into INDI (individual) Gramps ID I600000000369
 1 CONC 2954278:
-1 CONT 
+1 CONT
 1 CONT Tag recognized but not supported                                    Lin
 1 CONC e   896: 2 EMAIL samiyekaplan@@hotmail.de
-1 CONT 
+1 CONT
+0 @I0102@ INDI
+1 NAME Huseynn /Rasulov/
+2 GIVN Huseynn
+2 SURN X
+1 SEX M
+1 BIRT Y
+1 FAMS @F0113@
+0 @I0103@ INDI
+1 NAME Amira /Rasulova/
+2 GIVN Amira
+2 SURN X
+1 SEX F
+1 BIRT Y
+2 DATE 8 APR 2025
+1 FAMC @F0113@
+2 PEDI birth
+0 @F0113@ FAM
+1 HUSB @I0102@
+1 WIFE @I6000000003244295747@
+1 CHIL @I0103@
 0 @N0005@ NOTE Made the first version of this family tree
 0 @N0006@ NOTE three different wives, and maybe 2/3 kids
 0 @N0007@ NOTE By official documents born in 1931 so as to not to go to war

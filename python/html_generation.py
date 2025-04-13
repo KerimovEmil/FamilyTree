@@ -179,8 +179,8 @@ def generate_families_section(gedcom_parser, individual, individual_id, individu
 
     return FAMILIES_TEMPLATE.format(families_rows=''.join(families_rows))
 
-def generate_html_for_individual_new_structure(gedcom_parser, element, individuals_data):
-    """Generate HTML content for an individual with new path structure."""
+def generate_html_for_individual(gedcom_parser, element, individuals_data):
+    """Generate HTML content for an individual"""
     individual_id = generate_id_from_pointer(element.get_pointer())
     name = get_name(element)
     gender = get_gender(element)
@@ -214,8 +214,8 @@ def generate_html_for_individual_new_structure(gedcom_parser, element, individua
 
     return html_content
 
-def generate_index_html_new_structure(individuals_data):
-    """Generate the index.html file with surname index using new paths."""
+def generate_index_html(individuals_data):
+    """Generate the index.html file with surname index."""
     # Group individuals by surname
     surnames = {}
     for individual_id, data in individuals_data.items():
@@ -266,8 +266,8 @@ def generate_index_html_new_structure(individuals_data):
 
     print("Generated index.html with new paths")
 
-def generate_individuals_html_new_structure(individuals_data):
-    """Generate the individuals.html file with all individuals using new paths."""
+def generate_individuals_html(individuals_data):
+    """Generate the individuals.html file with all individuals."""
     # Sort individuals by name
     sorted_individuals = sorted(individuals_data.items(), key=lambda x: x[1]['name'])
 
@@ -297,7 +297,7 @@ def generate_individuals_html_new_structure(individuals_data):
 
     print("Generated individuals.html with new paths")
 
-def generate_surname_pages_new_structure(individuals_data):
+def generate_surname_pages(individuals_data):
     """Generate HTML files for each surname."""
     # Create the surnames directory if it doesn't exist
     os.makedirs(SURNAMES_DIR, exist_ok=True)

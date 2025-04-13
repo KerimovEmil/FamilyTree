@@ -15,10 +15,7 @@ from utils import (
 )
 from data_extraction import get_name, get_birth_data, get_death_data
 from html_generation import (
-    generate_html_for_individual_new_structure as generate_html_for_individual,
-    generate_index_html_new_structure as generate_index_html,
-    generate_individuals_html_new_structure as generate_individuals_html,
-    generate_surname_pages_new_structure as generate_surname_pages
+    generate_html_for_individual, generate_index_html, generate_individuals_html, generate_surname_pages
 )
 
 def extract_name_parts(name):
