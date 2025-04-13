@@ -4,7 +4,6 @@ Functions for generating HTML content from GEDCOM data with new directory struct
 """
 
 import os
-from datetime import datetime
 from utils import generate_id_from_pointer
 from data_extraction import (
     get_name, get_gender, get_birth_data, get_death_data, get_parents, get_families
@@ -200,9 +199,6 @@ def generate_html_for_individual_new_structure(gedcom_parser, element, individua
     # Generate ancestors section
     ancestors_section = generate_ancestors_section(gedcom_parser, element, individual_id, individuals_data)
 
-    # Get current date for footer
-    current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
     # Fill in the HTML template
     html_content = HTML_TEMPLATE.format(
         name=name,
@@ -214,7 +210,6 @@ def generate_html_for_individual_new_structure(gedcom_parser, element, individua
         attributes_section="",
         pedigree_section=pedigree_section,
         ancestors_section=ancestors_section,
-        current_date=current_date
     )
 
     return html_content
@@ -260,13 +255,9 @@ def generate_index_html_new_structure(individuals_data):
             given_names=given_names_html
         )
 
-    # Get current date for footer
-    current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
     # Fill in the template
     html_content = INDEX_HTML_TEMPLATE.format(
-        surname_entries=surname_entries,
-        current_date=current_date
+        surname_entries=surname_entries
     )
 
     # Write to file
@@ -295,13 +286,9 @@ def generate_individuals_html_new_structure(individuals_data):
             death_date=death_date
         )
 
-    # Get current date for footer
-    current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
     # Fill in the template
     html_content = INDIVIDUALS_HTML_TEMPLATE.format(
-        individual_entries=individual_entries,
-        current_date=current_date
+        individual_entries=individual_entries
     )
 
     # Write to file
@@ -341,14 +328,10 @@ def generate_surname_pages_new_structure(individuals_data):
                 birth_date=birth_date
             )
 
-        # Get current date for footer
-        current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
         # Fill in the template
         html_content = SURNAME_PAGE_TEMPLATE.format(
             surname=surname,
-            individual_entries=individual_entries,
-            current_date=current_date
+            individual_entries=individual_entries
         )
 
         # Create a safe filename
