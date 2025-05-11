@@ -1379,15 +1379,14 @@
 2 DATE 27 JUL 2022
 3 TIME 11:19:37
 0 @I6000000003244679659@ INDI
-1 NAME Hadgiismail /Gulchiev/
-2 GIVN Hadgiismail
+1 NAME Hadjiismail /Gulcheev/
+2 GIVN Hadjiismail
 2 SURN Gulchiev
-1 NAME Hadgiismail /Gulchiev/
 2 TYPE married
-2 GIVN Hadgiismail
-2 SURN Gulchiev
 1 SEX M
 1 BIRT Y
+2 DATE 29 APR 1906
+2 PLAC North Ossetian Autonomous Soviet Socialist Republic, Irafsky district, village. Chicola
 1 DEAT Y
 1 FAMC @F6000000004371293691@
 2 PEDI birth
