@@ -1393,9 +1393,7 @@
 1 FAMC @F0104@
 2 PEDI birth
 1 FAMS @F6000000003244679664@
-1 CHAN
-2 DATE 27 JUL 2022
-3 TIME 11:57:01
+1 NOTE @N0014@
 0 @I6000000003244691055@ INDI
 1 NAME Rena /Zeinalova/
 2 GIVN Rena
@@ -6086,4 +6084,9 @@
 0 @N0011@ NOTE got married to a canadian azeri, and lives in canada
 0 @N0012@ NOTE in ukraine
 0 @N0013@ NOTE Aries
+0 @N0014@ NOTE Military rank Senior Lieutenant Military unit 261st Rifle Regiment
+1 CONT Medal "For the Victory over Germany in the Great Patriotic War of 1941-1945"
+1 CONT Medal "For the Liberation of Warsaw"
+1 CONT Medal "For the Defense of Stalingrad"
+1 CONT Medal "For the Capture of Berlin"
 0 TRLR
