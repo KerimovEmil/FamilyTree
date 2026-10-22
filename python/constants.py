@@ -66,23 +66,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="ColumnEvent">
-                            Birth
-                            </td>
+                            <td class="ColumnEvent">Birth</td>
                             <td class="ColumnDate">{birth_date}</td>
-                            <td class="ColumnDescription">&nbsp;</td>
-                            <td class="ColumnSources" rowspan="2">
-                            &nbsp;
-                            </td>
-                            <tr>
-                                <td class="ColumnEvent">
-
-                                </td>
-                                <td class="ColumnNotes" colspan="3">
-                                    <div>
-                                    </div>
-                                </td>
-                            </tr>
                         </tr>
                     </tbody>
                 </table>
@@ -137,7 +122,9 @@ PARENTS_TEMPLATE = """
 PARENT_ROW_TEMPLATE = """
 <tr>
     <td class="ColumnAttribute">{relation}</td>
-    <td class="ColumnValue" /><a href="../../{parent_path}">{parent_name}</a><td class="ColumnDate" />{parent_birth}<td class="ColumnDate" />{parent_death}
+    <td class="ColumnValue"><a href="../../{parent_path}">{parent_name}</a></td>
+    <td class="ColumnDate">{parent_birth}</td>
+    <td class="ColumnDate">{parent_death}</td>
 </tr>
 """
 
@@ -179,7 +166,7 @@ FAMILY_ROW_TEMPLATE = """
 <tr>
     <td class="ColumnType">&nbsp;</td>
     <td class="ColumnAttribute">Children</td>
-    <td class="ColumnValue" />
+    <td class="ColumnValue">
     <table class="infolist eventlist">
         <thead>
             <tr>
@@ -192,11 +179,12 @@ FAMILY_ROW_TEMPLATE = """
             {children_rows}
         </tbody>
     </table>
+    </td>
 </tr>
 """
 
 CHILD_ROW_TEMPLATE = """
-<tr><td /><a href="../../{child_path}">{child_name}</a><td>{child_birth}</td><td>{child_death}</td></tr>
+<tr><td><a href="../../{child_path}">{child_name}</a></td><td>{child_birth}</td><td>{child_death}</td></tr>
 """
 
 PEDIGREE_TEMPLATE = """
