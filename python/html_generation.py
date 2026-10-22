@@ -136,15 +136,20 @@ def generate_families_section(gedcom_parser, individual, individual_id, individu
             spouse = husband
             spouse_relation = "Husband"
 
-        # If spouse is None, skip this family
-        if not spouse:
+        # Skip only families with neither a spouse nor any children
+        if not spouse and not children:
             continue
 
-        spouse_id = generate_id_from_pointer(spouse.get_pointer())
-        spouse_path = get_path_for_individual(spouse_id, individuals_data)
-        spouse_name = get_name(spouse)
-        spouse_birth = get_birth_data(spouse)
-        spouse_death = get_death_data(spouse)
+        if spouse:
+            spouse_id = generate_id_from_pointer(spouse.get_pointer())
+            spouse_path = get_path_for_individual(spouse_id, individuals_data)
+            spouse_html = (
+                f'<a href="../../{spouse_path}">{get_name(spouse)}</a>\n'
+                f'     ( *\n    {get_birth_data(spouse)}\n     +\n'
+                f'    {get_death_data(spouse) or "..."}\n     )'
+            )
+        else:
+            spouse_html = 'Unknown'
 
         # Generate children rows
         children_rows = []
@@ -170,10 +175,7 @@ def generate_families_section(gedcom_parser, individual, individual_id, individu
             husband_name=husband_name,
             wife_name=wife_name,
             spouse_relation=spouse_relation,
-            spouse_path=spouse_path,
-            spouse_name=spouse_name,
-            spouse_birth=spouse_birth,
-            spouse_death=spouse_death if spouse_death else "...",
+            spouse_html=spouse_html,
             children_rows=''.join(children_rows)
         ))
 
@@ -369,16 +371,17 @@ def generate_pedigree_section(gedcom_parser, element, individual_id, individuals
         else:
             spouse = husband
 
-        # Skip if no spouse
-        if not spouse:
+        # Skip only families with neither a spouse nor any children
+        if not spouse and not children:
             continue
 
-        spouse_id = generate_id_from_pointer(spouse.get_pointer())
-        spouse_path = get_path_for_individual(spouse_id, individuals_data)
-        spouse_name = get_name(spouse)
-
-        # Create spouse entry
-        spouse_entry = f'<li class="spouse">\n                    <a href="../../{spouse_path}">{spouse_name}</a>'
+        # Create spouse entry (unlinked "Unknown" when spouse is unrecorded)
+        if spouse:
+            spouse_id = generate_id_from_pointer(spouse.get_pointer())
+            spouse_path = get_path_for_individual(spouse_id, individuals_data)
+            spouse_entry = f'<li class="spouse">\n                    <a href="../../{spouse_path}">{get_name(spouse)}</a>'
+        else:
+            spouse_entry = '<li class="spouse">\n                    Unknown'
 
         # Add children if any
         if children:
