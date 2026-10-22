@@ -137,7 +137,7 @@ PARENTS_TEMPLATE = """
 PARENT_ROW_TEMPLATE = """
 <tr>
     <td class="ColumnAttribute">{relation}</td>
-    <td class="ColumnValue" /><a href="../../../FamilyTree/{parent_path}">{parent_name}</a><td class="ColumnDate" />{parent_birth}<td class="ColumnDate" />{parent_death}
+    <td class="ColumnValue" /><a href="../../{parent_path}">{parent_name}</a><td class="ColumnDate" />{parent_birth}<td class="ColumnDate" />{parent_death}
 </tr>
 """
 
@@ -168,7 +168,7 @@ FAMILY_ROW_TEMPLATE = """
     <td class="ColumnType">Married</td>
     <td class="ColumnAttribute">{spouse_relation}</td>
     <td class="ColumnValue">
-        <a href="../../../FamilyTree/{spouse_path}">{spouse_name}</a>
+        <a href="../../{spouse_path}">{spouse_name}</a>
      ( *
     {spouse_birth}
      +
@@ -196,7 +196,7 @@ FAMILY_ROW_TEMPLATE = """
 """
 
 CHILD_ROW_TEMPLATE = """
-<tr><td /><a href="../../../FamilyTree/{child_path}">{child_name}</a><td>{child_birth}</td><td>{child_death}</td></tr>
+<tr><td /><a href="../../{child_path}">{child_name}</a><td>{child_birth}</td><td>{child_death}</td></tr>
 """
 
 PEDIGREE_TEMPLATE = """
