@@ -4,7 +4,7 @@ Functions for generating HTML content from GEDCOM data with new directory struct
 """
 
 import os
-from utils import generate_id_from_pointer
+from utils import generate_id_from_pointer, get_surname_file_path, get_surname_relative_path
 from data_extraction import (
     get_name, get_gender, get_birth_data, get_death_data, get_parents, get_families
 )
@@ -246,7 +246,7 @@ def generate_index_html(individuals_data):
         given_names_html = given_names_html.rstrip(', ')
 
         # Get the surname page path
-        surname_path = f"surnames/{surname.lower().replace(' ', '_')}.html"
+        surname_path = get_surname_relative_path(surname)
 
         # Add surname entry
         surname_entries += SURNAME_ENTRY_TEMPLATE.format(
@@ -334,9 +334,8 @@ def generate_surname_pages(individuals_data):
             individual_entries=individual_entries
         )
 
-        # Create a safe filename
-        safe_surname = surname.lower().replace(' ', '_')
-        file_path = os.path.join(SURNAMES_DIR, f"{safe_surname}.html")
+        # Create a safe filename (shared sanitization with index links)
+        file_path = get_surname_file_path(surname)
 
         # Write to file
         with open(file_path, 'w', encoding='utf-8') as f:
