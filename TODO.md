@@ -26,7 +26,7 @@ This document tracks the planned bug fixes, refactorings, and feature enhancemen
   - Ensure consistent handling of unknown/empty surnames (`"Unknown"`, `"___"`).
   - Regenerate static HTML pages.
 
-### [ ] TODO 4: Support Single-Parent Families in Family & Pedigree Sections
+### [x] TODO 4: Support Single-Parent Families in Family & Pedigree Sections
 - **Problem**: `generate_families_section()` and `generate_pedigree_section()` in `python/html_generation.py` skip an entire family (`if not spouse: continue`) when a spouse is unrecorded, hiding any children belonging to that family.
 - **Scope**:
   - Update `generate_families_section()` and `generate_pedigree_section()` to render families and their children even when the spouse is missing/unknown.

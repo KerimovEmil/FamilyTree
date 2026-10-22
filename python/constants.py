@@ -155,12 +155,7 @@ FAMILY_ROW_TEMPLATE = """
     <td class="ColumnType">Married</td>
     <td class="ColumnAttribute">{spouse_relation}</td>
     <td class="ColumnValue">
-        <a href="../../{spouse_path}">{spouse_name}</a>
-     ( *
-    {spouse_birth}
-     +
-    {spouse_death}
-     )
+        {spouse_html}
     </td>
 </tr>
 <tr>
