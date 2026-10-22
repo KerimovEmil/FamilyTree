@@ -5,32 +5,18 @@ The HTML files will be saved in the ppl directory organized by surname.
 """
 
 import os
-import re
 from gedcom.element.individual import IndividualElement
 from gedcom.parser import Parser
 
 from constants import GEDCOM_FILE
 from utils import (
-    generate_id_from_pointer, get_individual_file_path, get_individual_relative_path
+    generate_id_from_pointer, get_individual_file_path, get_individual_relative_path,
+    extract_name_parts
 )
 from data_extraction import get_name, get_birth_data, get_death_data
 from html_generation import (
     generate_html_for_individual, generate_index_html, generate_individuals_html, generate_surname_pages
 )
-
-def extract_name_parts(name):
-    """Extract surname and given name from a full name."""
-    if ',' in name:
-        surname, given_name = name.split(',', 1)
-        return surname.strip(), given_name.strip()
-    else:
-        # Handle cases where there's no comma in the name
-        return "Unknown", name
-
-def create_safe_filename(text):
-    """Create a safe filename from text."""
-    # Replace spaces with underscores and remove special characters
-    return re.sub(r'[^\w\s]', '', text).lower().replace(' ', '_')
 
 def main():
     """Main function to parse GEDCOM and generate HTML files with new structure."""

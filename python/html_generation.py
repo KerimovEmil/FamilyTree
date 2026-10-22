@@ -5,7 +5,10 @@ Functions for generating HTML content from GEDCOM data with new directory struct
 
 import html
 import os
-from utils import generate_id_from_pointer, get_surname_file_path, get_surname_relative_path
+from utils import (
+    generate_id_from_pointer, get_surname_file_path, get_surname_relative_path,
+    extract_name_parts
+)
 from data_extraction import (
     get_name, get_gender, get_birth_data, get_birth_place, get_death_data,
     get_death_place, has_death_event, get_occupation, get_attributes,
@@ -28,23 +31,12 @@ from constants import (
     SURNAME_INDIVIDUAL_ENTRY_TEMPLATE, SURNAMES_DIR
 )
 
-def extract_name_parts(name):
-    """Extract surname and given name from a full name."""
-    if ',' in name:
-        surname, given_name = name.split(',', 1)
-        return surname.strip(), given_name.strip()
-    else:
-        # Handle cases where there's no comma in the name
-        return "Unknown", name
-
 def get_path_for_individual(individual_id, individuals_data):
-    """Get the path for an individual using the new structure."""
+    """Get the relative path for an individual from individuals_data."""
     if individual_id in individuals_data and 'path' in individuals_data[individual_id]:
         return individuals_data[individual_id]['path']
-    else:
-        # Fallback to old path structure if not found
-        print(f"Warning: Could not find path for individual {individual_id}")
-        return f"ppl/{individual_id[0]}/{individual_id[1]}/{individual_id}.html"
+    print(f"Warning: Could not find path for individual {individual_id}")
+    return ""
 
 def generate_parents_section(gedcom_parser, individual, individual_id, individuals_data):
     """Generate the HTML for the parents section."""

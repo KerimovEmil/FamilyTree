@@ -60,7 +60,7 @@ This document tracks the planned bug fixes, refactorings, and feature enhancemen
   - Replace the hardcoded ancestor blocks with a concise recursive or table-driven layout generator that produces identical HTML/CSS output.
   - Verify no visual regressions in the generated ancestor trees.
 
-### [ ] TODO 8: Remove Dead and Duplicate Code Across Python Modules
+### [x] TODO 8: Remove Dead and Duplicate Code Across Python Modules
 - **Problem**:
   - `extract_name_parts()` is duplicated in `python/main.py` and `python/html_generation.py`.
   - `create_safe_filename()` in `python/main.py` is unused.

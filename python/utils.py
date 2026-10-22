@@ -16,20 +16,14 @@ def generate_id_from_pointer(pointer):
     hash_obj = hashlib.md5(clean_pointer.encode())
     return hash_obj.hexdigest()[:30]
 
-def get_file_path(individual_id):
-    """Generate the file path for an individual based on their ID."""
-    # Use the first two characters of the ID for the directory structure
-    dir1 = individual_id[0]
-    dir2 = individual_id[1]
-    filename = f"{individual_id}.html"
-    return os.path.join(OUTPUT_DIR, dir1, dir2, filename)
-
-def get_relative_path(individual_id):
-    """Generate the relative path for an individual based on their ID."""
-    dir1 = individual_id[0]
-    dir2 = individual_id[1]
-    filename = f"{individual_id}.html"
-    return f"ppl/{dir1}/{dir2}/{filename}"
+def extract_name_parts(name):
+    """Extract surname and given name from a full name."""
+    if ',' in name:
+        surname, given_name = name.split(',', 1)
+        return surname.strip(), given_name.strip()
+    else:
+        # Handle cases where there's no comma in the name
+        return "Unknown", name
 
 def get_surname_file_path(surname):
     """Generate the file path for a surname page."""
