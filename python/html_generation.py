@@ -3,6 +3,7 @@
 Functions for generating HTML content from GEDCOM data with new directory structure.
 """
 
+import html
 import os
 from utils import generate_id_from_pointer, get_surname_file_path, get_surname_relative_path
 from data_extraction import (
@@ -10,6 +11,13 @@ from data_extraction import (
     get_death_place, has_death_event, get_occupation, get_attributes,
     get_parents, get_families
 )
+
+def escape_text(val):
+    """Safely escape text for interpolation into HTML templates."""
+    if val is None:
+        return ""
+    return html.escape(str(val))
+
 from constants import (
     HTML_TEMPLATE, EVENT_ROW_TEMPLATE, ATTRIBUTES_SECTION_TEMPLATE,
     ATTRIBUTE_ROW_TEMPLATE, PARENTS_TEMPLATE,
@@ -51,9 +59,9 @@ def generate_parents_section(gedcom_parser, individual, individual_id, individua
         father = parents_info['father']
         father_id = generate_id_from_pointer(father.get_pointer())
         father_path = get_path_for_individual(father_id, individuals_data)
-        father_name = get_name(father)
-        father_birth = get_birth_data(father)
-        father_death = get_death_data(father)
+        father_name = escape_text(get_name(father))
+        father_birth = escape_text(get_birth_data(father))
+        father_death = escape_text(get_death_data(father))
 
         parents_rows.append(PARENT_ROW_TEMPLATE.format(
             relation="Father",
@@ -68,9 +76,9 @@ def generate_parents_section(gedcom_parser, individual, individual_id, individua
         mother = parents_info['mother']
         mother_id = generate_id_from_pointer(mother.get_pointer())
         mother_path = get_path_for_individual(mother_id, individuals_data)
-        mother_name = get_name(mother)
-        mother_birth = get_birth_data(mother)
-        mother_death = get_death_data(mother)
+        mother_name = escape_text(get_name(mother))
+        mother_birth = escape_text(get_birth_data(mother))
+        mother_death = escape_text(get_death_data(mother))
 
         parents_rows.append(PARENT_ROW_TEMPLATE.format(
             relation="Mother",
@@ -81,9 +89,9 @@ def generate_parents_section(gedcom_parser, individual, individual_id, individua
         ))
 
     # Add self row
-    individual_name = get_name(individual)
-    individual_birth = get_birth_data(individual)
-    individual_death = get_death_data(individual)
+    individual_name = escape_text(get_name(individual))
+    individual_birth = escape_text(get_birth_data(individual))
+    individual_death = escape_text(get_death_data(individual))
 
     parents_rows.append(f"""
 <tr>
@@ -99,9 +107,9 @@ def generate_parents_section(gedcom_parser, individual, individual_id, individua
     for sibling in parents_info['siblings']:
         sibling_id = generate_id_from_pointer(sibling.get_pointer())
         sibling_path = get_path_for_individual(sibling_id, individuals_data)
-        sibling_name = get_name(sibling)
-        sibling_birth = get_birth_data(sibling)
-        sibling_death = get_death_data(sibling)
+        sibling_name = escape_text(get_name(sibling))
+        sibling_birth = escape_text(get_birth_data(sibling))
+        sibling_death = escape_text(get_death_data(sibling))
         sibling_gender = get_gender(sibling)
 
         relation = "Sister" if sibling_gender == "female" else "Brother"
@@ -146,10 +154,14 @@ def generate_families_section(gedcom_parser, individual, individual_id, individu
         if spouse:
             spouse_id = generate_id_from_pointer(spouse.get_pointer())
             spouse_path = get_path_for_individual(spouse_id, individuals_data)
+            spouse_name_esc = escape_text(get_name(spouse))
+            spouse_birth_esc = escape_text(get_birth_data(spouse))
+            spouse_death_val = get_death_data(spouse)
+            spouse_death_esc = escape_text(spouse_death_val) if spouse_death_val else "..."
             spouse_html = (
-                f'<a href="../../{spouse_path}">{get_name(spouse)}</a>\n'
-                f'     ( *\n    {get_birth_data(spouse)}\n     +\n'
-                f'    {get_death_data(spouse) or "..."}\n     )'
+                f'<a href="../../{spouse_path}">{spouse_name_esc}</a>\n'
+                f'     ( *\n    {spouse_birth_esc}\n     +\n'
+                f'    {spouse_death_esc}\n     )'
             )
         else:
             spouse_html = 'Unknown'
@@ -159,9 +171,9 @@ def generate_families_section(gedcom_parser, individual, individual_id, individu
         for child in children:
             child_id = generate_id_from_pointer(child.get_pointer())
             child_path = get_path_for_individual(child_id, individuals_data)
-            child_name = get_name(child)
-            child_birth = get_birth_data(child)
-            child_death = get_death_data(child)
+            child_name = escape_text(get_name(child))
+            child_birth = escape_text(get_birth_data(child))
+            child_death = escape_text(get_death_data(child))
 
             children_rows.append(CHILD_ROW_TEMPLATE.format(
                 child_path=child_path,
@@ -171,8 +183,8 @@ def generate_families_section(gedcom_parser, individual, individual_id, individu
             ))
 
         # Get husband and wife names for the family title
-        husband_name = get_name(husband) if husband else "Unknown"
-        wife_name = get_name(wife) if wife else "Unknown"
+        husband_name = escape_text(get_name(husband) if husband else "Unknown")
+        wife_name = escape_text(get_name(wife) if wife else "Unknown")
 
         families_rows.append(FAMILY_ROW_TEMPLATE.format(
             husband_name=husband_name,
@@ -189,8 +201,8 @@ def generate_events_rows(element):
     events_rows = []
 
     # Birth event
-    birth_date = get_birth_data(element)
-    birth_place = get_birth_place(element)
+    birth_date = escape_text(get_birth_data(element))
+    birth_place = escape_text(get_birth_place(element))
     events_rows.append(EVENT_ROW_TEMPLATE.format(
         event_name="Birth",
         event_date=birth_date,
@@ -199,8 +211,8 @@ def generate_events_rows(element):
 
     # Death event
     if has_death_event(element):
-        death_date = get_death_data(element)
-        death_place = get_death_place(element)
+        death_date = escape_text(get_death_data(element))
+        death_place = escape_text(get_death_place(element))
         events_rows.append(EVENT_ROW_TEMPLATE.format(
             event_name="Death",
             event_date=death_date,
@@ -213,7 +225,7 @@ def generate_events_rows(element):
         events_rows.append(EVENT_ROW_TEMPLATE.format(
             event_name="Occupation",
             event_date="",
-            event_place=occupation
+            event_place=escape_text(occupation)
         ))
 
     return '\n'.join(events_rows)
@@ -227,9 +239,9 @@ def generate_attributes_section(element):
     attributes_rows = []
     for attr in attributes:
         attributes_rows.append(ATTRIBUTE_ROW_TEMPLATE.format(
-            attr_type=attr.get('type', ''),
-            attr_value=attr.get('value', ''),
-            attr_notes=attr.get('notes', ''),
+            attr_type=escape_text(attr.get('type', '')),
+            attr_value=escape_text(attr.get('value', '')),
+            attr_notes=escape_text(attr.get('notes', '')),
             attr_sources=attr.get('sources', '&nbsp;')
         ))
 
@@ -238,8 +250,8 @@ def generate_attributes_section(element):
 def generate_html_for_individual(gedcom_parser, element, individuals_data):
     """Generate HTML content for an individual"""
     individual_id = generate_id_from_pointer(element.get_pointer())
-    name = get_name(element)
-    gender = get_gender(element)
+    name = escape_text(get_name(element))
+    gender = escape_text(get_gender(element))
 
     # Generate events rows
     events_rows = generate_events_rows(element)
@@ -297,9 +309,9 @@ def generate_index_html(individuals_data):
         # Generate given names HTML
         given_names_html = ""
         for individual_id, data in individuals:
-            given_name = data.get('given_name', '')
+            given_name = escape_text(data.get('given_name', ''))
             path = data.get('path', '')
-            name = data.get('name', '')
+            name = escape_text(data.get('name', ''))
             given_names_html += f'<a href="{path}" title="{name}">{given_name}</a>, '
 
         # Remove trailing comma and space
@@ -310,7 +322,7 @@ def generate_index_html(individuals_data):
 
         # Add surname entry
         surname_entries += SURNAME_ENTRY_TEMPLATE.format(
-            surname=surname,
+            surname=escape_text(surname),
             surname_path=surname_path,
             given_names=given_names_html
         )
@@ -334,9 +346,9 @@ def generate_individuals_html(individuals_data):
     # Generate individual entries
     individual_entries = ""
     for individual_id, data in sorted_individuals:
-        name = data.get('name', '')
-        birth_date = data.get('birth_date', '')
-        death_date = data.get('death_date', '')
+        name = escape_text(data.get('name', ''))
+        birth_date = escape_text(data.get('birth_date', ''))
+        death_date = escape_text(data.get('death_date', ''))
         path = data.get('path', '')
 
         individual_entries += INDIVIDUAL_ENTRY_TEMPLATE.format(
@@ -378,8 +390,8 @@ def generate_surname_pages(individuals_data):
         # Generate individual entries
         individual_entries = ""
         for data in sorted_individuals:
-            given_name = data.get('given_name', '')
-            birth_date = data.get('birth_date', '')
+            given_name = escape_text(data.get('given_name', ''))
+            birth_date = escape_text(data.get('birth_date', ''))
             path = data.get('path', '')
 
             individual_entries += SURNAME_INDIVIDUAL_ENTRY_TEMPLATE.format(
@@ -390,7 +402,7 @@ def generate_surname_pages(individuals_data):
 
         # Fill in the template
         html_content = SURNAME_PAGE_TEMPLATE.format(
-            surname=surname,
+            surname=escape_text(surname),
             individual_entries=individual_entries
         )
 
@@ -405,7 +417,7 @@ def generate_surname_pages(individuals_data):
 
 def generate_pedigree_section(gedcom_parser, element, individual_id, individuals_data):
     """Generate the HTML for the pedigree section."""
-    name = get_name(element)
+    name = escape_text(get_name(element))
 
     # Get families information
     families_info = get_families(gedcom_parser, element)
@@ -437,7 +449,8 @@ def generate_pedigree_section(gedcom_parser, element, individual_id, individuals
         if spouse:
             spouse_id = generate_id_from_pointer(spouse.get_pointer())
             spouse_path = get_path_for_individual(spouse_id, individuals_data)
-            spouse_entry = f'<li class="spouse">\n                    <a href="../../{spouse_path}">{get_name(spouse)}</a>'
+            spouse_name_esc = escape_text(get_name(spouse))
+            spouse_entry = f'<li class="spouse">\n                    <a href="../../{spouse_path}">{spouse_name_esc}</a>'
         else:
             spouse_entry = '<li class="spouse">\n                    Unknown'
 
@@ -447,7 +460,7 @@ def generate_pedigree_section(gedcom_parser, element, individual_id, individuals
             for child in children:
                 child_id = generate_id_from_pointer(child.get_pointer())
                 child_path = get_path_for_individual(child_id, individuals_data)
-                child_name = get_name(child)
+                child_name = escape_text(get_name(child))
 
                 children_list.append(f'<li>\n                            <a href="../../{child_path}">{child_name}</a>\n                        </li>')
 
@@ -495,9 +508,9 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
         father = parents_info['father']
         father_id = generate_id_from_pointer(father.get_pointer())
         father_path = get_path_for_individual(father_id, individuals_data)
-        father_name = get_name(father)
-        father_birth = get_birth_data(father)
-        father_death = get_death_data(father)
+        father_name = escape_text(get_name(father))
+        father_birth = escape_text(get_birth_data(father))
+        father_death = escape_text(get_death_data(father))
 
         ancestors_content += f'''
         <div class="bvline" style="top: 550px; left: 285px; width: 15px"></div>
@@ -518,9 +531,9 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
             paternal_grandfather = father_parents_info['father']
             paternal_grandfather_id = generate_id_from_pointer(paternal_grandfather.get_pointer())
             paternal_grandfather_path = get_path_for_individual(paternal_grandfather_id, individuals_data)
-            paternal_grandfather_name = get_name(paternal_grandfather)
-            paternal_grandfather_birth = get_birth_data(paternal_grandfather)
-            paternal_grandfather_death = get_death_data(paternal_grandfather)
+            paternal_grandfather_name = escape_text(get_name(paternal_grandfather))
+            paternal_grandfather_birth = escape_text(get_birth_data(paternal_grandfather))
+            paternal_grandfather_death = escape_text(get_death_data(paternal_grandfather))
 
             ancestors_content += f'''
             <div class="bvline" style="top: 250px; left: 595px; width: 15px"></div>
@@ -541,9 +554,9 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
                 paternal_great_grandfather = paternal_grandfather_parents_info['father']
                 paternal_great_grandfather_id = generate_id_from_pointer(paternal_great_grandfather.get_pointer())
                 paternal_great_grandfather_path = get_path_for_individual(paternal_great_grandfather_id, individuals_data)
-                paternal_great_grandfather_name = get_name(paternal_great_grandfather)
-                paternal_great_grandfather_birth = get_birth_data(paternal_great_grandfather)
-                paternal_great_grandfather_death = get_death_data(paternal_great_grandfather)
+                paternal_great_grandfather_name = escape_text(get_name(paternal_great_grandfather))
+                paternal_great_grandfather_birth = escape_text(get_birth_data(paternal_great_grandfather))
+                paternal_great_grandfather_death = escape_text(get_death_data(paternal_great_grandfather))
 
                 ancestors_content += f'''
                 <div class="bvline" style="top: 100px; left: 905px; width: 15px"></div>
@@ -563,9 +576,9 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
                 paternal_great_grandmother = paternal_grandfather_parents_info['mother']
                 paternal_great_grandmother_id = generate_id_from_pointer(paternal_great_grandmother.get_pointer())
                 paternal_great_grandmother_path = get_path_for_individual(paternal_great_grandmother_id, individuals_data)
-                paternal_great_grandmother_name = get_name(paternal_great_grandmother)
-                paternal_great_grandmother_birth = get_birth_data(paternal_great_grandmother)
-                paternal_great_grandmother_death = get_death_data(paternal_great_grandmother)
+                paternal_great_grandmother_name = escape_text(get_name(paternal_great_grandmother))
+                paternal_great_grandmother_birth = escape_text(get_birth_data(paternal_great_grandmother))
+                paternal_great_grandmother_death = escape_text(get_death_data(paternal_great_grandmother))
 
                 ancestors_content += f'''
                 <div class="boxbg female AncCol3" style="top: 155px; left: 936px;">
@@ -583,9 +596,9 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
             paternal_grandmother = father_parents_info['mother']
             paternal_grandmother_id = generate_id_from_pointer(paternal_grandmother.get_pointer())
             paternal_grandmother_path = get_path_for_individual(paternal_grandmother_id, individuals_data)
-            paternal_grandmother_name = get_name(paternal_grandmother)
-            paternal_grandmother_birth = get_birth_data(paternal_grandmother)
-            paternal_grandmother_death = get_death_data(paternal_grandmother)
+            paternal_grandmother_name = escape_text(get_name(paternal_grandmother))
+            paternal_grandmother_birth = escape_text(get_birth_data(paternal_grandmother))
+            paternal_grandmother_death = escape_text(get_death_data(paternal_grandmother))
 
             ancestors_content += f'''
             <div class="boxbg female AncCol2" style="top: 380px; left: 626px;">
@@ -604,9 +617,9 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
                 paternal_great_grandfather2 = paternal_grandmother_parents_info['father']
                 paternal_great_grandfather2_id = generate_id_from_pointer(paternal_great_grandfather2.get_pointer())
                 paternal_great_grandfather2_path = get_path_for_individual(paternal_great_grandfather2_id, individuals_data)
-                paternal_great_grandfather2_name = get_name(paternal_great_grandfather2)
-                paternal_great_grandfather2_birth = get_birth_data(paternal_great_grandfather2)
-                paternal_great_grandfather2_death = get_death_data(paternal_great_grandfather2)
+                paternal_great_grandfather2_name = escape_text(get_name(paternal_great_grandfather2))
+                paternal_great_grandfather2_birth = escape_text(get_birth_data(paternal_great_grandfather2))
+                paternal_great_grandfather2_death = escape_text(get_death_data(paternal_great_grandfather2))
 
                 ancestors_content += f'''
                 <div class="bvline" style="top: 400px; left: 905px; width: 15px"></div>
@@ -626,9 +639,9 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
                 paternal_great_grandmother2 = paternal_grandmother_parents_info['mother']
                 paternal_great_grandmother2_id = generate_id_from_pointer(paternal_great_grandmother2.get_pointer())
                 paternal_great_grandmother2_path = get_path_for_individual(paternal_great_grandmother2_id, individuals_data)
-                paternal_great_grandmother2_name = get_name(paternal_great_grandmother2)
-                paternal_great_grandmother2_birth = get_birth_data(paternal_great_grandmother2)
-                paternal_great_grandmother2_death = get_death_data(paternal_great_grandmother2)
+                paternal_great_grandmother2_name = escape_text(get_name(paternal_great_grandmother2))
+                paternal_great_grandmother2_birth = escape_text(get_birth_data(paternal_great_grandmother2))
+                paternal_great_grandmother2_death = escape_text(get_death_data(paternal_great_grandmother2))
 
                 ancestors_content += f'''
                 <div class="boxbg female AncCol3" style="top: 455px; left: 936px;">
@@ -646,9 +659,9 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
         mother = parents_info['mother']
         mother_id = generate_id_from_pointer(mother.get_pointer())
         mother_path = get_path_for_individual(mother_id, individuals_data)
-        mother_name = get_name(mother)
-        mother_birth = get_birth_data(mother)
-        mother_death = get_death_data(mother)
+        mother_name = escape_text(get_name(mother))
+        mother_birth = escape_text(get_birth_data(mother))
+        mother_death = escape_text(get_death_data(mother))
 
         ancestors_content += f'''
         <div class="boxbg female AncCol1" style="top: 830px; left: 316px;">
@@ -667,9 +680,9 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
             maternal_grandfather = mother_parents_info['father']
             maternal_grandfather_id = generate_id_from_pointer(maternal_grandfather.get_pointer())
             maternal_grandfather_path = get_path_for_individual(maternal_grandfather_id, individuals_data)
-            maternal_grandfather_name = get_name(maternal_grandfather)
-            maternal_grandfather_birth = get_birth_data(maternal_grandfather)
-            maternal_grandfather_death = get_death_data(maternal_grandfather)
+            maternal_grandfather_name = escape_text(get_name(maternal_grandfather))
+            maternal_grandfather_birth = escape_text(get_birth_data(maternal_grandfather))
+            maternal_grandfather_death = escape_text(get_death_data(maternal_grandfather))
 
             ancestors_content += f'''
             <div class="bvline" style="top: 850px; left: 595px; width: 15px"></div>
@@ -690,9 +703,9 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
                 maternal_great_grandfather = maternal_grandfather_parents_info['father']
                 maternal_great_grandfather_id = generate_id_from_pointer(maternal_great_grandfather.get_pointer())
                 maternal_great_grandfather_path = get_path_for_individual(maternal_great_grandfather_id, individuals_data)
-                maternal_great_grandfather_name = get_name(maternal_great_grandfather)
-                maternal_great_grandfather_birth = get_birth_data(maternal_great_grandfather)
-                maternal_great_grandfather_death = get_death_data(maternal_great_grandfather)
+                maternal_great_grandfather_name = escape_text(get_name(maternal_great_grandfather))
+                maternal_great_grandfather_birth = escape_text(get_birth_data(maternal_great_grandfather))
+                maternal_great_grandfather_death = escape_text(get_death_data(maternal_great_grandfather))
 
                 ancestors_content += f'''
                 <div class="bvline" style="top: 700px; left: 905px; width: 15px"></div>
@@ -712,9 +725,9 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
                 maternal_great_grandmother = maternal_grandfather_parents_info['mother']
                 maternal_great_grandmother_id = generate_id_from_pointer(maternal_great_grandmother.get_pointer())
                 maternal_great_grandmother_path = get_path_for_individual(maternal_great_grandmother_id, individuals_data)
-                maternal_great_grandmother_name = get_name(maternal_great_grandmother)
-                maternal_great_grandmother_birth = get_birth_data(maternal_great_grandmother)
-                maternal_great_grandmother_death = get_death_data(maternal_great_grandmother)
+                maternal_great_grandmother_name = escape_text(get_name(maternal_great_grandmother))
+                maternal_great_grandmother_birth = escape_text(get_birth_data(maternal_great_grandmother))
+                maternal_great_grandmother_death = escape_text(get_death_data(maternal_great_grandmother))
 
                 ancestors_content += f'''
                 <div class="boxbg female AncCol3" style="top: 755px; left: 936px;">
@@ -732,9 +745,9 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
             maternal_grandmother = mother_parents_info['mother']
             maternal_grandmother_id = generate_id_from_pointer(maternal_grandmother.get_pointer())
             maternal_grandmother_path = get_path_for_individual(maternal_grandmother_id, individuals_data)
-            maternal_grandmother_name = get_name(maternal_grandmother)
-            maternal_grandmother_birth = get_birth_data(maternal_grandmother)
-            maternal_grandmother_death = get_death_data(maternal_grandmother)
+            maternal_grandmother_name = escape_text(get_name(maternal_grandmother))
+            maternal_grandmother_birth = escape_text(get_birth_data(maternal_grandmother))
+            maternal_grandmother_death = escape_text(get_death_data(maternal_grandmother))
 
             ancestors_content += f'''
             <div class="boxbg female AncCol2" style="top: 980px; left: 626px;">
@@ -753,9 +766,9 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
                 maternal_great_grandfather2 = maternal_grandmother_parents_info['father']
                 maternal_great_grandfather2_id = generate_id_from_pointer(maternal_great_grandfather2.get_pointer())
                 maternal_great_grandfather2_path = get_path_for_individual(maternal_great_grandfather2_id, individuals_data)
-                maternal_great_grandfather2_name = get_name(maternal_great_grandfather2)
-                maternal_great_grandfather2_birth = get_birth_data(maternal_great_grandfather2)
-                maternal_great_grandfather2_death = get_death_data(maternal_great_grandfather2)
+                maternal_great_grandfather2_name = escape_text(get_name(maternal_great_grandfather2))
+                maternal_great_grandfather2_birth = escape_text(get_birth_data(maternal_great_grandfather2))
+                maternal_great_grandfather2_death = escape_text(get_death_data(maternal_great_grandfather2))
 
                 ancestors_content += f'''
                 <div class="bvline" style="top: 1000px; left: 905px; width: 15px"></div>
@@ -775,9 +788,9 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
                 maternal_great_grandmother2 = maternal_grandmother_parents_info['mother']
                 maternal_great_grandmother2_id = generate_id_from_pointer(maternal_great_grandmother2.get_pointer())
                 maternal_great_grandmother2_path = get_path_for_individual(maternal_great_grandmother2_id, individuals_data)
-                maternal_great_grandmother2_name = get_name(maternal_great_grandmother2)
-                maternal_great_grandmother2_birth = get_birth_data(maternal_great_grandmother2)
-                maternal_great_grandmother2_death = get_death_data(maternal_great_grandmother2)
+                maternal_great_grandmother2_name = escape_text(get_name(maternal_great_grandmother2))
+                maternal_great_grandmother2_birth = escape_text(get_birth_data(maternal_great_grandmother2))
+                maternal_great_grandmother2_death = escape_text(get_death_data(maternal_great_grandmother2))
 
                 ancestors_content += f'''
                 <div class="boxbg female AncCol3" style="top: 1055px; left: 936px;">

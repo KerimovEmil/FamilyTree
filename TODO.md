@@ -44,7 +44,7 @@ This document tracks the planned bug fixes, refactorings, and feature enhancemen
   - Wire up occupation and attributes sections on individual pages when data is present.
   - Regenerate static HTML pages.
 
-### [ ] TODO 6: Add HTML Escaping for GEDCOM Data Fields
+### [x] TODO 6: Add HTML Escaping for GEDCOM Data Fields
 - **Problem**: Strings parsed from GEDCOM (names, dates, places, notes) are interpolated directly into HTML templates via `.format()`, which can break HTML rendering if values contain `<`, `>`, `&`, or quotes.
 - **Scope**:
   - Apply `html.escape()` to extracted text values before rendering into HTML templates.
