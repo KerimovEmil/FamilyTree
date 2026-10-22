@@ -54,7 +54,7 @@ This document tracks the planned bug fixes, refactorings, and feature enhancemen
 
 ## Phase 3: Code Refactoring & Cleanup
 
-### [ ] TODO 7: Refactor `generate_ancestors_section` to Use a Data-Driven / Recursive Approach
+### [x] TODO 7: Refactor `generate_ancestors_section` to Use a Data-Driven / Recursive Approach
 - **Problem**: `generate_ancestors_section()` in `python/html_generation.py` is over 320 lines of repetitive, copy-pasted code for each individual ancestor slot across 4 generations.
 - **Scope**:
   - Replace the hardcoded ancestor blocks with a concise recursive or table-driven layout generator that produces identical HTML/CSS output.

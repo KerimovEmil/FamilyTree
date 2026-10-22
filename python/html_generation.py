@@ -478,6 +478,254 @@ def generate_pedigree_section(gedcom_parser, element, individual_id, individuals
 
     return PEDIGREE_TEMPLATE.format(pedigree_content=pedigree_content)
 
+ANCESTOR_SLOTS = [
+    {
+        'path': ('father',),
+        'gender': 'male',
+        'col': 1,
+        'has_inlines': True,
+        'inline_top': 550,
+        'inline_left': 285,
+        'inline_gv_top': 555,
+        'box_top': 230,
+        'box_left': 316,
+        'shadow_top': 235,
+        'shadow_left': 320,
+        'bvline_top': 250,
+        'bvline_left': 300,
+        'bhline_top': 250,
+        'bhline_left': 300,
+        'bhline_height': 301,
+        'block_indent': '        ',
+    },
+    {
+        'path': ('father', 'father'),
+        'gender': 'male',
+        'col': 2,
+        'has_inlines': True,
+        'inline_top': 250,
+        'inline_left': 595,
+        'inline_gv_top': 255,
+        'box_top': 80,
+        'box_left': 626,
+        'shadow_top': 85,
+        'shadow_left': 630,
+        'bvline_top': 100,
+        'bvline_left': 610,
+        'bhline_top': 100,
+        'bhline_left': 610,
+        'bhline_height': 151,
+        'block_indent': '            ',
+    },
+    {
+        'path': ('father', 'father', 'father'),
+        'gender': 'male',
+        'col': 3,
+        'has_inlines': True,
+        'inline_top': 100,
+        'inline_left': 905,
+        'inline_gv_top': 105,
+        'box_top': 5,
+        'box_left': 936,
+        'shadow_top': 10,
+        'shadow_left': 940,
+        'bvline_top': 25,
+        'bvline_left': 920,
+        'bhline_top': 25,
+        'bhline_left': 920,
+        'bhline_height': 76,
+        'block_indent': '                ',
+    },
+    {
+        'path': ('father', 'father', 'mother'),
+        'gender': 'female',
+        'col': 3,
+        'has_inlines': False,
+        'box_top': 155,
+        'box_left': 936,
+        'shadow_top': 160,
+        'shadow_left': 940,
+        'bvline_top': 175,
+        'bvline_left': 920,
+        'bhline_top': 100,
+        'bhline_left': 920,
+        'bhline_height': 76,
+        'block_indent': '                ',
+    },
+    {
+        'path': ('father', 'mother'),
+        'gender': 'female',
+        'col': 2,
+        'has_inlines': False,
+        'box_top': 380,
+        'box_left': 626,
+        'shadow_top': 385,
+        'shadow_left': 630,
+        'bvline_top': 400,
+        'bvline_left': 610,
+        'bhline_top': 250,
+        'bhline_left': 610,
+        'bhline_height': 151,
+        'block_indent': '            ',
+    },
+    {
+        'path': ('father', 'mother', 'father'),
+        'gender': 'male',
+        'col': 3,
+        'has_inlines': True,
+        'inline_top': 400,
+        'inline_left': 905,
+        'inline_gv_top': 405,
+        'box_top': 305,
+        'box_left': 936,
+        'shadow_top': 310,
+        'shadow_left': 940,
+        'bvline_top': 325,
+        'bvline_left': 920,
+        'bhline_top': 325,
+        'bhline_left': 920,
+        'bhline_height': 76,
+        'block_indent': '                ',
+    },
+    {
+        'path': ('father', 'mother', 'mother'),
+        'gender': 'female',
+        'col': 3,
+        'has_inlines': False,
+        'box_top': 455,
+        'box_left': 936,
+        'shadow_top': 460,
+        'shadow_left': 940,
+        'bvline_top': 475,
+        'bvline_left': 920,
+        'bhline_top': 400,
+        'bhline_left': 920,
+        'bhline_height': 76,
+        'block_indent': '                ',
+    },
+    {
+        'path': ('mother',),
+        'gender': 'female',
+        'col': 1,
+        'has_inlines': False,
+        'box_top': 830,
+        'box_left': 316,
+        'shadow_top': 835,
+        'shadow_left': 320,
+        'bvline_top': 850,
+        'bvline_left': 300,
+        'bhline_top': 550,
+        'bhline_left': 300,
+        'bhline_height': 301,
+        'block_indent': '        ',
+    },
+    {
+        'path': ('mother', 'father'),
+        'gender': 'male',
+        'col': 2,
+        'has_inlines': True,
+        'inline_top': 850,
+        'inline_left': 595,
+        'inline_gv_top': 855,
+        'box_top': 680,
+        'box_left': 626,
+        'shadow_top': 685,
+        'shadow_left': 630,
+        'bvline_top': 700,
+        'bvline_left': 610,
+        'bhline_top': 700,
+        'bhline_left': 610,
+        'bhline_height': 151,
+        'block_indent': '            ',
+    },
+    {
+        'path': ('mother', 'father', 'father'),
+        'gender': 'male',
+        'col': 3,
+        'has_inlines': True,
+        'inline_top': 700,
+        'inline_left': 905,
+        'inline_gv_top': 705,
+        'box_top': 605,
+        'box_left': 936,
+        'shadow_top': 610,
+        'shadow_left': 940,
+        'bvline_top': 625,
+        'bvline_left': 920,
+        'bhline_top': 625,
+        'bhline_left': 920,
+        'bhline_height': 76,
+        'block_indent': '                ',
+    },
+    {
+        'path': ('mother', 'father', 'mother'),
+        'gender': 'female',
+        'col': 3,
+        'has_inlines': False,
+        'box_top': 755,
+        'box_left': 936,
+        'shadow_top': 760,
+        'shadow_left': 940,
+        'bvline_top': 775,
+        'bvline_left': 920,
+        'bhline_top': 700,
+        'bhline_left': 920,
+        'bhline_height': 76,
+        'block_indent': '                ',
+    },
+    {
+        'path': ('mother', 'mother'),
+        'gender': 'female',
+        'col': 2,
+        'has_inlines': False,
+        'box_top': 980,
+        'box_left': 626,
+        'shadow_top': 985,
+        'shadow_left': 630,
+        'bvline_top': 1000,
+        'bvline_left': 610,
+        'bhline_top': 850,
+        'bhline_left': 610,
+        'bhline_height': 151,
+        'block_indent': '            ',
+    },
+    {
+        'path': ('mother', 'mother', 'father'),
+        'gender': 'male',
+        'col': 3,
+        'has_inlines': True,
+        'inline_top': 1000,
+        'inline_left': 905,
+        'inline_gv_top': 1005,
+        'box_top': 905,
+        'box_left': 936,
+        'shadow_top': 910,
+        'shadow_left': 940,
+        'bvline_top': 925,
+        'bvline_left': 920,
+        'bhline_top': 925,
+        'bhline_left': 920,
+        'bhline_height': 76,
+        'block_indent': '                ',
+    },
+    {
+        'path': ('mother', 'mother', 'mother'),
+        'gender': 'female',
+        'col': 3,
+        'has_inlines': False,
+        'box_top': 1055,
+        'box_left': 936,
+        'shadow_top': 1060,
+        'shadow_left': 940,
+        'bvline_top': 1075,
+        'bvline_left': 920,
+        'bhline_top': 1000,
+        'bhline_left': 920,
+        'bhline_height': 76,
+        'block_indent': '                ',
+    },
+]
+
 def generate_ancestors_section(gedcom_parser, element, individual_id, individuals_data):
     """Generate the HTML for the ancestors section."""
     name = get_name(element)
@@ -503,304 +751,56 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
     <div class="shadow" style="top: 535px; left: 10px;"></div>
     '''
 
-    # Add father if available
+    # Resolve ancestors map: relationship path tuple -> IndividualElement
+    ancestors_by_path = {}
     if parents_info['father']:
-        father = parents_info['father']
-        father_id = generate_id_from_pointer(father.get_pointer())
-        father_path = get_path_for_individual(father_id, individuals_data)
-        father_name = escape_text(get_name(father))
-        father_birth = escape_text(get_birth_data(father))
-        father_death = escape_text(get_death_data(father))
-
-        ancestors_content += f'''
-        <div class="bvline" style="top: 550px; left: 285px; width: 15px"></div>
-        <div class="gvline" style="top: 555px; left: 285px; width: 20px"></div>
-        <div class="boxbg male AncCol1" style="top: 230px; left: 316px;">
-            <a class="noThumb" href="../../{father_path}">
-            {father_name}<br/>*{father_birth or ''}<br/>+{father_death or '...'}
-            </a>
-        </div>
-        <div class="shadow" style="top: 235px; left: 320px;"></div>
-        <div class="bvline" style="top: 250px; left: 300px; width: 15px;"></div>
-        <div class="bhline" style="top: 250px; left: 300px; height: 301px;"></div>
-        '''
-
-        # Add paternal grandfather (father's father) if available
-        father_parents_info = get_parents(gedcom_parser, father)
-        if father_parents_info and father_parents_info['father']:
-            paternal_grandfather = father_parents_info['father']
-            paternal_grandfather_id = generate_id_from_pointer(paternal_grandfather.get_pointer())
-            paternal_grandfather_path = get_path_for_individual(paternal_grandfather_id, individuals_data)
-            paternal_grandfather_name = escape_text(get_name(paternal_grandfather))
-            paternal_grandfather_birth = escape_text(get_birth_data(paternal_grandfather))
-            paternal_grandfather_death = escape_text(get_death_data(paternal_grandfather))
-
-            ancestors_content += f'''
-            <div class="bvline" style="top: 250px; left: 595px; width: 15px"></div>
-            <div class="gvline" style="top: 255px; left: 595px; width: 20px"></div>
-            <div class="boxbg male AncCol2" style="top: 80px; left: 626px;">
-                <a class="noThumb" href="../../{paternal_grandfather_path}">
-                {paternal_grandfather_name}<br/>*{paternal_grandfather_birth or ''}<br/>+{paternal_grandfather_death or '...'}
-                </a>
-            </div>
-            <div class="shadow" style="top: 85px; left: 630px;"></div>
-            <div class="bvline" style="top: 100px; left: 610px; width: 15px;"></div>
-            <div class="bhline" style="top: 100px; left: 610px; height: 151px;"></div>
-            '''
-
-            # Add paternal great-grandfather (father's father's father) if available
-            paternal_grandfather_parents_info = get_parents(gedcom_parser, paternal_grandfather)
-            if paternal_grandfather_parents_info and paternal_grandfather_parents_info['father']:
-                paternal_great_grandfather = paternal_grandfather_parents_info['father']
-                paternal_great_grandfather_id = generate_id_from_pointer(paternal_great_grandfather.get_pointer())
-                paternal_great_grandfather_path = get_path_for_individual(paternal_great_grandfather_id, individuals_data)
-                paternal_great_grandfather_name = escape_text(get_name(paternal_great_grandfather))
-                paternal_great_grandfather_birth = escape_text(get_birth_data(paternal_great_grandfather))
-                paternal_great_grandfather_death = escape_text(get_death_data(paternal_great_grandfather))
-
-                ancestors_content += f'''
-                <div class="bvline" style="top: 100px; left: 905px; width: 15px"></div>
-                <div class="gvline" style="top: 105px; left: 905px; width: 20px"></div>
-                <div class="boxbg male AncCol3" style="top: 5px; left: 936px;">
-                    <a class="noThumb" href="../../{paternal_great_grandfather_path}">
-                    {paternal_great_grandfather_name}<br/>*{paternal_great_grandfather_birth or ''}<br/>+{paternal_great_grandfather_death or '...'}
-                    </a>
-                </div>
-                <div class="shadow" style="top: 10px; left: 940px;"></div>
-                <div class="bvline" style="top: 25px; left: 920px; width: 15px;"></div>
-                <div class="bhline" style="top: 25px; left: 920px; height: 76px;"></div>
-                '''
-
-            # Add paternal great-grandmother (father's father's mother) if available
-            if paternal_grandfather_parents_info and paternal_grandfather_parents_info['mother']:
-                paternal_great_grandmother = paternal_grandfather_parents_info['mother']
-                paternal_great_grandmother_id = generate_id_from_pointer(paternal_great_grandmother.get_pointer())
-                paternal_great_grandmother_path = get_path_for_individual(paternal_great_grandmother_id, individuals_data)
-                paternal_great_grandmother_name = escape_text(get_name(paternal_great_grandmother))
-                paternal_great_grandmother_birth = escape_text(get_birth_data(paternal_great_grandmother))
-                paternal_great_grandmother_death = escape_text(get_death_data(paternal_great_grandmother))
-
-                ancestors_content += f'''
-                <div class="boxbg female AncCol3" style="top: 155px; left: 936px;">
-                    <a class="noThumb" href="../../{paternal_great_grandmother_path}">
-                    {paternal_great_grandmother_name}<br/>*{paternal_great_grandmother_birth or ''}<br/>+{paternal_great_grandmother_death or '...'}
-                    </a>
-                </div>
-                <div class="shadow" style="top: 160px; left: 940px;"></div>
-                <div class="bvline" style="top: 175px; left: 920px; width: 15px;"></div>
-                <div class="bhline" style="top: 100px; left: 920px; height: 76px;"></div>
-                '''
-
-        # Add paternal grandmother (father's mother) if available
-        if father_parents_info and father_parents_info['mother']:
-            paternal_grandmother = father_parents_info['mother']
-            paternal_grandmother_id = generate_id_from_pointer(paternal_grandmother.get_pointer())
-            paternal_grandmother_path = get_path_for_individual(paternal_grandmother_id, individuals_data)
-            paternal_grandmother_name = escape_text(get_name(paternal_grandmother))
-            paternal_grandmother_birth = escape_text(get_birth_data(paternal_grandmother))
-            paternal_grandmother_death = escape_text(get_death_data(paternal_grandmother))
-
-            ancestors_content += f'''
-            <div class="boxbg female AncCol2" style="top: 380px; left: 626px;">
-                <a class="noThumb" href="../../{paternal_grandmother_path}">
-                {paternal_grandmother_name}<br/>*{paternal_grandmother_birth or ''}<br/>+{paternal_grandmother_death or '...'}
-                </a>
-            </div>
-            <div class="shadow" style="top: 385px; left: 630px;"></div>
-            <div class="bvline" style="top: 400px; left: 610px; width: 15px;"></div>
-            <div class="bhline" style="top: 250px; left: 610px; height: 151px;"></div>
-            '''
-
-            # Add paternal great-grandfather (father's mother's father) if available
-            paternal_grandmother_parents_info = get_parents(gedcom_parser, paternal_grandmother)
-            if paternal_grandmother_parents_info and paternal_grandmother_parents_info['father']:
-                paternal_great_grandfather2 = paternal_grandmother_parents_info['father']
-                paternal_great_grandfather2_id = generate_id_from_pointer(paternal_great_grandfather2.get_pointer())
-                paternal_great_grandfather2_path = get_path_for_individual(paternal_great_grandfather2_id, individuals_data)
-                paternal_great_grandfather2_name = escape_text(get_name(paternal_great_grandfather2))
-                paternal_great_grandfather2_birth = escape_text(get_birth_data(paternal_great_grandfather2))
-                paternal_great_grandfather2_death = escape_text(get_death_data(paternal_great_grandfather2))
-
-                ancestors_content += f'''
-                <div class="bvline" style="top: 400px; left: 905px; width: 15px"></div>
-                <div class="gvline" style="top: 405px; left: 905px; width: 20px"></div>
-                <div class="boxbg male AncCol3" style="top: 305px; left: 936px;">
-                    <a class="noThumb" href="../../{paternal_great_grandfather2_path}">
-                    {paternal_great_grandfather2_name}<br/>*{paternal_great_grandfather2_birth or ''}<br/>+{paternal_great_grandfather2_death or '...'}
-                    </a>
-                </div>
-                <div class="shadow" style="top: 310px; left: 940px;"></div>
-                <div class="bvline" style="top: 325px; left: 920px; width: 15px;"></div>
-                <div class="bhline" style="top: 325px; left: 920px; height: 76px;"></div>
-                '''
-
-            # Add paternal great-grandmother (father's mother's mother) if available
-            if paternal_grandmother_parents_info and paternal_grandmother_parents_info['mother']:
-                paternal_great_grandmother2 = paternal_grandmother_parents_info['mother']
-                paternal_great_grandmother2_id = generate_id_from_pointer(paternal_great_grandmother2.get_pointer())
-                paternal_great_grandmother2_path = get_path_for_individual(paternal_great_grandmother2_id, individuals_data)
-                paternal_great_grandmother2_name = escape_text(get_name(paternal_great_grandmother2))
-                paternal_great_grandmother2_birth = escape_text(get_birth_data(paternal_great_grandmother2))
-                paternal_great_grandmother2_death = escape_text(get_death_data(paternal_great_grandmother2))
-
-                ancestors_content += f'''
-                <div class="boxbg female AncCol3" style="top: 455px; left: 936px;">
-                    <a class="noThumb" href="../../{paternal_great_grandmother2_path}">
-                    {paternal_great_grandmother2_name}<br/>*{paternal_great_grandmother2_birth or ''}<br/>+{paternal_great_grandmother2_death or '...'}
-                    </a>
-                </div>
-                <div class="shadow" style="top: 460px; left: 940px;"></div>
-                <div class="bvline" style="top: 475px; left: 920px; width: 15px;"></div>
-                <div class="bhline" style="top: 400px; left: 920px; height: 76px;"></div>
-                '''
-
-    # Add mother if available
+        ancestors_by_path[('father',)] = parents_info['father']
     if parents_info['mother']:
-        mother = parents_info['mother']
-        mother_id = generate_id_from_pointer(mother.get_pointer())
-        mother_path = get_path_for_individual(mother_id, individuals_data)
-        mother_name = escape_text(get_name(mother))
-        mother_birth = escape_text(get_birth_data(mother))
-        mother_death = escape_text(get_death_data(mother))
+        ancestors_by_path[('mother',)] = parents_info['mother']
 
-        ancestors_content += f'''
-        <div class="boxbg female AncCol1" style="top: 830px; left: 316px;">
-            <a class="noThumb" href="../../{mother_path}">
-            {mother_name}<br/>*{mother_birth or ''}<br/>+{mother_death or '...'}
-            </a>
-        </div>
-        <div class="shadow" style="top: 835px; left: 320px;"></div>
-        <div class="bvline" style="top: 850px; left: 300px; width: 15px;"></div>
-        <div class="bhline" style="top: 550px; left: 300px; height: 301px;"></div>
-        '''
+    for slot in ANCESTOR_SLOTS:
+        path = slot['path']
+        if len(path) == 1:
+            continue
+        parent_path = path[:-1]
+        relation = path[-1]
+        if parent_path in ancestors_by_path:
+            parent_elem = ancestors_by_path[parent_path]
+            p_info = get_parents(gedcom_parser, parent_elem)
+            if p_info and p_info.get(relation):
+                ancestors_by_path[path] = p_info[relation]
 
-        # Add maternal grandfather (mother's father) if available
-        mother_parents_info = get_parents(gedcom_parser, mother)
-        if mother_parents_info and mother_parents_info['father']:
-            maternal_grandfather = mother_parents_info['father']
-            maternal_grandfather_id = generate_id_from_pointer(maternal_grandfather.get_pointer())
-            maternal_grandfather_path = get_path_for_individual(maternal_grandfather_id, individuals_data)
-            maternal_grandfather_name = escape_text(get_name(maternal_grandfather))
-            maternal_grandfather_birth = escape_text(get_birth_data(maternal_grandfather))
-            maternal_grandfather_death = escape_text(get_death_data(maternal_grandfather))
+    # Render each present ancestor slot in order
+    for slot in ANCESTOR_SLOTS:
+        path = slot['path']
+        if path not in ancestors_by_path:
+            continue
+        person = ancestors_by_path[path]
+        pid = generate_id_from_pointer(person.get_pointer())
+        p_path = get_path_for_individual(pid, individuals_data)
+        p_name = escape_text(get_name(person))
+        p_birth = escape_text(get_birth_data(person))
+        p_death = escape_text(get_death_data(person))
 
-            ancestors_content += f'''
-            <div class="bvline" style="top: 850px; left: 595px; width: 15px"></div>
-            <div class="gvline" style="top: 855px; left: 595px; width: 20px"></div>
-            <div class="boxbg male AncCol2" style="top: 680px; left: 626px;">
-                <a class="noThumb" href="../../{maternal_grandfather_path}">
-                {maternal_grandfather_name}<br/>*{maternal_grandfather_birth or ''}<br/>+{maternal_grandfather_death or '...'}
-                </a>
-            </div>
-            <div class="shadow" style="top: 685px; left: 630px;"></div>
-            <div class="bvline" style="top: 700px; left: 610px; width: 15px;"></div>
-            <div class="bhline" style="top: 700px; left: 610px; height: 151px;"></div>
-            '''
+        indent = slot['block_indent']
+        sub_indent = indent + '    '
 
-            # Add maternal great-grandfather (mother's father's father) if available
-            maternal_grandfather_parents_info = get_parents(gedcom_parser, maternal_grandfather)
-            if maternal_grandfather_parents_info and maternal_grandfather_parents_info['father']:
-                maternal_great_grandfather = maternal_grandfather_parents_info['father']
-                maternal_great_grandfather_id = generate_id_from_pointer(maternal_great_grandfather.get_pointer())
-                maternal_great_grandfather_path = get_path_for_individual(maternal_great_grandfather_id, individuals_data)
-                maternal_great_grandfather_name = escape_text(get_name(maternal_great_grandfather))
-                maternal_great_grandfather_birth = escape_text(get_birth_data(maternal_great_grandfather))
-                maternal_great_grandfather_death = escape_text(get_death_data(maternal_great_grandfather))
+        block = ""
+        if slot['has_inlines']:
+            block += f'''
+{indent}<div class="bvline" style="top: {slot['inline_top']}px; left: {slot['inline_left']}px; width: 15px"></div>
+{indent}<div class="gvline" style="top: {slot['inline_gv_top']}px; left: {slot['inline_left']}px; width: 20px"></div>'''
 
-                ancestors_content += f'''
-                <div class="bvline" style="top: 700px; left: 905px; width: 15px"></div>
-                <div class="gvline" style="top: 705px; left: 905px; width: 20px"></div>
-                <div class="boxbg male AncCol3" style="top: 605px; left: 936px;">
-                    <a class="noThumb" href="../../{maternal_great_grandfather_path}">
-                    {maternal_great_grandfather_name}<br/>*{maternal_great_grandfather_birth or ''}<br/>+{maternal_great_grandfather_death or '...'}
-                    </a>
-                </div>
-                <div class="shadow" style="top: 610px; left: 940px;"></div>
-                <div class="bvline" style="top: 625px; left: 920px; width: 15px;"></div>
-                <div class="bhline" style="top: 625px; left: 920px; height: 76px;"></div>
-                '''
-
-            # Add maternal great-grandmother (mother's father's mother) if available
-            if maternal_grandfather_parents_info and maternal_grandfather_parents_info['mother']:
-                maternal_great_grandmother = maternal_grandfather_parents_info['mother']
-                maternal_great_grandmother_id = generate_id_from_pointer(maternal_great_grandmother.get_pointer())
-                maternal_great_grandmother_path = get_path_for_individual(maternal_great_grandmother_id, individuals_data)
-                maternal_great_grandmother_name = escape_text(get_name(maternal_great_grandmother))
-                maternal_great_grandmother_birth = escape_text(get_birth_data(maternal_great_grandmother))
-                maternal_great_grandmother_death = escape_text(get_death_data(maternal_great_grandmother))
-
-                ancestors_content += f'''
-                <div class="boxbg female AncCol3" style="top: 755px; left: 936px;">
-                    <a class="noThumb" href="../../{maternal_great_grandmother_path}">
-                    {maternal_great_grandmother_name}<br/>*{maternal_great_grandmother_birth or ''}<br/>+{maternal_great_grandmother_death or '...'}
-                    </a>
-                </div>
-                <div class="shadow" style="top: 760px; left: 940px;"></div>
-                <div class="bvline" style="top: 775px; left: 920px; width: 15px;"></div>
-                <div class="bhline" style="top: 700px; left: 920px; height: 76px;"></div>
-                '''
-
-        # Add maternal grandmother (mother's mother) if available
-        if mother_parents_info and mother_parents_info['mother']:
-            maternal_grandmother = mother_parents_info['mother']
-            maternal_grandmother_id = generate_id_from_pointer(maternal_grandmother.get_pointer())
-            maternal_grandmother_path = get_path_for_individual(maternal_grandmother_id, individuals_data)
-            maternal_grandmother_name = escape_text(get_name(maternal_grandmother))
-            maternal_grandmother_birth = escape_text(get_birth_data(maternal_grandmother))
-            maternal_grandmother_death = escape_text(get_death_data(maternal_grandmother))
-
-            ancestors_content += f'''
-            <div class="boxbg female AncCol2" style="top: 980px; left: 626px;">
-                <a class="noThumb" href="../../{maternal_grandmother_path}">
-                {maternal_grandmother_name}<br/>*{maternal_grandmother_birth or ''}<br/>+{maternal_grandmother_death or '...'}
-                </a>
-            </div>
-            <div class="shadow" style="top: 985px; left: 630px;"></div>
-            <div class="bvline" style="top: 1000px; left: 610px; width: 15px;"></div>
-            <div class="bhline" style="top: 850px; left: 610px; height: 151px;"></div>
-            '''
-
-            # Add maternal great-grandfather (mother's mother's father) if available
-            maternal_grandmother_parents_info = get_parents(gedcom_parser, maternal_grandmother)
-            if maternal_grandmother_parents_info and maternal_grandmother_parents_info['father']:
-                maternal_great_grandfather2 = maternal_grandmother_parents_info['father']
-                maternal_great_grandfather2_id = generate_id_from_pointer(maternal_great_grandfather2.get_pointer())
-                maternal_great_grandfather2_path = get_path_for_individual(maternal_great_grandfather2_id, individuals_data)
-                maternal_great_grandfather2_name = escape_text(get_name(maternal_great_grandfather2))
-                maternal_great_grandfather2_birth = escape_text(get_birth_data(maternal_great_grandfather2))
-                maternal_great_grandfather2_death = escape_text(get_death_data(maternal_great_grandfather2))
-
-                ancestors_content += f'''
-                <div class="bvline" style="top: 1000px; left: 905px; width: 15px"></div>
-                <div class="gvline" style="top: 1005px; left: 905px; width: 20px"></div>
-                <div class="boxbg male AncCol3" style="top: 905px; left: 936px;">
-                    <a class="noThumb" href="../../{maternal_great_grandfather2_path}">
-                    {maternal_great_grandfather2_name}<br/>*{maternal_great_grandfather2_birth or ''}<br/>+{maternal_great_grandfather2_death or '...'}
-                    </a>
-                </div>
-                <div class="shadow" style="top: 910px; left: 940px;"></div>
-                <div class="bvline" style="top: 925px; left: 920px; width: 15px;"></div>
-                <div class="bhline" style="top: 925px; left: 920px; height: 76px;"></div>
-                '''
-
-            # Add maternal great-grandmother (mother's mother's mother) if available
-            if maternal_grandmother_parents_info and maternal_grandmother_parents_info['mother']:
-                maternal_great_grandmother2 = maternal_grandmother_parents_info['mother']
-                maternal_great_grandmother2_id = generate_id_from_pointer(maternal_great_grandmother2.get_pointer())
-                maternal_great_grandmother2_path = get_path_for_individual(maternal_great_grandmother2_id, individuals_data)
-                maternal_great_grandmother2_name = escape_text(get_name(maternal_great_grandmother2))
-                maternal_great_grandmother2_birth = escape_text(get_birth_data(maternal_great_grandmother2))
-                maternal_great_grandmother2_death = escape_text(get_death_data(maternal_great_grandmother2))
-
-                ancestors_content += f'''
-                <div class="boxbg female AncCol3" style="top: 1055px; left: 936px;">
-                    <a class="noThumb" href="../../{maternal_great_grandmother2_path}">
-                    {maternal_great_grandmother2_name}<br/>*{maternal_great_grandmother2_birth or ''}<br/>+{maternal_great_grandmother2_death or '...'}
-                    </a>
-                </div>
-                <div class="shadow" style="top: 1060px; left: 940px;"></div>
-                <div class="bvline" style="top: 1075px; left: 920px; width: 15px;"></div>
-                <div class="bhline" style="top: 1000px; left: 920px; height: 76px;"></div>
-                '''
+        block += f'''
+{indent}<div class="boxbg {slot['gender']} AncCol{slot['col']}" style="top: {slot['box_top']}px; left: {slot['box_left']}px;">
+{sub_indent}<a class="noThumb" href="../../{p_path}">
+{sub_indent}{p_name}<br/>*{p_birth or ''}<br/>+{p_death or '...'}
+{sub_indent}</a>
+{indent}</div>
+{indent}<div class="shadow" style="top: {slot['shadow_top']}px; left: {slot['shadow_left']}px;"></div>
+{indent}<div class="bvline" style="top: {slot['bvline_top']}px; left: {slot['bvline_left']}px; width: 15px;"></div>
+{indent}<div class="bhline" style="top: {slot['bhline_top']}px; left: {slot['bhline_left']}px; height: {slot['bhline_height']}px;"></div>
+{indent}'''
+        ancestors_content += block
 
     return ANCESTORS_TEMPLATE.format(ancestors_content=ancestors_content)
