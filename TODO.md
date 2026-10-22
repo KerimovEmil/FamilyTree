@@ -19,7 +19,7 @@ This document tracks the planned bug fixes, refactorings, and feature enhancemen
   - Fix nested `<tr>` structure in `HTML_TEMPLATE`.
   - Regenerate static HTML pages.
 
-### [ ] TODO 3: Fix Surname Filename Sanitization Consistency
+### [x] TODO 3: Fix Surname Filename Sanitization Consistency
 - **Problem**: `utils.get_surname_file_path()` and `utils.get_surname_relative_path()` strip special characters (`re.sub(r'[^\w\s]', '', surname)`), but `generate_index_html()` and `generate_surname_pages()` in `python/html_generation.py` bypass these helpers and only run `surname.lower().replace(' ', '_')`.
 - **Scope**:
   - Update `generate_index_html()` and `generate_surname_pages()` to use `get_surname_file_path()` and `get_surname_relative_path()` from `python/utils.py`.
