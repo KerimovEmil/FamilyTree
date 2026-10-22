@@ -383,14 +383,6 @@ INDIVIDUAL_ENTRY_TEMPLATE = """                    <tr>
                     </tr>
 """
 
-PEDIGREE_TEMPLATE = """
-<div class="subsection" id="pedigree">
-    <h4>Pedigree</h4>
-    <ol class="pedigreegen">
-        {pedigree_content}
-    </ol>
-</div>
-"""
 
 ANCESTORS_TEMPLATE = """
 <div class="subsection" id="ancestors">

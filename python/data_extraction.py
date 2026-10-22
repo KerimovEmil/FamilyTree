@@ -3,7 +3,6 @@
 Functions for extracting data from GEDCOM elements.
 """
 
-from utils import generate_id_from_pointer, get_relative_path
 
 def get_name(individual):
     """Extract the name from an individual element."""
