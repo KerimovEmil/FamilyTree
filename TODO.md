@@ -74,7 +74,7 @@ This document tracks the planned bug fixes, refactorings, and feature enhancemen
 
 ## Phase 4: Features, Testing & Automation
 
-### [ ] TODO 9: Add Unit & Integration Tests
+### [x] TODO 9: Add Unit & Integration Tests
 - **Problem**: There are currently no automated tests verifying GEDCOM parsing, path sanitization, or HTML generation.
 - **Scope**:
   - Add a `tests/` suite using `pytest` or `unittest`.
