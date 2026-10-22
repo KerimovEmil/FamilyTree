@@ -379,7 +379,7 @@ def generate_pedigree_section(gedcom_parser, element, individual_id, individuals
         spouse_name = get_name(spouse)
 
         # Create spouse entry
-        spouse_entry = f'<li class="spouse">\n                    <a href="../../../FamilyTree/{spouse_path}">{spouse_name}</a>'
+        spouse_entry = f'<li class="spouse">\n                    <a href="../../{spouse_path}">{spouse_name}</a>'
 
         # Add children if any
         if children:
@@ -389,7 +389,7 @@ def generate_pedigree_section(gedcom_parser, element, individual_id, individuals
                 child_path = get_path_for_individual(child_id, individuals_data)
                 child_name = get_name(child)
 
-                children_list.append(f'<li>\n                            <a href="../../../FamilyTree/{child_path}">{child_name}</a>\n                        </li>')
+                children_list.append(f'<li>\n                            <a href="../../{child_path}">{child_name}</a>\n                        </li>')
 
             if children_list:
                 spouse_entry += '<ol>' + ''.join(children_list) + '</ol>'
@@ -443,7 +443,7 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
         <div class="bvline" style="top: 550px; left: 285px; width: 15px"></div>
         <div class="gvline" style="top: 555px; left: 285px; width: 20px"></div>
         <div class="boxbg male AncCol1" style="top: 230px; left: 316px;">
-            <a class="noThumb" href="../../../FamilyTree/{father_path}">
+            <a class="noThumb" href="../../{father_path}">
             {father_name}<br/>*{father_birth or ''}<br/>+{father_death or '...'}
             </a>
         </div>
@@ -466,7 +466,7 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
             <div class="bvline" style="top: 250px; left: 595px; width: 15px"></div>
             <div class="gvline" style="top: 255px; left: 595px; width: 20px"></div>
             <div class="boxbg male AncCol2" style="top: 80px; left: 626px;">
-                <a class="noThumb" href="../../../FamilyTree/{paternal_grandfather_path}">
+                <a class="noThumb" href="../../{paternal_grandfather_path}">
                 {paternal_grandfather_name}<br/>*{paternal_grandfather_birth or ''}<br/>+{paternal_grandfather_death or '...'}
                 </a>
             </div>
@@ -489,7 +489,7 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
                 <div class="bvline" style="top: 100px; left: 905px; width: 15px"></div>
                 <div class="gvline" style="top: 105px; left: 905px; width: 20px"></div>
                 <div class="boxbg male AncCol3" style="top: 5px; left: 936px;">
-                    <a class="noThumb" href="../../../FamilyTree/{paternal_great_grandfather_path}">
+                    <a class="noThumb" href="../../{paternal_great_grandfather_path}">
                     {paternal_great_grandfather_name}<br/>*{paternal_great_grandfather_birth or ''}<br/>+{paternal_great_grandfather_death or '...'}
                     </a>
                 </div>
@@ -509,7 +509,7 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
 
                 ancestors_content += f'''
                 <div class="boxbg female AncCol3" style="top: 155px; left: 936px;">
-                    <a class="noThumb" href="../../../FamilyTree/{paternal_great_grandmother_path}">
+                    <a class="noThumb" href="../../{paternal_great_grandmother_path}">
                     {paternal_great_grandmother_name}<br/>*{paternal_great_grandmother_birth or ''}<br/>+{paternal_great_grandmother_death or '...'}
                     </a>
                 </div>
@@ -529,7 +529,7 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
 
             ancestors_content += f'''
             <div class="boxbg female AncCol2" style="top: 380px; left: 626px;">
-                <a class="noThumb" href="../../../FamilyTree/{paternal_grandmother_path}">
+                <a class="noThumb" href="../../{paternal_grandmother_path}">
                 {paternal_grandmother_name}<br/>*{paternal_grandmother_birth or ''}<br/>+{paternal_grandmother_death or '...'}
                 </a>
             </div>
@@ -552,7 +552,7 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
                 <div class="bvline" style="top: 400px; left: 905px; width: 15px"></div>
                 <div class="gvline" style="top: 405px; left: 905px; width: 20px"></div>
                 <div class="boxbg male AncCol3" style="top: 305px; left: 936px;">
-                    <a class="noThumb" href="../../../FamilyTree/{paternal_great_grandfather2_path}">
+                    <a class="noThumb" href="../../{paternal_great_grandfather2_path}">
                     {paternal_great_grandfather2_name}<br/>*{paternal_great_grandfather2_birth or ''}<br/>+{paternal_great_grandfather2_death or '...'}
                     </a>
                 </div>
@@ -572,7 +572,7 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
 
                 ancestors_content += f'''
                 <div class="boxbg female AncCol3" style="top: 455px; left: 936px;">
-                    <a class="noThumb" href="../../../FamilyTree/{paternal_great_grandmother2_path}">
+                    <a class="noThumb" href="../../{paternal_great_grandmother2_path}">
                     {paternal_great_grandmother2_name}<br/>*{paternal_great_grandmother2_birth or ''}<br/>+{paternal_great_grandmother2_death or '...'}
                     </a>
                 </div>
@@ -592,7 +592,7 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
 
         ancestors_content += f'''
         <div class="boxbg female AncCol1" style="top: 830px; left: 316px;">
-            <a class="noThumb" href="../../../FamilyTree/{mother_path}">
+            <a class="noThumb" href="../../{mother_path}">
             {mother_name}<br/>*{mother_birth or ''}<br/>+{mother_death or '...'}
             </a>
         </div>
@@ -615,7 +615,7 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
             <div class="bvline" style="top: 850px; left: 595px; width: 15px"></div>
             <div class="gvline" style="top: 855px; left: 595px; width: 20px"></div>
             <div class="boxbg male AncCol2" style="top: 680px; left: 626px;">
-                <a class="noThumb" href="../../../FamilyTree/{maternal_grandfather_path}">
+                <a class="noThumb" href="../../{maternal_grandfather_path}">
                 {maternal_grandfather_name}<br/>*{maternal_grandfather_birth or ''}<br/>+{maternal_grandfather_death or '...'}
                 </a>
             </div>
@@ -638,7 +638,7 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
                 <div class="bvline" style="top: 700px; left: 905px; width: 15px"></div>
                 <div class="gvline" style="top: 705px; left: 905px; width: 20px"></div>
                 <div class="boxbg male AncCol3" style="top: 605px; left: 936px;">
-                    <a class="noThumb" href="../../../FamilyTree/{maternal_great_grandfather_path}">
+                    <a class="noThumb" href="../../{maternal_great_grandfather_path}">
                     {maternal_great_grandfather_name}<br/>*{maternal_great_grandfather_birth or ''}<br/>+{maternal_great_grandfather_death or '...'}
                     </a>
                 </div>
@@ -658,7 +658,7 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
 
                 ancestors_content += f'''
                 <div class="boxbg female AncCol3" style="top: 755px; left: 936px;">
-                    <a class="noThumb" href="../../../FamilyTree/{maternal_great_grandmother_path}">
+                    <a class="noThumb" href="../../{maternal_great_grandmother_path}">
                     {maternal_great_grandmother_name}<br/>*{maternal_great_grandmother_birth or ''}<br/>+{maternal_great_grandmother_death or '...'}
                     </a>
                 </div>
@@ -678,7 +678,7 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
 
             ancestors_content += f'''
             <div class="boxbg female AncCol2" style="top: 980px; left: 626px;">
-                <a class="noThumb" href="../../../FamilyTree/{maternal_grandmother_path}">
+                <a class="noThumb" href="../../{maternal_grandmother_path}">
                 {maternal_grandmother_name}<br/>*{maternal_grandmother_birth or ''}<br/>+{maternal_grandmother_death or '...'}
                 </a>
             </div>
@@ -701,7 +701,7 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
                 <div class="bvline" style="top: 1000px; left: 905px; width: 15px"></div>
                 <div class="gvline" style="top: 1005px; left: 905px; width: 20px"></div>
                 <div class="boxbg male AncCol3" style="top: 905px; left: 936px;">
-                    <a class="noThumb" href="../../../FamilyTree/{maternal_great_grandfather2_path}">
+                    <a class="noThumb" href="../../{maternal_great_grandfather2_path}">
                     {maternal_great_grandfather2_name}<br/>*{maternal_great_grandfather2_birth or ''}<br/>+{maternal_great_grandfather2_death or '...'}
                     </a>
                 </div>
@@ -721,7 +721,7 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
 
                 ancestors_content += f'''
                 <div class="boxbg female AncCol3" style="top: 1055px; left: 936px;">
-                    <a class="noThumb" href="../../../FamilyTree/{maternal_great_grandmother2_path}">
+                    <a class="noThumb" href="../../{maternal_great_grandmother2_path}">
                     {maternal_great_grandmother2_name}<br/>*{maternal_great_grandmother2_birth or ''}<br/>+{maternal_great_grandmother2_death or '...'}
                     </a>
                 </div>

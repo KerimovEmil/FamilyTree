@@ -6,7 +6,7 @@ This document tracks the planned bug fixes, refactorings, and feature enhancemen
 
 ## Phase 1: Bug Fixes & HTML Validity
 
-### [ ] TODO 1: Standardize Relative Links & Remove Hardcoded `../../../FamilyTree/` Paths
+### [x] TODO 1: Standardize Relative Links & Remove Hardcoded `../../../FamilyTree/` Paths
 - **Problem**: Links inside individual pages (`ppl/<surname>/<person>.html`) and templates in `python/constants.py` and `python/html_generation.py` use `../../../FamilyTree/{path}` instead of `../../{path}`. This breaks navigation when serving the site locally (e.g., `python -m http.server`) or under a custom domain.
 - **Scope**:
   - Replace all `../../../FamilyTree/` prefixes in `python/constants.py` and `python/html_generation.py` with `../../`.
