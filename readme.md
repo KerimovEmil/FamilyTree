@@ -57,6 +57,23 @@ python generate_html_from_gedcom.py
 3. The script will generate HTML files in the `ppl` directory organized by surname
 4. Open `index.html` in your web browser to view the family tree
 
+### Checking for Broken Links
+
+After regenerating, serve the site locally and crawl it for broken internal links:
+
+```bash
+python -m http.server 8000
+python tools/check_links.py http://localhost:8000/individuals.html
+```
+
+You can also check the live site:
+
+```bash
+python tools/check_links.py https://kerimovemil.github.io/FamilyTree/individuals.html
+```
+
+The script exits with code 1 if any broken links are found.
+
 ### Customization
 
 You can customize the HTML templates by modifying the template strings in `python/constants.py`.
