@@ -12,7 +12,7 @@ This document tracks the planned bug fixes, refactorings, and feature enhancemen
   - Replace all `../../../FamilyTree/` prefixes in `python/constants.py` and `python/html_generation.py` with `../../`.
   - Regenerate static HTML pages and verify all internal navigation links work both locally and on GitHub Pages.
 
-### [ ] TODO 2: Fix Malformed HTML Table Tags in Templates
+### [x] TODO 2: Fix Malformed HTML Table Tags in Templates
 - **Problem**: `PARENT_ROW_TEMPLATE`, `FAMILY_ROW_TEMPLATE`, and `CHILD_ROW_TEMPLATE` in `python/constants.py` contain invalid self-closing `<td />` tags (e.g., `<td class="ColumnValue" /><a href=...>`). Also, `HTML_TEMPLATE` has an unclosed/nested `<tr>` inside the Events table.
 - **Scope**:
   - Fix all `<td />` occurrences in `python/constants.py` to properly wrap cell contents with `<td>...</td>`.
