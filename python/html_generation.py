@@ -6,10 +6,13 @@ Functions for generating HTML content from GEDCOM data with new directory struct
 import os
 from utils import generate_id_from_pointer, get_surname_file_path, get_surname_relative_path
 from data_extraction import (
-    get_name, get_gender, get_birth_data, get_death_data, get_parents, get_families
+    get_name, get_gender, get_birth_data, get_birth_place, get_death_data,
+    get_death_place, has_death_event, get_occupation, get_attributes,
+    get_parents, get_families
 )
 from constants import (
-    HTML_TEMPLATE, PARENTS_TEMPLATE,
+    HTML_TEMPLATE, EVENT_ROW_TEMPLATE, ATTRIBUTES_SECTION_TEMPLATE,
+    ATTRIBUTE_ROW_TEMPLATE, PARENTS_TEMPLATE,
     PARENT_ROW_TEMPLATE, SIBLING_ROW_TEMPLATE, FAMILIES_TEMPLATE,
     FAMILY_ROW_TEMPLATE, CHILD_ROW_TEMPLATE, PEDIGREE_TEMPLATE,
     ANCESTORS_TEMPLATE, INDEX_HTML_TEMPLATE, INDIVIDUALS_HTML_TEMPLATE,
@@ -181,13 +184,68 @@ def generate_families_section(gedcom_parser, individual, individual_id, individu
 
     return FAMILIES_TEMPLATE.format(families_rows=''.join(families_rows))
 
+def generate_events_rows(element):
+    """Generate rows for the Events table (Birth, Death, Occupation if applicable)."""
+    events_rows = []
+
+    # Birth event
+    birth_date = get_birth_data(element)
+    birth_place = get_birth_place(element)
+    events_rows.append(EVENT_ROW_TEMPLATE.format(
+        event_name="Birth",
+        event_date=birth_date,
+        event_place=birth_place
+    ))
+
+    # Death event
+    if has_death_event(element):
+        death_date = get_death_data(element)
+        death_place = get_death_place(element)
+        events_rows.append(EVENT_ROW_TEMPLATE.format(
+            event_name="Death",
+            event_date=death_date,
+            event_place=death_place
+        ))
+
+    # Occupation event
+    occupation = get_occupation(element)
+    if occupation and occupation.strip() and occupation != "&nbsp;":
+        events_rows.append(EVENT_ROW_TEMPLATE.format(
+            event_name="Occupation",
+            event_date="",
+            event_place=occupation
+        ))
+
+    return '\n'.join(events_rows)
+
+def generate_attributes_section(element):
+    """Generate the HTML attributes section if attributes are present."""
+    attributes = get_attributes(element)
+    if not attributes:
+        return ""
+
+    attributes_rows = []
+    for attr in attributes:
+        attributes_rows.append(ATTRIBUTE_ROW_TEMPLATE.format(
+            attr_type=attr.get('type', ''),
+            attr_value=attr.get('value', ''),
+            attr_notes=attr.get('notes', ''),
+            attr_sources=attr.get('sources', '&nbsp;')
+        ))
+
+    return ATTRIBUTES_SECTION_TEMPLATE.format(attributes_rows='\n'.join(attributes_rows))
+
 def generate_html_for_individual(gedcom_parser, element, individuals_data):
     """Generate HTML content for an individual"""
     individual_id = generate_id_from_pointer(element.get_pointer())
     name = get_name(element)
     gender = get_gender(element)
-    birth_date = get_birth_data(element)
-    death_date = get_death_data(element)
+
+    # Generate events rows
+    events_rows = generate_events_rows(element)
+
+    # Generate attributes section
+    attributes_section = generate_attributes_section(element)
 
     # Generate parents section
     parents_section = generate_parents_section(gedcom_parser, element, individual_id, individuals_data)
@@ -205,11 +263,11 @@ def generate_html_for_individual(gedcom_parser, element, individuals_data):
     html_content = HTML_TEMPLATE.format(
         name=name,
         gender=gender,
-        birth_date=birth_date,
+        events_rows=events_rows,
         married_name_section="",
+        attributes_section=attributes_section,
         parents_section=parents_section,
         families_section=families_section,
-        attributes_section="",
         pedigree_section=pedigree_section,
         ancestors_section=ancestors_section,
     )

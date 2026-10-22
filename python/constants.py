@@ -62,16 +62,15 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                         <tr>
                             <th class="ColumnEvent">Event</th>
                             <th class="ColumnDate">Date</th>
-                            </tr>
+                            <th class="ColumnPlace">Place</th>
+                        </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="ColumnEvent">Birth</td>
-                            <td class="ColumnDate">{birth_date}</td>
-                        </tr>
+{events_rows}
                     </tbody>
                 </table>
             </div>
+            {attributes_section}
             {parents_section}
             {families_section}
             {pedigree_section}
@@ -399,3 +398,33 @@ ANCESTORS_TEMPLATE = """
     {ancestors_content}
 </div>
 """
+
+EVENT_ROW_TEMPLATE = """<tr>
+    <td class="ColumnEvent">{event_name}</td>
+    <td class="ColumnDate">{event_date}</td>
+    <td class="ColumnPlace">{event_place}</td>
+</tr>"""
+
+ATTRIBUTES_SECTION_TEMPLATE = """<div class="subsection" id="attributes">
+    <h4>Attributes</h4>
+    <table class="infolist attrlist">
+        <thead>
+            <tr>
+                <th class="ColumnType">Type</th>
+                <th class="ColumnValue">Value</th>
+                <th class="ColumnNotes">Notes</th>
+                <th class="ColumnSources">Sources</th>
+            </tr>
+        </thead>
+        <tbody>
+{attributes_rows}
+        </tbody>
+    </table>
+</div>"""
+
+ATTRIBUTE_ROW_TEMPLATE = """<tr>
+    <td class="ColumnType">{attr_type}</td>
+    <td class="ColumnValue">{attr_value}</td>
+    <td class="ColumnNotes">{attr_notes}</td>
+    <td class="ColumnSources">{attr_sources}</td>
+</tr>"""

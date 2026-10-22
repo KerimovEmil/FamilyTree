@@ -36,7 +36,7 @@ This document tracks the planned bug fixes, refactorings, and feature enhancemen
 
 ## Phase 2: Data Completeness & Escaping
 
-### [ ] TODO 5: Display Death Events, Places, and Attributes on Individual Pages
+### [x] TODO 5: Display Death Events, Places, and Attributes on Individual Pages
 - **Problem**: `HTML_TEMPLATE` only renders a hardcoded `Birth` date row and ignores `death_date`, birth/death places, occupation, and attributes (`get_occupation()` and `get_attributes()` exist in `python/data_extraction.py` but are never wired up).
 - **Scope**:
   - Extract birth place and death place in `python/data_extraction.py`.
