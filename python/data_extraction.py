@@ -53,6 +53,19 @@ def get_birth_data(individual):
 
     return birth_date
 
+def get_birth_place(individual):
+    """Extract birth place from an individual element."""
+    birth_data = individual.get_birth_data()
+    birth_place = ""
+
+    if birth_data:
+        if isinstance(birth_data, tuple) and len(birth_data) > 1 and birth_data[1]:
+            birth_place = birth_data[1]
+        elif isinstance(birth_data, dict) and 'place' in birth_data and birth_data['place']:
+            birth_place = birth_data['place']
+
+    return birth_place
+
 def get_death_data(individual):
     """Extract death date from an individual element."""
     death_data = individual.get_death_data()
@@ -69,6 +82,32 @@ def get_death_data(individual):
                 death_date = death_data['date']
 
     return death_date
+
+def get_death_place(individual):
+    """Extract death place from an individual element."""
+    death_data = individual.get_death_data()
+    death_place = ""
+
+    if death_data:
+        if isinstance(death_data, tuple) and len(death_data) > 1 and death_data[1]:
+            death_place = death_data[1]
+        elif isinstance(death_data, dict) and 'place' in death_data and death_data['place']:
+            death_place = death_data['place']
+
+    return death_place
+
+def has_death_event(individual):
+    """Check if individual has a recorded death event (dated, placed, or flagged)."""
+    death_data = individual.get_death_data()
+    if death_data:
+        if isinstance(death_data, tuple) and (death_data[0] or (len(death_data) > 1 and death_data[1])):
+            return True
+        elif isinstance(death_data, dict) and ('date' in death_data or 'place' in death_data):
+            return True
+    for child in individual.get_child_elements():
+        if child.get_tag() == "DEAT":
+            return True
+    return False
 
 def get_occupation(individual):
     """Extract occupation from an individual element."""
