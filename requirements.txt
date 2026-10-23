@@ -1,1 +1,2 @@
-python-gedcom
+python-gedcom==1.1.0
+pytest>=8.0.0
