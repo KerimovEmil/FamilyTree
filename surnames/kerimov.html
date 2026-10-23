@@ -13,12 +13,42 @@
         function navFunction() { var x = document.getElementById("dropmenu"); if (x.className === "nav") { x.className += " responsive"; } else { x.className = "nav"; } }
         function filterTable() {
             var input = document.getElementById("searchInput");
+            var clearBtn = document.getElementById("clearSearch");
             var filter = input.value.toLowerCase();
             var table = document.getElementById("dataTable");
             var rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
-            for (var i = 0; i < rows.length; i++) {
+            var countSpan = document.getElementById("searchCount");
+            var total = rows.length;
+            var matches = 0;
+
+            if (clearBtn) {
+                clearBtn.style.display = filter ? "inline" : "none";
+            }
+
+            for (var i = 0; i < total; i++) {
                 var text = rows[i].textContent || rows[i].innerText;
-                rows[i].style.display = text.toLowerCase().indexOf(filter) > -1 ? "" : "none";
+                if (text.toLowerCase().indexOf(filter) > -1) {
+                    rows[i].style.display = "";
+                    matches++;
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+
+            if (countSpan) {
+                if (filter) {
+                    countSpan.textContent = matches === 0 ? "No results found" : "Showing " + matches + " of " + total;
+                } else {
+                    countSpan.textContent = "";
+                }
+            }
+        }
+        function clearSearchFilter() {
+            var input = document.getElementById("searchInput");
+            if (input) {
+                input.value = "";
+                filterTable();
+                input.focus();
             }
         }
     </script>
@@ -43,8 +73,12 @@
             <p id="description">
             This page contains an index of all the individuals in the database with the surname of Kerimov. Selecting the person&#8217;s name will take you to that person&#8217;s individual page.
             </p>
-            <div style="margin: 10px 0 15px 0;">
-                <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search individuals..." style="padding: 6px 10px; width: 300px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;" />
+            <div style="margin: 10px 0 15px 0; display: flex; align-items: center; gap: 8px;">
+                <div style="position: relative; display: inline-block;">
+                    <input type="text" id="searchInput" onkeyup="filterTable()" onkeydown="if(event.key === 'Escape') clearSearchFilter()" placeholder="Search individuals..." style="padding: 6px 28px 6px 10px; width: 300px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;" />
+                    <button id="clearSearch" type="button" onclick="clearSearchFilter()" style="display: none; position: absolute; right: 6px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 16px; cursor: pointer; color: #888; padding: 0 4px;" title="Clear search">&times;</button>
+                </div>
+                <span id="searchCount" style="font-size: 13px; color: #666;"></span>
             </div>
             <table class="infolist primobjlist surname" id="dataTable">
                 <thead>

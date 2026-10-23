@@ -1,3 +1,4 @@
+from pathlib import Path
 import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'python')))
@@ -76,6 +77,19 @@ def test_generate_html_for_individual_with_events_and_attributes(tmp_path):
     assert "Birth" in html
     assert "Death" in html
 
+    # Milestone Age & Interactive Graph deep-link assertions
+    assert "Age at Death" in html
+    assert "50 years old" in html
+    assert "Age: 50" in html
+    assert 'interactive_graph.html?indi=I1' in html
+
+    # Chronological events order in #events section (Birth -> Occupation -> Death)
+    events_section = html[html.find('id="events"'):html.find('</div>', html.find('id="events"'))]
+    birth_idx = events_section.find("Birth")
+    occu_idx = events_section.find("Occupation")
+    death_idx = events_section.find("Death")
+    assert -1 < birth_idx < occu_idx < death_idx
+
     # Family & Single Parent assertions
     assert "Smith, Jane" in html
     assert "Doe, Junior" in html
@@ -141,7 +155,10 @@ def test_site_generation_end_to_end(tmp_path, monkeypatch):
     assert "surnames/doe.html" in index_content
     assert "surnames/smith.html" in index_content
     assert 'id="searchInput"' in index_content
+    assert 'id="clearSearch"' in index_content
+    assert 'id="searchCount"' in index_content
     assert 'filterTable()' in index_content
+    assert 'clearSearchFilter()' in index_content
 
     # Verify individuals.html content
     ind_content = (tmp_path / "individuals.html").read_text(encoding='utf-8')
@@ -150,10 +167,26 @@ def test_site_generation_end_to_end(tmp_path, monkeypatch):
     assert "Doe, Junior" in ind_content
     assert "Doe, Solo" in ind_content
     assert 'id="searchInput"' in ind_content
+    assert 'id="clearSearch"' in ind_content
+    assert 'id="searchCount"' in ind_content
     assert 'filterTable()' in ind_content
+    assert 'clearSearchFilter()' in ind_content
 
     # Verify surnames page content
     doe_content = (tmp_path / "surnames" / "doe.html").read_text(encoding='utf-8')
     assert 'id="searchInput"' in doe_content
+    assert 'id="clearSearch"' in doe_content
+    assert 'id="searchCount"' in doe_content
     assert 'filterTable()' in doe_content
+    assert 'clearSearchFilter()' in doe_content
     assert 'id="dataTable"' in doe_content
+
+
+def test_interactive_graph_page():
+    root = Path(__file__).resolve().parent.parent
+    graph_file = root / "interactive_graph.html"
+    assert graph_file.exists()
+    content = graph_file.read_text(encoding="utf-8")
+    assert 'id="topola-iframe"' in content
+    assert "URLSearchParams" in content
+    assert "indi" in content

@@ -16,6 +16,8 @@ from data_extraction import (
     get_attributes,
     get_parents,
     get_families,
+    parse_date,
+    calculate_age,
 )
 
 
@@ -92,3 +94,31 @@ def test_data_extraction_parents():
     assert solo_parents['father'] is not None
     assert get_name(solo_parents['father']) == "Doe, John"
     assert solo_parents['mother'] is None
+
+
+def test_parse_date():
+    assert parse_date("10 NOV 1939") == (1939, 11, 10, True)
+    assert parse_date("1 JAN 2020") == (2020, 1, 1, True)
+    assert parse_date("MAY 2024") == (2024, 5, 1, False)
+    assert parse_date("1971") == (1971, 0, 0, False)
+    assert parse_date("ABT 1920") == (1920, 0, 0, False)
+    assert parse_date("") is None
+    assert parse_date(None) is None
+    assert parse_date("Unknown") is None
+
+
+def test_calculate_age():
+    # Exact birthday
+    assert calculate_age("1 JAN 1970", "1 JAN 2020") == "50"
+    # Before birthday in anniversary year
+    assert calculate_age("15 MAY 1970", "10 MAY 2020") == "49"
+    # After birthday in anniversary year
+    assert calculate_age("15 MAY 1970", "20 MAY 2020") == "50"
+    # Approximate years
+    assert calculate_age("1939", "2022") == "83"
+    assert calculate_age("5 DEC 1939", "25 APR 2005") == "65"
+    # Invalid / reverse / missing
+    assert calculate_age("1970", "1960") == ""
+    assert calculate_age("", "2020") == ""
+    assert calculate_age("1970", "") == ""
+    assert calculate_age(None, None) == ""
