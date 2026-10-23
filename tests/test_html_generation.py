@@ -151,3 +151,9 @@ def test_site_generation_end_to_end(tmp_path, monkeypatch):
     assert "Doe, Solo" in ind_content
     assert 'id="searchInput"' in ind_content
     assert 'filterTable()' in ind_content
+
+    # Verify surnames page content
+    doe_content = (tmp_path / "surnames" / "doe.html").read_text(encoding='utf-8')
+    assert 'id="searchInput"' in doe_content
+    assert 'filterTable()' in doe_content
+    assert 'id="dataTable"' in doe_content
