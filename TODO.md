@@ -85,7 +85,7 @@ This document tracks the planned bug fixes, refactorings, and feature enhancemen
 - **Scope**:
   - Add a lightweight search/filter input box to `index.html` and `individuals.html` to filter table rows in real time.
 
-### [ ] TODO 11: Add GitHub Actions Workflow for Automated Build & GitHub Pages Deployment
+### [x] TODO 11: Add GitHub Actions Workflow for Automated Build & GitHub Pages Deployment
 - **Problem**: Every GEDCOM update requires manually running `python generate_html_from_gedcom.py` locally and committing hundreds of generated HTML files.
 - **Scope**:
   - Add a `.github/workflows/` CI/CD workflow that runs the Python generator on push to `main`, runs tests, and automatically deploys the generated site to GitHub Pages.
