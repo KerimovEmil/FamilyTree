@@ -471,258 +471,100 @@ def generate_pedigree_section(gedcom_parser, element, individual_id, individuals
     return PEDIGREE_TEMPLATE.format(pedigree_content=pedigree_content)
 
 ANCESTOR_SLOTS = [
-    {
-        'path': ('father',),
-        'gender': 'male',
-        'col': 1,
-        'has_inlines': True,
-        'inline_top': 550,
-        'inline_left': 285,
-        'inline_gv_top': 555,
-        'box_top': 230,
-        'box_left': 316,
-        'shadow_top': 235,
-        'shadow_left': 320,
-        'bvline_top': 250,
-        'bvline_left': 300,
-        'bhline_top': 250,
-        'bhline_left': 300,
-        'bhline_height': 301,
-        'block_indent': '        ',
-    },
-    {
-        'path': ('father', 'father'),
-        'gender': 'male',
-        'col': 2,
-        'has_inlines': True,
-        'inline_top': 250,
-        'inline_left': 595,
-        'inline_gv_top': 255,
-        'box_top': 80,
-        'box_left': 626,
-        'shadow_top': 85,
-        'shadow_left': 630,
-        'bvline_top': 100,
-        'bvline_left': 610,
-        'bhline_top': 100,
-        'bhline_left': 610,
-        'bhline_height': 151,
-        'block_indent': '            ',
-    },
-    {
-        'path': ('father', 'father', 'father'),
-        'gender': 'male',
-        'col': 3,
-        'has_inlines': True,
-        'inline_top': 100,
-        'inline_left': 905,
-        'inline_gv_top': 105,
-        'box_top': 5,
-        'box_left': 936,
-        'shadow_top': 10,
-        'shadow_left': 940,
-        'bvline_top': 25,
-        'bvline_left': 920,
-        'bhline_top': 25,
-        'bhline_left': 920,
-        'bhline_height': 76,
-        'block_indent': '                ',
-    },
-    {
-        'path': ('father', 'father', 'mother'),
-        'gender': 'female',
-        'col': 3,
-        'has_inlines': False,
-        'box_top': 155,
-        'box_left': 936,
-        'shadow_top': 160,
-        'shadow_left': 940,
-        'bvline_top': 175,
-        'bvline_left': 920,
-        'bhline_top': 100,
-        'bhline_left': 920,
-        'bhline_height': 76,
-        'block_indent': '                ',
-    },
-    {
-        'path': ('father', 'mother'),
-        'gender': 'female',
-        'col': 2,
-        'has_inlines': False,
-        'box_top': 380,
-        'box_left': 626,
-        'shadow_top': 385,
-        'shadow_left': 630,
-        'bvline_top': 400,
-        'bvline_left': 610,
-        'bhline_top': 250,
-        'bhline_left': 610,
-        'bhline_height': 151,
-        'block_indent': '            ',
-    },
-    {
-        'path': ('father', 'mother', 'father'),
-        'gender': 'male',
-        'col': 3,
-        'has_inlines': True,
-        'inline_top': 400,
-        'inline_left': 905,
-        'inline_gv_top': 405,
-        'box_top': 305,
-        'box_left': 936,
-        'shadow_top': 310,
-        'shadow_left': 940,
-        'bvline_top': 325,
-        'bvline_left': 920,
-        'bhline_top': 325,
-        'bhline_left': 920,
-        'bhline_height': 76,
-        'block_indent': '                ',
-    },
-    {
-        'path': ('father', 'mother', 'mother'),
-        'gender': 'female',
-        'col': 3,
-        'has_inlines': False,
-        'box_top': 455,
-        'box_left': 936,
-        'shadow_top': 460,
-        'shadow_left': 940,
-        'bvline_top': 475,
-        'bvline_left': 920,
-        'bhline_top': 400,
-        'bhline_left': 920,
-        'bhline_height': 76,
-        'block_indent': '                ',
-    },
-    {
-        'path': ('mother',),
-        'gender': 'female',
-        'col': 1,
-        'has_inlines': False,
-        'box_top': 830,
-        'box_left': 316,
-        'shadow_top': 835,
-        'shadow_left': 320,
-        'bvline_top': 850,
-        'bvline_left': 300,
-        'bhline_top': 550,
-        'bhline_left': 300,
-        'bhline_height': 301,
-        'block_indent': '        ',
-    },
-    {
-        'path': ('mother', 'father'),
-        'gender': 'male',
-        'col': 2,
-        'has_inlines': True,
-        'inline_top': 850,
-        'inline_left': 595,
-        'inline_gv_top': 855,
-        'box_top': 680,
-        'box_left': 626,
-        'shadow_top': 685,
-        'shadow_left': 630,
-        'bvline_top': 700,
-        'bvline_left': 610,
-        'bhline_top': 700,
-        'bhline_left': 610,
-        'bhline_height': 151,
-        'block_indent': '            ',
-    },
-    {
-        'path': ('mother', 'father', 'father'),
-        'gender': 'male',
-        'col': 3,
-        'has_inlines': True,
-        'inline_top': 700,
-        'inline_left': 905,
-        'inline_gv_top': 705,
-        'box_top': 605,
-        'box_left': 936,
-        'shadow_top': 610,
-        'shadow_left': 940,
-        'bvline_top': 625,
-        'bvline_left': 920,
-        'bhline_top': 625,
-        'bhline_left': 920,
-        'bhline_height': 76,
-        'block_indent': '                ',
-    },
-    {
-        'path': ('mother', 'father', 'mother'),
-        'gender': 'female',
-        'col': 3,
-        'has_inlines': False,
-        'box_top': 755,
-        'box_left': 936,
-        'shadow_top': 760,
-        'shadow_left': 940,
-        'bvline_top': 775,
-        'bvline_left': 920,
-        'bhline_top': 700,
-        'bhline_left': 920,
-        'bhline_height': 76,
-        'block_indent': '                ',
-    },
-    {
-        'path': ('mother', 'mother'),
-        'gender': 'female',
-        'col': 2,
-        'has_inlines': False,
-        'box_top': 980,
-        'box_left': 626,
-        'shadow_top': 985,
-        'shadow_left': 630,
-        'bvline_top': 1000,
-        'bvline_left': 610,
-        'bhline_top': 850,
-        'bhline_left': 610,
-        'bhline_height': 151,
-        'block_indent': '            ',
-    },
-    {
-        'path': ('mother', 'mother', 'father'),
-        'gender': 'male',
-        'col': 3,
-        'has_inlines': True,
-        'inline_top': 1000,
-        'inline_left': 905,
-        'inline_gv_top': 1005,
-        'box_top': 905,
-        'box_left': 936,
-        'shadow_top': 910,
-        'shadow_left': 940,
-        'bvline_top': 925,
-        'bvline_left': 920,
-        'bhline_top': 925,
-        'bhline_left': 920,
-        'bhline_height': 76,
-        'block_indent': '                ',
-    },
-    {
-        'path': ('mother', 'mother', 'mother'),
-        'gender': 'female',
-        'col': 3,
-        'has_inlines': False,
-        'box_top': 1055,
-        'box_left': 936,
-        'shadow_top': 1060,
-        'shadow_left': 940,
-        'bvline_top': 1075,
-        'bvline_left': 920,
-        'bhline_top': 1000,
-        'bhline_left': 920,
-        'bhline_height': 76,
-        'block_indent': '                ',
-    },
+    {'path': ('father',), 'gender': 'male', 'col': 1, 'block_indent': '        '},
+    {'path': ('father', 'father'), 'gender': 'male', 'col': 2, 'block_indent': '            '},
+    {'path': ('father', 'father', 'father'), 'gender': 'male', 'col': 3, 'block_indent': '                '},
+    {'path': ('father', 'father', 'mother'), 'gender': 'female', 'col': 3, 'block_indent': '                '},
+    {'path': ('father', 'mother'), 'gender': 'female', 'col': 2, 'block_indent': '            '},
+    {'path': ('father', 'mother', 'father'), 'gender': 'male', 'col': 3, 'block_indent': '                '},
+    {'path': ('father', 'mother', 'mother'), 'gender': 'female', 'col': 3, 'block_indent': '                '},
+    {'path': ('mother',), 'gender': 'female', 'col': 1, 'block_indent': '        '},
+    {'path': ('mother', 'father'), 'gender': 'male', 'col': 2, 'block_indent': '            '},
+    {'path': ('mother', 'father', 'father'), 'gender': 'male', 'col': 3, 'block_indent': '                '},
+    {'path': ('mother', 'father', 'mother'), 'gender': 'female', 'col': 3, 'block_indent': '                '},
+    {'path': ('mother', 'mother'), 'gender': 'female', 'col': 2, 'block_indent': '            '},
+    {'path': ('mother', 'mother', 'father'), 'gender': 'male', 'col': 3, 'block_indent': '                '},
+    {'path': ('mother', 'mother', 'mother'), 'gender': 'female', 'col': 3, 'block_indent': '                '},
 ]
 
+COL_BOX_LEFT = {0: 6, 1: 316, 2: 626, 3: 936}
+COL_SHADOW_LEFT = {0: 10, 1: 320, 2: 630, 3: 940}
+COL_INLINE_LEFT = {0: 285, 1: 595, 2: 905}
+COL_BRANCH_LEFT = {1: 300, 2: 610, 3: 920}
+
+
+def compute_ancestor_layout(present_paths, slot_height=80, gap=40, single_offset=60):
+    """
+    Compute an adaptive, compact vertical and horizontal layout for the ancestor tree
+    based on which ancestor paths are actually present.
+
+    Returns:
+        tuple: (box_tops_dict, container_width, container_height)
+    """
+    present = set(present_paths)
+    present.add(())
+
+    def get_subtree_layout(path):
+        f_path = path + ('father',)
+        m_path = path + ('mother',)
+        has_f = f_path in present
+        has_m = m_path in present
+
+        if not has_f and not has_m:
+            return {path: 0.0}, float(slot_height)
+
+        if has_f and has_m:
+            f_pos, f_h = get_subtree_layout(f_path)
+            m_pos, m_h = get_subtree_layout(m_path)
+
+            offset_m = f_h + gap
+            pos = {}
+            for k, v in f_pos.items():
+                pos[k] = v
+            for k, v in m_pos.items():
+                pos[k] = v + offset_m
+
+            pos[path] = (pos[f_path] + pos[m_path]) / 2.0
+            total_h = f_h + gap + m_h
+            return pos, total_h
+
+        if has_f:
+            f_pos, _ = get_subtree_layout(f_path)
+            pos = dict(f_pos)
+            pos[path] = pos[f_path] + single_offset
+            min_y = min(pos.values())
+            if min_y < 0:
+                for k in pos:
+                    pos[k] -= min_y
+            max_y = max(v + slot_height for v in pos.values())
+            return pos, max_y
+
+        # only has_m
+        m_pos, _ = get_subtree_layout(m_path)
+        pos = dict(m_pos)
+        pos[path] = pos[m_path] - single_offset
+        min_y = min(pos.values())
+        if min_y < 0:
+            for k in pos:
+                pos[k] -= min_y
+        max_y = max(v + slot_height for v in pos.values())
+        return pos, max_y
+
+    raw_pos, _ = get_subtree_layout(())
+    top_padding = 5
+    box_tops = {k: int(round(v + top_padding)) for k, v in raw_pos.items()}
+    max_col = max((len(k) for k in present), default=1)
+    container_width = {1: 620, 2: 930, 3: 1234}.get(max_col, 1234)
+    max_bottom = max(top + slot_height for top in box_tops.values())
+    container_height = max_bottom + 25
+    return box_tops, container_width, container_height
+
+
 def generate_ancestors_section(gedcom_parser, element, individual_id, individuals_data):
-    """Generate the HTML for the ancestors section."""
-    name = get_name(element)
-    birth_date = get_birth_data(element)
-    death_date = get_death_data(element)
+    """Generate the HTML for the ancestors section using adaptive subtree layout."""
+    name = escape_text(get_name(element))
+    birth_date = escape_text(get_birth_data(element))
+    death_date = escape_text(get_death_data(element))
     gender_class = "male" if get_gender(element) == "male" else "female"
 
     # Get parents information
@@ -731,17 +573,6 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
     # If no parents, return empty string
     if not parents_info or (not parents_info['father'] and not parents_info['mother']):
         return ""
-
-    # Start with the current individual
-    ancestors_content = f'''
-    <div id="treeContainer" style="width:1234px; height:1200px; top: 0px">
-    <div class="boxbg {gender_class} AncCol0" style="top: 530px; left: 6px;">
-        <a class="noThumb" href="../../{get_path_for_individual(individual_id, individuals_data)}">
-        {name}<br/>*{birth_date or ''}<br/>+{death_date or '...'}
-        </a>
-    </div>
-    <div class="shadow" style="top: 535px; left: 10px;"></div>
-    '''
 
     # Resolve ancestors map: relationship path tuple -> IndividualElement
     ancestors_by_path = {}
@@ -762,6 +593,23 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
             if p_info and p_info.get(relation):
                 ancestors_by_path[path] = p_info[relation]
 
+    box_tops, container_width, container_height = compute_ancestor_layout(ancestors_by_path.keys())
+    self_top = box_tops[()]
+    self_shadow_top = self_top + 5
+
+    # Start with the current individual
+    ancestors_content = f'''
+    <div id="treeContainer" style="width:{container_width}px; height:{container_height}px; top: 0px">
+    <div class="boxbg {gender_class} AncCol0" style="top: {self_top}px; left: 6px;">
+        <a class="noThumb" href="../../{get_path_for_individual(individual_id, individuals_data)}">
+        {name}<br/>*{birth_date or ''}<br/>+{death_date or '...'}
+        </a>
+    </div>
+    <div class="shadow" style="top: {self_shadow_top}px; left: 10px;"></div>
+    '''
+
+    emitted_inlines = set()
+
     # Render each present ancestor slot in order
     for slot in ANCESTOR_SLOTS:
         path = slot['path']
@@ -774,24 +622,47 @@ def generate_ancestors_section(gedcom_parser, element, individual_id, individual
         p_birth = escape_text(get_birth_data(person))
         p_death = escape_text(get_death_data(person))
 
+        col = slot['col']
+        box_top = box_tops[path]
+        box_left = COL_BOX_LEFT[col]
+        shadow_top = box_top + 5
+        shadow_left = COL_SHADOW_LEFT[col]
+        bvline_top = box_top + 20
+        bvline_left = COL_BRANCH_LEFT[col]
+
+        parent_path = path[:-1]
+        parent_top = box_tops[parent_path]
+        parent_anchor = parent_top + 20
+
+        if path[-1] == 'father':
+            bhline_top = bvline_top
+            bhline_height = (parent_anchor - bvline_top) + 1
+        else:
+            bhline_top = parent_anchor
+            bhline_height = (bvline_top - parent_anchor) + 1
+
         indent = slot['block_indent']
         sub_indent = indent + '    '
 
         block = ""
-        if slot['has_inlines']:
+        if parent_path not in emitted_inlines:
+            emitted_inlines.add(parent_path)
+            inline_left = COL_INLINE_LEFT[col - 1]
+            inline_top = parent_anchor
+            inline_gv_top = parent_anchor + 5
             block += f'''
-{indent}<div class="bvline" style="top: {slot['inline_top']}px; left: {slot['inline_left']}px; width: 15px"></div>
-{indent}<div class="gvline" style="top: {slot['inline_gv_top']}px; left: {slot['inline_left']}px; width: 20px"></div>'''
+{indent}<div class="bvline" style="top: {inline_top}px; left: {inline_left}px; width: 15px"></div>
+{indent}<div class="gvline" style="top: {inline_gv_top}px; left: {inline_left}px; width: 20px"></div>'''
 
         block += f'''
-{indent}<div class="boxbg {slot['gender']} AncCol{slot['col']}" style="top: {slot['box_top']}px; left: {slot['box_left']}px;">
+{indent}<div class="boxbg {slot['gender']} AncCol{col}" style="top: {box_top}px; left: {box_left}px;">
 {sub_indent}<a class="noThumb" href="../../{p_path}">
 {sub_indent}{p_name}<br/>*{p_birth or ''}<br/>+{p_death or '...'}
 {sub_indent}</a>
 {indent}</div>
-{indent}<div class="shadow" style="top: {slot['shadow_top']}px; left: {slot['shadow_left']}px;"></div>
-{indent}<div class="bvline" style="top: {slot['bvline_top']}px; left: {slot['bvline_left']}px; width: 15px;"></div>
-{indent}<div class="bhline" style="top: {slot['bhline_top']}px; left: {slot['bhline_left']}px; height: {slot['bhline_height']}px;"></div>
+{indent}<div class="shadow" style="top: {shadow_top}px; left: {shadow_left}px;"></div>
+{indent}<div class="bvline" style="top: {bvline_top}px; left: {bvline_left}px; width: 15px;"></div>
+{indent}<div class="bhline" style="top: {bhline_top}px; left: {bvline_left}px; height: {bhline_height}px;"></div>
 {indent}'''
         ancestors_content += block
 

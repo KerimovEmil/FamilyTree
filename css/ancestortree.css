@@ -43,11 +43,10 @@ Females     Web_Gender_Female.png
 }
 #treeContainer {
     position:relative;
-    display: table-cell;
-    vertical-align: middle;
+    display: block;
     overflow: visible;
     z-index:1;
-    margin-bottom: 200px; /* Add more space at the bottom */
+    margin-bottom: 30px;
 }
 #treeContainer div.boxbg {
     position:absolute;
