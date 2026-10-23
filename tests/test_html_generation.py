@@ -140,6 +140,8 @@ def test_site_generation_end_to_end(tmp_path, monkeypatch):
     index_content = (tmp_path / "index.html").read_text(encoding='utf-8')
     assert "surnames/doe.html" in index_content
     assert "surnames/smith.html" in index_content
+    assert 'id="searchInput"' in index_content
+    assert 'filterTable()' in index_content
 
     # Verify individuals.html content
     ind_content = (tmp_path / "individuals.html").read_text(encoding='utf-8')
@@ -147,3 +149,5 @@ def test_site_generation_end_to_end(tmp_path, monkeypatch):
     assert "Smith, Jane" in ind_content
     assert "Doe, Junior" in ind_content
     assert "Doe, Solo" in ind_content
+    assert 'id="searchInput"' in ind_content
+    assert 'filterTable()' in ind_content

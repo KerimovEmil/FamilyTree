@@ -80,7 +80,7 @@ This document tracks the planned bug fixes, refactorings, and feature enhancemen
   - Add a `tests/` suite using `pytest` or `unittest`.
   - Test name extraction, filename sanitization, single-parent families, and end-to-end HTML generation on a sample GEDCOM fixture.
 
-### [ ] TODO 10: Add Client-Side Search/Filter to Index and Individuals Pages
+### [x] TODO 10: Add Client-Side Search/Filter to Index and Individuals Pages
 - **Problem**: Navigating large lists of surnames (`index.html`) and individuals (`individuals.html`) requires manual scrolling or browser find.
 - **Scope**:
   - Add a lightweight search/filter input box to `index.html` and `individuals.html` to filter table rows in real time.

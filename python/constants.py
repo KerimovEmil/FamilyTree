@@ -202,7 +202,19 @@ INDEX_HTML_TEMPLATE = """<!DOCTYPE html>
     <link href="images/favicon2.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="css/narrative-print.css" media="print" rel="stylesheet" type="text/css" />
     <link href="css/narrative-screen.css" media="screen" rel="stylesheet" type="text/css" />
-    <script>function navFunction() {{ var x = document.getElementById("dropmenu"); if (x.className === "nav") {{ x.className += " responsive"; }} else {{ x.className = "nav"; }} }}</script>
+        <script>
+        function navFunction() {{ var x = document.getElementById("dropmenu"); if (x.className === "nav") {{ x.className += " responsive"; }} else {{ x.className = "nav"; }} }}
+        function filterTable() {{
+            var input = document.getElementById("searchInput");
+            var filter = input.value.toLowerCase();
+            var table = document.getElementById("dataTable");
+            var rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+            for (var i = 0; i < rows.length; i++) {{
+                var text = rows[i].textContent || rows[i].innerText;
+                rows[i].style.display = text.toLowerCase().indexOf(filter) > -1 ? "" : "none";
+            }}
+        }}
+    </script>
 </head>
 <body>
     <div id="outerwrapper">
@@ -222,7 +234,10 @@ INDEX_HTML_TEMPLATE = """<!DOCTYPE html>
         <div class="content" id="SurnameDetail">
             <h3>Surnames</h3>
             <p>This page contains an index of all the surnames in the database. Selecting a name will lead to a page for that surname.</p>
-            <table class="infolist">
+            <div style="margin: 10px 0 15px 0;">
+                <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search surnames or given names..." style="padding: 6px 10px; width: 300px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;" />
+            </div>
+            <table class="infolist" id="dataTable">
                 <thead>
                     <tr>
                         <th class="ColumnSurname">Surname</th>
@@ -258,7 +273,19 @@ INDIVIDUALS_HTML_TEMPLATE = """<!DOCTYPE html>
     <link href="images/favicon2.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="css/narrative-print.css" media="print" rel="stylesheet" type="text/css" />
     <link href="css/narrative-screen.css" media="screen" rel="stylesheet" type="text/css" />
-    <script>function navFunction() {{ var x = document.getElementById("dropmenu"); if (x.className === "nav") {{ x.className += " responsive"; }} else {{ x.className = "nav"; }} }}</script>
+        <script>
+        function navFunction() {{ var x = document.getElementById("dropmenu"); if (x.className === "nav") {{ x.className += " responsive"; }} else {{ x.className = "nav"; }} }}
+        function filterTable() {{
+            var input = document.getElementById("searchInput");
+            var filter = input.value.toLowerCase();
+            var table = document.getElementById("dataTable");
+            var rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+            for (var i = 0; i < rows.length; i++) {{
+                var text = rows[i].textContent || rows[i].innerText;
+                rows[i].style.display = text.toLowerCase().indexOf(filter) > -1 ? "" : "none";
+            }}
+        }}
+    </script>
 </head>
 <body>
     <div id="outerwrapper">
@@ -277,7 +304,10 @@ INDIVIDUALS_HTML_TEMPLATE = """<!DOCTYPE html>
         </div>
         <div class="content" id="IndividualList">
             <h3>Individuals</h3>
-            <table class="infolist primobjlist">
+            <div style="margin: 10px 0 15px 0;">
+                <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search individuals..." style="padding: 6px 10px; width: 300px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;" />
+            </div>
+            <table class="infolist primobjlist" id="dataTable">
                 <thead>
                     <tr>
                         <th class="ColumnName">Name</th>
