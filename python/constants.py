@@ -417,7 +417,9 @@ INDIVIDUAL_ENTRY_TEMPLATE = """                    <tr>
 ANCESTORS_TEMPLATE = """
 <div class="subsection" id="ancestors">
     <h4>Ancestors</h4>
-    {ancestors_content}
+    <div class="tree-scroll-wrapper">
+        {ancestors_content}
+    </div>
 </div>
 """
 

@@ -41,12 +41,18 @@ Females     Web_Gender_Female.png
     padding:0;
     background:none;
 }
+div.tree-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 30px;
+}
 #treeContainer {
     position:relative;
     display: block;
     overflow: visible;
     z-index:1;
-    margin-bottom: 30px;
 }
 #treeContainer div.boxbg {
     position:absolute;
