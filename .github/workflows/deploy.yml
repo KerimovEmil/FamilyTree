@@ -56,7 +56,7 @@ jobs:
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         run: |
           mkdir -p _site
-          cp -r css images ppl surnames *.html _site/
+          cp -r css images js ppl surnames ged *.html _site/
           # Ensure .nojekyll exists so files/folders starting with underscores are preserved
           touch _site/.nojekyll
 

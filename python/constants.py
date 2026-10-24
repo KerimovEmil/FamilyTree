@@ -1212,3 +1212,116 @@ RELATIONSHIP_FINDER_TEMPLATE = """<!DOCTYPE html>
 </body>
 </html>
 """
+
+
+INTERACTIVE_GRAPH_TEMPLATE = """<!DOCTYPE html>
+<html xml:lang="en-GB" lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+<head lang="en-GB">
+    <title>My Family Tree - Interactive Graph</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width; height=device-height; initial-scale=1.0; minimum-scale=0.5; maximum-scale=10.0; user-scalable=yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="generator" content="Gramps AIO64-5.1.5-1 http://gramps-project.org/" />
+    <meta name="author" content="" />
+    <link href="images/favicon2.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="css/narrative-print.css" media="print" rel="stylesheet" type="text/css" />
+    <link href="css/narrative-screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="css/interactive-graph.css" media="screen" rel="stylesheet" type="text/css" />
+    <script>function navFunction() { var x = document.getElementById("dropmenu"); if (x.className === "nav") { x.className += " responsive"; } else { x.className = "nav"; } }</script>
+</head>
+<body id="InteractiveGraph">
+    <div id="outerwrapper">
+        <div id="header">
+            <a href="javascript:void(0);" class="navIcon" onclick="navFunction()">&#8801;</a>
+            <h1 id="SiteTitle">My Family Tree</h1>
+        </div>
+        <div class="wrappernav" id="nav" role="navigation">
+            <div class="container">
+                <ul class="nav" id="dropmenu">
+                    <li><a href="individuals.html" title="Individuals">Individuals</a></li>
+                    <li><a href="index.html" title="Surnames">Surnames</a></li>
+                    <li class="CurrentSection"><a href="interactive_graph.html" title="Interactive Graph">Interactive Graph</a></li>
+                    <li><a href="relationship.html" title="Relationship Finder">Relationship</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content" id="InteractiveGraphDetail">
+            <h2>Interactive Family Tree</h2>
+            <div class="graph-toolbar">
+                <div class="graph-tool-group">
+                    <label for="viewSelect">View:</label>
+                    <select id="viewSelect">
+                        <option value="relatives" selected>Relatives</option>
+                        <option value="hourglass">Hourglass</option>
+                        <option value="ancestors">Ancestors</option>
+                        <option value="descendants">Descendants</option>
+                    </select>
+                </div>
+                <div class="graph-tool-group">
+                    <label for="personSearch">Person:</label>
+                    <input type="text" id="personSearch" list="peopleDatalist" placeholder="Search person to center..." autocomplete="off" />
+                </div>
+                <div class="graph-tool-group">
+                    <label for="colorSelect">Colors:</label>
+                    <select id="colorSelect">
+                        <option value="sex" selected>By Sex</option>
+                        <option value="generation">By Generation</option>
+                        <option value="none">Plain</option>
+                    </select>
+                </div>
+                <div class="graph-tool-group graph-zoom-controls">
+                    <button type="button" class="graph-btn" id="zoomInBtn" title="Zoom In">+</button>
+                    <button type="button" class="graph-btn" id="zoomOutBtn" title="Zoom Out">&minus;</button>
+                    <button type="button" class="graph-btn" id="fitViewBtn" title="Fit to Screen">Fit</button>
+                </div>
+            </div>
+            
+            <div id="graph-container">
+                <svg id="graph-svg">
+                    <g id="zoom-layer">
+                        <g id="tree-container"></g>
+                    </g>
+                </svg>
+
+                <div id="person-popover" class="person-popover" style="display: none;">
+                    <div class="popover-header">
+                        <span id="popover-name" class="popover-name"></span>
+                        <button type="button" id="popover-close" class="popover-close" title="Close">&times;</button>
+                    </div>
+                    <div id="popover-dates" class="popover-dates"></div>
+                    <div class="popover-actions">
+                        <a id="popover-view-btn" href="#" class="popover-btn primary-btn">View Profile &rarr;</a>
+                        <button type="button" id="popover-center-btn" class="popover-btn">Center Tree Here</button>
+                        <a id="popover-rel-btn" href="#" class="popover-btn">Find Relationship &rarr;</a>
+                    </div>
+                </div>
+            </div>
+            <p class="graph-hint">
+                Click any person to view actions. Drag canvas to pan, scroll to zoom. Use +/- expanders on nodes to collapse branches.
+            </p>
+
+            <datalist id="peopleDatalist">
+__PEOPLE_DATALIST_OPTIONS__
+            </datalist>
+
+            <script id="familyGraphData" type="application/json">
+__GRAPH_JSON__
+            </script>
+            <script id="gedcomData" type="text/plain">
+__GEDCOM_CONTENT__
+            </script>
+        </div>
+        <div class="fullclear"></div>
+        <div id="footer">
+            <p id="createdate">
+                Generated by <a href="http://gramps-project.org/">Gramps</a> AIO64-5.1.5-1 on 2025-03-23
+            </p>
+            <p id="copyright">
+            </p>
+        </div>
+    </div>
+    <script src="js/topola-bundle.min.js"></script>
+    <script src="js/interactive_graph.js"></script>
+</body>
+</html>
+"""
