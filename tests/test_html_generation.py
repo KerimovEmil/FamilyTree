@@ -17,6 +17,8 @@ from html_generation import (
     generate_index_html,
     generate_individuals_html,
     generate_surname_pages,
+    generate_relationship_finder_html,
+    build_family_graph,
 )
 
 
@@ -82,6 +84,7 @@ def test_generate_html_for_individual_with_events_and_attributes(tmp_path):
     assert "50 years old" in html
     assert "Age: 50" in html
     assert 'interactive_graph.html?indi=I1' in html
+    assert 'relationship.html?p1=I1' in html
 
     # Chronological events order in #events section (Birth -> Occupation -> Death)
     events_section = html[html.find('id="events"'):html.find('</div>', html.find('id="events"'))]
@@ -139,10 +142,11 @@ def test_site_generation_end_to_end(tmp_path, monkeypatch):
         file_path.parent.mkdir(parents=True, exist_ok=True)
         file_path.write_text(content, encoding='utf-8')
 
-    # Generate index, individuals, and surname pages
+    # Generate index, individuals, surname pages, and relationship finder
     generate_index_html(individuals_data)
     generate_individuals_html(individuals_data)
     generate_surname_pages(individuals_data)
+    generate_relationship_finder_html(parser, individuals_data)
 
     # Verify generated files exist
     assert (tmp_path / "index.html").exists()
@@ -181,6 +185,16 @@ def test_site_generation_end_to_end(tmp_path, monkeypatch):
     assert 'clearSearchFilter()' in doe_content
     assert 'id="dataTable"' in doe_content
 
+    # Verify relationship.html content
+    assert (tmp_path / "relationship.html").exists()
+    rel_content = (tmp_path / "relationship.html").read_text(encoding='utf-8')
+    assert 'id="p1Input"' in rel_content
+    assert 'id="p2Input"' in rel_content
+    assert 'id="swapBtn"' in rel_content
+    assert 'id="findBtn"' in rel_content
+    assert 'id="familyGraphData"' in rel_content
+    assert 'Doe, John' in rel_content
+
 
 def test_interactive_graph_page():
     root = Path(__file__).resolve().parent.parent
@@ -190,3 +204,29 @@ def test_interactive_graph_page():
     assert 'id="topola-iframe"' in content
     assert "URLSearchParams" in content
     assert "indi" in content
+
+
+def test_build_family_graph(tmp_path):
+    parser, individuals_data = build_test_environment(tmp_path)
+    graph = build_family_graph(parser, individuals_data)
+
+    # I1 is John Doe
+    assert "I1" in graph
+    john = graph["I1"]
+    assert john["name"] == "Doe, John"
+    assert john["gender"] == "male"
+    assert "I2" in john["spouses"] # Jane Smith
+    assert "I3" in john["children"] # Junior Doe
+    assert "I4" in john["children"] # Solo Doe
+
+    # I3 is Junior Doe
+    assert "I3" in graph
+    junior = graph["I3"]
+    assert "I1" in junior["parents"]
+    assert "I2" in junior["parents"]
+
+    # I4 is Solo Doe (single parent of John)
+    assert "I4" in graph
+    solo = graph["I4"]
+    assert "I1" in solo["parents"]
+    assert len(solo["parents"]) == 1

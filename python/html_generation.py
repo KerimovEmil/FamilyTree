@@ -21,6 +21,8 @@ def escape_text(val):
         return ""
     return html.escape(str(val))
 
+import json
+from gedcom.element.individual import IndividualElement
 from constants import (
     HTML_TEMPLATE, EVENT_ROW_TEMPLATE, ATTRIBUTES_SECTION_TEMPLATE,
     ATTRIBUTE_ROW_TEMPLATE, PARENTS_TEMPLATE,
@@ -28,7 +30,7 @@ from constants import (
     FAMILY_ROW_TEMPLATE, CHILD_ROW_TEMPLATE, PEDIGREE_TEMPLATE,
     ANCESTORS_TEMPLATE, INDEX_HTML_TEMPLATE, INDIVIDUALS_HTML_TEMPLATE,
     SURNAME_ENTRY_TEMPLATE, INDIVIDUAL_ENTRY_TEMPLATE, SURNAME_PAGE_TEMPLATE,
-    SURNAME_INDIVIDUAL_ENTRY_TEMPLATE, SURNAMES_DIR
+    SURNAME_INDIVIDUAL_ENTRY_TEMPLATE, RELATIONSHIP_FINDER_TEMPLATE, SURNAMES_DIR
 )
 
 def get_path_for_individual(individual_id, individuals_data):
@@ -466,6 +468,103 @@ def generate_surname_pages(individuals_data):
             f.write(html_content)
 
         print(f"Generated surname page for {surname} at {file_path}")
+
+
+def build_family_graph(gedcom_parser, individuals_data):
+    """Build a serializable graph structure from the GEDCOM parser and individuals_data."""
+    graph = {}
+    for element in gedcom_parser.get_root_child_elements():
+        if isinstance(element, IndividualElement):
+            ptr = element.get_pointer().replace('@', '')
+            ind_id = generate_id_from_pointer(element.get_pointer())
+            name = get_name(element)
+            gender = get_gender(element)
+            birth = get_birth_data(element)
+            death = get_death_data(element)
+            path = get_path_for_individual(ind_id, individuals_data)
+
+            # Get parents
+            parents_info = get_parents(gedcom_parser, element)
+            parents = []
+            if parents_info:
+                if parents_info['father']:
+                    parents.append(parents_info['father'].get_pointer().replace('@', ''))
+                if parents_info['mother']:
+                    parents.append(parents_info['mother'].get_pointer().replace('@', ''))
+
+            # Get families (spouses and children)
+            fams = get_families(gedcom_parser, element)
+            spouses = []
+            children = []
+            for fam in fams:
+                if fam['husband'] and fam['husband'].get_pointer().replace('@', '') != ptr:
+                    sp_id = fam['husband'].get_pointer().replace('@', '')
+                    if sp_id not in spouses:
+                        spouses.append(sp_id)
+                if fam['wife'] and fam['wife'].get_pointer().replace('@', '') != ptr:
+                    sp_id = fam['wife'].get_pointer().replace('@', '')
+                    if sp_id not in spouses:
+                        spouses.append(sp_id)
+                for child in fam['children']:
+                    c_id = child.get_pointer().replace('@', '')
+                    if c_id not in children:
+                        children.append(c_id)
+
+            graph[ptr] = {
+                'id': ptr,
+                'name': name,
+                'gender': gender,
+                'birth': birth,
+                'death': death,
+                'path': path,
+                'parents': parents,
+                'spouses': spouses,
+                'children': children
+            }
+
+    # Bidirectional reciprocity check
+    for pid, data in graph.items():
+        for p_parent in data['parents']:
+            if p_parent in graph and pid not in graph[p_parent]['children']:
+                graph[p_parent]['children'].append(pid)
+        for p_child in data['children']:
+            if p_child in graph and pid not in graph[p_child]['parents']:
+                graph[p_child]['parents'].append(pid)
+        for p_spouse in data['spouses']:
+            if p_spouse in graph and pid not in graph[p_spouse]['spouses']:
+                graph[p_spouse]['spouses'].append(pid)
+
+    return graph
+
+
+def generate_relationship_finder_html(gedcom_parser, individuals_data):
+    """Generate the relationship.html file with embedded graph data and search options."""
+    graph = build_family_graph(gedcom_parser, individuals_data)
+
+    # Sort individuals by display name for datalist
+    sorted_people = sorted(graph.values(), key=lambda p: p['name'])
+    datalist_options = []
+    for p in sorted_people:
+        dates = ""
+        if p['birth'] or p['death']:
+            b = f"*{p['birth']}" if p['birth'] else ""
+            d = f"+{p['death']}" if p['death'] else ""
+            dates = f" ({' '.join(filter(None, [b, d]))})"
+        val = f"{p['name']}{dates} [{p['id']}]"
+        datalist_options.append(f'                <option value="{escape_text(val)}"></option>')
+
+    people_datalist_options = "\n".join(datalist_options)
+    graph_json = json.dumps(graph)
+
+    html_content = RELATIONSHIP_FINDER_TEMPLATE.format(
+        people_datalist_options=people_datalist_options,
+        graph_json=graph_json
+    )
+
+    with open('relationship.html', 'w', encoding='utf-8') as f:
+        f.write(html_content)
+
+    print("Generated relationship.html with embedded family graph data")
 
 def generate_pedigree_section(gedcom_parser, element, individual_id, individuals_data):
     """Generate the HTML for the pedigree section."""
