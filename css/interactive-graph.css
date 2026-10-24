@@ -20,11 +20,45 @@
     gap: 6px;
 }
 
+.graph-tool-group.search-group {
+    flex: 1;
+    min-width: 280px;
+    max-width: 440px;
+}
+
 .graph-tool-group label {
     font-weight: 600;
     color: #4a5568;
     margin: 0;
     white-space: nowrap;
+}
+
+.search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.search-input-wrapper input {
+    width: 100%;
+    padding-right: 28px !important;
+}
+
+.clear-search-btn {
+    position: absolute;
+    right: 8px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    line-height: 1;
+    color: #a0aec0;
+    cursor: pointer;
+    padding: 2px 4px;
+}
+
+.clear-search-btn:hover {
+    color: #4a5568;
 }
 
 .graph-toolbar select,
@@ -45,19 +79,14 @@
     box-shadow: 0 0 0 2px rgba(49, 130, 206, 0.2);
 }
 
-.graph-toolbar input {
-    width: 250px;
-    max-width: 100%;
-}
-
-.graph-zoom-controls {
+.graph-nav-controls {
     display: flex;
-    gap: 4px;
+    gap: 6px;
     margin-left: auto;
 }
 
 .graph-btn {
-    padding: 5px 12px;
+    padding: 6px 14px;
     border: 1px solid #cbd5e0;
     border-radius: 4px;
     background: #ffffff;
@@ -67,6 +96,9 @@
     color: #2d3748;
     transition: background 0.15s, border-color 0.15s, color 0.15s;
     user-select: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .graph-btn:hover {
@@ -89,11 +121,12 @@
     border-radius: 0 0 6px 6px;
     overflow: hidden;
     cursor: grab;
+    user-select: none;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-#graph-container:active {
-    cursor: grabbing;
+#graph-container.is-panning {
+    cursor: grabbing !important;
 }
 
 #graph-svg {
@@ -200,6 +233,7 @@
 .detailed text {
     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
     fill: #2d3748;
+    user-select: none;
 }
 
 .detailed .name {
@@ -223,12 +257,13 @@
     rx: 4px;
     ry: 4px;
     cursor: pointer;
-    transition: stroke 0.15s ease, stroke-width 0.15s ease;
+    transition: stroke 0.15s ease, stroke-width 0.15s ease, filter 0.15s ease;
 }
 
 .detailed rect:hover {
     stroke: #2b6cb0;
     stroke-width: 2.5px;
+    filter: drop-shadow(0 2px 6px rgba(43, 108, 176, 0.2));
 }
 
 .detailed .details {
@@ -237,9 +272,9 @@
 }
 
 .detailed .id {
-    font-size: 9px;
+    font-size: 8px;
     font-style: italic;
-    fill: #718096;
+    fill: #a0aec0;
 }
 
 .detailed rect.nocolor {
@@ -297,10 +332,11 @@
     .graph-tool-group {
         justify-content: space-between;
     }
-    .graph-toolbar input {
+    .graph-tool-group.search-group {
         width: 100%;
+        max-width: 100%;
     }
-    .graph-zoom-controls {
+    .graph-nav-controls {
         margin-left: 0;
         justify-content: flex-end;
     }

@@ -205,6 +205,9 @@ def test_interactive_graph_page():
     assert 'id="graph-svg"' in content
     assert 'id="viewSelect"' in content
     assert 'id="personSearch"' in content
+    assert 'id="homeBtn"' in content
+    assert 'id="clearSearchBtn"' in content
+    assert 'id="fitViewBtn"' in content
     assert 'id="familyGraphData"' in content
     assert 'id="gedcomData"' in content
     assert "js/topola-bundle.min.js" in content
