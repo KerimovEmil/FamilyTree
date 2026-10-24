@@ -9,6 +9,7 @@
     let parsedGedcomJson = null;
     let familyGraph = {};
     let currentIndi = null;
+    let defaultHomeIndi = null;
     let currentView = 'relatives';
     let currentColor = 'sex';
     let zoomBehavior = null;
@@ -17,6 +18,8 @@
     let lastChartInfo = null;
     let selectedIndiId = null;
     let lastClickPos = { x: 100, y: 100 };
+    let lastClickedIndi = null;
+    let lastClickTime = 0;
 
     const CHART_MAP = {
         relatives: window.Topola ? Topola.RelativesChart : null,
@@ -68,7 +71,6 @@
         }
 
         if (!parsedGedcomJson || !parsedGedcomJson.indis || parsedGedcomJson.indis.length === 0) {
-            // Attempt to fetch if not embedded
             fetch('ged/family_tree.ged')
                 .then(r => r.text())
                 .then(text => {
@@ -87,6 +89,13 @@
         setupD3Zoom();
         setupEventListeners();
 
+        // Find Emil Kerimov as default home individual
+        const emil = parsedGedcomJson.indis.find(i =>
+            (i.id === 'I6000000003244652287' || i.id === 'I6000000003244433950') ||
+            (i.firstName === 'Emil' && i.lastName === 'Kerimov')
+        );
+        defaultHomeIndi = emil ? emil.id : parsedGedcomJson.indis[0].id;
+
         // Read query params
         const params = new URLSearchParams(window.location.search);
         const indiParam = params.get('indi');
@@ -98,16 +107,10 @@
             if (viewSelect) viewSelect.value = viewParam;
         }
 
-        // Determine starting person
         if (indiParam && isValidIndi(indiParam)) {
             currentIndi = indiParam;
         } else {
-            // Default to Emil Kerimov if present, or first indi
-            const emil = parsedGedcomJson.indis.find(i => 
-                (i.id === 'I6000000003244652287' || i.id === 'I6000000003244433950') ||
-                (i.firstName === 'Emil' && i.lastName === 'Kerimov')
-            );
-            currentIndi = emil ? emil.id : parsedGedcomJson.indis[0].id;
+            currentIndi = defaultHomeIndi;
         }
 
         updatePersonSearchDisplay(currentIndi);
@@ -122,19 +125,49 @@
     function setupD3Zoom() {
         svgSelection = Topola.d3.select('#graph-svg');
         zoomLayer = Topola.d3.select('#zoom-layer');
+        const container = document.getElementById('graph-container');
 
         zoomBehavior = Topola.d3.zoom()
-            .scaleExtent([0.08, 4])
+            .scaleExtent([0.05, 3.5])
+            .wheelDelta(function (event) {
+                // Smooth, comfortable scroll wheel delta
+                return -event.deltaY * (event.deltaMode === 1 ? 0.05 : event.deltaMode ? 1 : 0.0018);
+            })
+            .on('start', function () {
+                if (container) container.classList.add('is-panning');
+            })
             .on('zoom', function (event) {
                 zoomLayer.attr('transform', event.transform);
                 hidePopover();
+            })
+            .on('end', function () {
+                if (container) container.classList.remove('is-panning');
             });
 
         svgSelection.call(zoomBehavior);
+
+        // Disable D3's default double-click zoom to allow double-click person centering
+        svgSelection.on('dblclick.zoom', null);
+
+        // Double-click interaction: center on clicked node or center on current person if clicking empty canvas
+        svgSelection.on('dblclick', function (event) {
+            const nodeEl = event.target.closest('.node');
+            if (nodeEl && nodeEl.__data__) {
+                const d = nodeEl.__data__;
+                const targetIndi = (d.data && d.data.indi) ? d.data.indi.id : d.id;
+                if (targetIndi && isValidIndi(targetIndi)) {
+                    currentIndi = targetIndi;
+                    updatePersonSearchDisplay(currentIndi);
+                    renderTree(currentIndi, currentView, currentColor);
+                    hidePopover();
+                }
+            } else {
+                centerOnPerson(currentIndi, 0.9, true);
+            }
+        });
     }
 
     function setupEventListeners() {
-        // Track click coordinates inside the container for popover placement
         const container = document.getElementById('graph-container');
         if (container) {
             container.addEventListener('click', function (e) {
@@ -164,9 +197,17 @@
             });
         }
 
-        // Person search input
+        // Person search input & clear button
         const personInput = document.getElementById('personSearch');
+        const clearBtn = document.getElementById('clearSearchBtn');
+
         if (personInput) {
+            personInput.addEventListener('input', function () {
+                if (clearBtn) {
+                    clearBtn.style.display = this.value ? 'block' : 'none';
+                }
+            });
+
             personInput.addEventListener('change', handlePersonSearch);
             personInput.addEventListener('keydown', function (e) {
                 if (e.key === 'Enter') handlePersonSearch();
@@ -176,25 +217,35 @@
             });
         }
 
-        // Zoom buttons
-        const zoomInBtn = document.getElementById('zoomInBtn');
-        if (zoomInBtn) {
-            zoomInBtn.addEventListener('click', function () {
-                svgSelection.transition().duration(250).call(zoomBehavior.scaleBy, 1.3);
+        if (clearBtn && personInput) {
+            clearBtn.addEventListener('click', function () {
+                personInput.value = '';
+                clearBtn.style.display = 'none';
+                personInput.focus();
             });
         }
 
-        const zoomOutBtn = document.getElementById('zoomOutBtn');
-        if (zoomOutBtn) {
-            zoomOutBtn.addEventListener('click', function () {
-                svgSelection.transition().duration(250).call(zoomBehavior.scaleBy, 0.77);
+        // Home / Reset to Emil button
+        const homeBtn = document.getElementById('homeBtn');
+        if (homeBtn) {
+            homeBtn.addEventListener('click', function () {
+                if (defaultHomeIndi) {
+                    if (currentIndi !== defaultHomeIndi) {
+                        currentIndi = defaultHomeIndi;
+                        updatePersonSearchDisplay(currentIndi);
+                        renderTree(currentIndi, currentView, currentColor);
+                    } else {
+                        centerOnPerson(defaultHomeIndi, 0.9, true);
+                    }
+                }
             });
         }
 
+        // Fit Entire Tree button
         const fitViewBtn = document.getElementById('fitViewBtn');
         if (fitViewBtn) {
             fitViewBtn.addEventListener('click', function () {
-                fitToScreen(lastChartInfo);
+                fitToScreen(true);
             });
         }
 
@@ -229,10 +280,6 @@
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') hidePopover();
         });
-
-        window.addEventListener('resize', function () {
-            // Keep view in bounds on resize if requested
-        });
     }
 
     function handlePersonSearch() {
@@ -241,7 +288,6 @@
         const val = input.value.trim();
         if (!val) return;
 
-        // Try to match pointer from '[ID]'
         const match = val.match(/\[([^\]]+)\]$/);
         const targetId = match ? match[1] : (familyGraph[val] ? val : null);
 
@@ -250,7 +296,6 @@
             updatePersonSearchDisplay(currentIndi);
             renderTree(currentIndi, currentView, currentColor);
         } else {
-            // Try searching by name match in parsedGedcomJson
             const lower = val.toLowerCase();
             const found = parsedGedcomJson.indis.find(i => {
                 const full = ((i.firstName || '') + ' ' + (i.lastName || '')).toLowerCase();
@@ -266,6 +311,7 @@
 
     function updatePersonSearchDisplay(indiId) {
         const input = document.getElementById('personSearch');
+        const clearBtn = document.getElementById('clearSearchBtn');
         if (!input) return;
 
         const p = familyGraph[indiId];
@@ -285,6 +331,10 @@
             } else {
                 input.value = indiId;
             }
+        }
+
+        if (clearBtn) {
+            clearBtn.style.display = input.value ? 'block' : 'none';
         }
     }
 
@@ -307,26 +357,86 @@
                 updateSvgSize: false,
                 expanders: true,
                 indiCallback: function (info) {
-                    showPopover(info.id);
+                    handleIndiClick(info.id);
                 }
             });
 
             const info = chartHandle.render({ startIndi: startIndi });
             lastChartInfo = info;
-            fitToScreen(info);
+
+            // Option B: For large charts (like Relatives) or whenever fit scale would be tiny (< 0.65),
+            // auto-center directly onto the focal individual at a crisp, comfortable zoom scale (0.9x).
+            const svgNode = document.getElementById('graph-svg');
+            const containerWidth = svgNode.clientWidth || 800;
+            const containerHeight = svgNode.clientHeight || 600;
+            const scaleX = (containerWidth - 60) / (info.size[0] || 1000);
+            const scaleY = (containerHeight - 60) / (info.size[1] || 800);
+            const fitScale = Math.min(scaleX, scaleY);
+
+            if (viewType === 'relatives' || fitScale < 0.65) {
+                centerOnPerson(startIndi, 0.9, false);
+            } else {
+                fitToScreen(false);
+            }
+
             updateUrl(startIndi, viewType);
         } catch (err) {
             console.error('Error rendering chart with Topola:', err);
         }
     }
 
-    function fitToScreen(chartInfo) {
-        const info = chartInfo || lastChartInfo;
+    function centerOnPerson(indiId, targetScale = 0.9, animate = true) {
+        const svgNode = document.getElementById('graph-svg');
+        if (!svgNode) return;
+
+        // Locate node element for indiId
+        const nodes = document.querySelectorAll('#tree-container .node');
+        let focalNode = null;
+        for (const n of nodes) {
+            const d = n.__data__;
+            if (d && ((d.data && d.data.indi && d.data.indi.id === indiId) || d.id === indiId)) {
+                focalNode = n;
+                break;
+            }
+        }
+        if (!focalNode) {
+            focalNode = document.querySelector('#tree-container .node.generation0') || document.querySelector('#tree-container .node');
+        }
+        if (!focalNode) return;
+
+        const svgWidth = svgNode.clientWidth || 800;
+        const svgHeight = svgNode.clientHeight || 600;
+
+        const innerG = document.querySelector('#tree-container > g');
+        const transformStr = innerG ? innerG.getAttribute('transform') : '';
+        const match = transformStr ? transformStr.match(/translate\(([^,\s]+)[,\s]+([^)]+)\)/) : null;
+        const originX = match ? parseFloat(match[1]) : (lastChartInfo ? lastChartInfo.origin[0] : 0);
+        const originY = match ? parseFloat(match[2]) : (lastChartInfo ? lastChartInfo.origin[1] : 0);
+
+        const d = focalNode.__data__;
+        const focalX = originX + (d ? d.x : 0);
+        const focalY = originY + (d ? d.y : 0);
+
+        const k = targetScale || 0.9;
+        const tx = (svgWidth / 2) - k * focalX;
+        const ty = (svgHeight / 2) - k * focalY;
+
+        const transform = Topola.d3.zoomIdentity.translate(tx, ty).scale(k);
+
+        if (animate) {
+            svgSelection.transition().duration(500).call(zoomBehavior.transform, transform);
+        } else {
+            svgSelection.call(zoomBehavior.transform, transform);
+        }
+    }
+
+    function fitToScreen(animate = true) {
+        const info = lastChartInfo;
         const svgNode = document.getElementById('graph-svg');
         if (!info || !info.size || !svgNode) return;
 
-        const containerWidth = svgNode.clientWidth || svgNode.parentElement.clientWidth || 800;
-        const containerHeight = svgNode.clientHeight || svgNode.parentElement.clientHeight || 600;
+        const containerWidth = svgNode.clientWidth || 800;
+        const containerHeight = svgNode.clientHeight || 600;
         const chartWidth = info.size[0] || 1000;
         const chartHeight = info.size[1] || 800;
         const padding = 60;
@@ -334,15 +444,35 @@
         const scaleX = (containerWidth - padding) / chartWidth;
         const scaleY = (containerHeight - padding) / chartHeight;
         let scale = Math.min(scaleX, scaleY, 1.15);
-        if (scale < 0.1) scale = 0.1;
+        if (scale < 0.05) scale = 0.05;
 
         const tx = (containerWidth - chartWidth * scale) / 2;
         const ty = (containerHeight - chartHeight * scale) / 2;
 
-        svgSelection.transition().duration(450).call(
-            zoomBehavior.transform,
-            Topola.d3.zoomIdentity.translate(tx, ty).scale(scale)
-        );
+        const transform = Topola.d3.zoomIdentity.translate(tx, ty).scale(scale);
+
+        if (animate) {
+            svgSelection.transition().duration(500).call(zoomBehavior.transform, transform);
+        } else {
+            svgSelection.call(zoomBehavior.transform, transform);
+        }
+    }
+
+    function handleIndiClick(indiId) {
+        const now = Date.now();
+        if (lastClickedIndi === indiId && (now - lastClickTime) < 380) {
+            // Double-click detected: re-center immediately on this individual
+            hidePopover();
+            currentIndi = indiId;
+            updatePersonSearchDisplay(currentIndi);
+            renderTree(currentIndi, currentView, currentColor);
+            lastClickedIndi = null;
+            lastClickTime = 0;
+            return;
+        }
+        lastClickedIndi = indiId;
+        lastClickTime = now;
+        showPopover(indiId);
     }
 
     function showPopover(indiId) {
@@ -423,7 +553,7 @@
             url.searchParams.set('view', view);
             window.history.replaceState({}, '', url);
         } catch (e) {
-            // Ignore if running under restricted file context
+            // Ignore in restricted environments
         }
     }
 

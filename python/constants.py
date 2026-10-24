@@ -1257,9 +1257,12 @@ INTERACTIVE_GRAPH_TEMPLATE = """<!DOCTYPE html>
                         <option value="descendants">Descendants</option>
                     </select>
                 </div>
-                <div class="graph-tool-group">
+                <div class="graph-tool-group search-group">
                     <label for="personSearch">Person:</label>
-                    <input type="text" id="personSearch" list="peopleDatalist" placeholder="Search person to center..." autocomplete="off" />
+                    <div class="search-input-wrapper">
+                        <input type="text" id="personSearch" list="peopleDatalist" placeholder="Search person to center..." autocomplete="off" />
+                        <button type="button" id="clearSearchBtn" class="clear-search-btn" title="Clear search" style="display: none;">&times;</button>
+                    </div>
                 </div>
                 <div class="graph-tool-group">
                     <label for="colorSelect">Colors:</label>
@@ -1269,10 +1272,9 @@ INTERACTIVE_GRAPH_TEMPLATE = """<!DOCTYPE html>
                         <option value="none">Plain</option>
                     </select>
                 </div>
-                <div class="graph-tool-group graph-zoom-controls">
-                    <button type="button" class="graph-btn" id="zoomInBtn" title="Zoom In">+</button>
-                    <button type="button" class="graph-btn" id="zoomOutBtn" title="Zoom Out">&minus;</button>
-                    <button type="button" class="graph-btn" id="fitViewBtn" title="Fit to Screen">Fit</button>
+                <div class="graph-tool-group graph-nav-controls">
+                    <button type="button" class="graph-btn" id="homeBtn" title="Center on Emil Kerimov">&#127968; Emil</button>
+                    <button type="button" class="graph-btn" id="fitViewBtn" title="Fit Entire Tree to Screen">Fit View</button>
                 </div>
             </div>
             
@@ -1297,7 +1299,7 @@ INTERACTIVE_GRAPH_TEMPLATE = """<!DOCTYPE html>
                 </div>
             </div>
             <p class="graph-hint">
-                Click any person to view actions. Drag canvas to pan, scroll to zoom. Use +/- expanders on nodes to collapse branches.
+                Click any person to view actions, or double-click to center on them. Drag canvas to pan, scroll to zoom.
             </p>
 
             <datalist id="peopleDatalist">
