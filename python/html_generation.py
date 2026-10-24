@@ -12,7 +12,7 @@ from utils import (
 from data_extraction import (
     get_name, get_gender, get_birth_data, get_birth_place, get_death_data,
     get_death_place, has_death_event, get_occupation, get_attributes,
-    get_parents, get_families
+    get_parents, get_families, parse_date, calculate_age
 )
 
 def escape_text(val):
@@ -189,35 +189,79 @@ def generate_families_section(gedcom_parser, individual, individual_id, individu
     return FAMILIES_TEMPLATE.format(families_rows=''.join(families_rows))
 
 def generate_events_rows(element):
-    """Generate rows for the Events table (Birth, Death, Occupation if applicable)."""
-    events_rows = []
+    """Generate rows for the Events table sorted chronologically with milestone ages."""
+    birth_date = get_birth_data(element)
+    events = []
 
     # Birth event
-    birth_date = escape_text(get_birth_data(element))
-    birth_place = escape_text(get_birth_place(element))
-    events_rows.append(EVENT_ROW_TEMPLATE.format(
-        event_name="Birth",
-        event_date=birth_date,
-        event_place=birth_place
-    ))
+    birth_place = get_birth_place(element)
+    events.append({
+        'name': 'Birth',
+        'date': birth_date,
+        'place': birth_place,
+        'description': '',
+        'type_order': 0,
+        'parsed_date': parse_date(birth_date),
+    })
 
     # Death event
     if has_death_event(element):
-        death_date = escape_text(get_death_data(element))
-        death_place = escape_text(get_death_place(element))
-        events_rows.append(EVENT_ROW_TEMPLATE.format(
-            event_name="Death",
-            event_date=death_date,
-            event_place=death_place
-        ))
+        death_date = get_death_data(element)
+        death_place = get_death_place(element)
+        death_age = calculate_age(birth_date, death_date)
+        desc = f"Age: {death_age}" if death_age else ""
+        events.append({
+            'name': 'Death',
+            'date': death_date,
+            'place': death_place,
+            'description': desc,
+            'type_order': 2,
+            'parsed_date': parse_date(death_date),
+        })
 
     # Occupation event
     occupation = get_occupation(element)
     if occupation and occupation.strip() and occupation != "&nbsp;":
+        events.append({
+            'name': 'Occupation',
+            'date': '',
+            'place': '',
+            'description': occupation.strip(),
+            'type_order': 1,
+            'parsed_date': None,
+        })
+
+    birth_parsed = parse_date(birth_date)
+    death_parsed = parse_date(get_death_data(element)) if has_death_event(element) else None
+
+    def event_sort_key(ev):
+        pd = ev['parsed_date']
+        if ev['name'] == 'Birth':
+            if pd:
+                return (pd[0], pd[1], pd[2], 0)
+            return (-9999, 0, 0, 0)
+        elif ev['name'] == 'Death':
+            if pd:
+                return (pd[0], pd[1], pd[2], 2)
+            return (9999, 0, 0, 2)
+        else:
+            if pd:
+                return (pd[0], pd[1], pd[2], 1)
+            if death_parsed:
+                return (death_parsed[0], 0, 0, 1)
+            if birth_parsed:
+                return (birth_parsed[0], 99, 99, 1)
+            return (0, 0, 0, 1)
+
+    sorted_events = sorted(events, key=event_sort_key)
+
+    events_rows = []
+    for ev in sorted_events:
         events_rows.append(EVENT_ROW_TEMPLATE.format(
-            event_name="Occupation",
-            event_date="",
-            event_place=escape_text(occupation)
+            event_name=escape_text(ev['name']),
+            event_date=escape_text(ev['date']),
+            event_place=escape_text(ev['place']),
+            event_description=escape_text(ev['description'])
         ))
 
     return '\n'.join(events_rows)
@@ -241,9 +285,23 @@ def generate_attributes_section(element):
 
 def generate_html_for_individual(gedcom_parser, element, individuals_data):
     """Generate HTML content for an individual"""
-    individual_id = generate_id_from_pointer(element.get_pointer())
+    ptr = element.get_pointer() if element else ""
+    individual_id = generate_id_from_pointer(ptr) if ptr else ""
+    clean_pointer = ptr.replace('@', '') if ptr else ""
     name = escape_text(get_name(element))
     gender = escape_text(get_gender(element))
+
+    # Age section in summary
+    birth_date = get_birth_data(element)
+    death_date = get_death_data(element)
+    age_section = ""
+    if has_death_event(element):
+        death_age = calculate_age(birth_date, death_date)
+        if death_age:
+            age_section = f"""<tr>
+                        <td class="ColumnAttribute">Age at Death</td>
+                        <td class="ColumnValue">{escape_text(death_age)} years old</td>
+                    </tr>"""
 
     # Generate events rows
     events_rows = generate_events_rows(element)
@@ -267,6 +325,8 @@ def generate_html_for_individual(gedcom_parser, element, individuals_data):
     html_content = HTML_TEMPLATE.format(
         name=name,
         gender=gender,
+        clean_pointer=clean_pointer,
+        age_section=age_section,
         events_rows=events_rows,
         married_name_section="",
         attributes_section=attributes_section,

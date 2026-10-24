@@ -10,7 +10,19 @@
     <link href="images/favicon2.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="css/narrative-print.css" media="print" rel="stylesheet" type="text/css" />
     <link href="css/narrative-screen.css" media="screen" rel="stylesheet" type="text/css" />
-    <script>function navFunction() { var x = document.getElementById("dropmenu"); if (x.className === "nav") { x.className += " responsive"; } else { x.className = "nav"; } }</script>
+    <script>
+        function navFunction() { var x = document.getElementById("dropmenu"); if (x.className === "nav") { x.className += " responsive"; } else { x.className = "nav"; } }
+        window.addEventListener("DOMContentLoaded", function() {
+            var params = new URLSearchParams(window.location.search);
+            var indi = params.get("indi");
+            if (indi) {
+                var iframe = document.getElementById("topola-iframe");
+                if (iframe) {
+                    iframe.src = "https://pewu.github.io/topola-viewer/#/view?gen=-1&indi=" + encodeURIComponent(indi) + "&url=https%3A%2F%2Fkerimovemil.github.io%2FFamilyTree%2Fged%2Ffamily_tree.ged&view=relatives";
+                }
+            }
+        });
+    </script>
     <style>
         iframe {
             width: 100%;
@@ -36,7 +48,7 @@
         </div>
         <div class="content">
             <h2>Interactive Family Tree</h2>
-            <iframe src="https://pewu.github.io/topola-viewer/#/view?gen=-1&indi=I6000000003244652287&url=https%3A%2F%2Fkerimovemil.github.io%2FFamilyTree%2Fged%2Ffamily_tree.ged&view=relatives"></iframe>
+            <iframe id="topola-iframe" src="https://pewu.github.io/topola-viewer/#/view?gen=-1&indi=I6000000003244652287&url=https%3A%2F%2Fkerimovemil.github.io%2FFamilyTree%2Fged%2Ffamily_tree.ged&view=relatives"></iframe>
         </div>
         <div class="fullclear"></div>
         <div id="footer">

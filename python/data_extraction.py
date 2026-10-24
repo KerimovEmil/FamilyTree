@@ -3,6 +3,61 @@
 Functions for extracting data from GEDCOM elements.
 """
 
+import re
+
+MONTH_MAP = {
+    'JAN': 1, 'FEB': 2, 'MAR': 3, 'APR': 4, 'MAY': 5, 'JUN': 6,
+    'JUL': 7, 'AUG': 8, 'SEP': 9, 'OCT': 10, 'NOV': 11, 'DEC': 12
+}
+
+
+def parse_date(date_str):
+    """
+    Parse a GEDCOM date string into (year, month, day, is_exact).
+    Returns None if no year could be extracted.
+    """
+    if not date_str:
+        return None
+    date_str = str(date_str).strip()
+    m = re.search(r'(\d{1,2})\s+([A-Za-z]{3})\s+(\d{3,4})', date_str)
+    if m and m.group(2).upper() in MONTH_MAP:
+        day = int(m.group(1))
+        mon = MONTH_MAP[m.group(2).upper()]
+        year = int(m.group(3))
+        return (year, mon, day, True)
+    m = re.search(r'\b([A-Za-z]{3})\s+(\d{3,4})', date_str)
+    if m and m.group(1).upper() in MONTH_MAP:
+        mon = MONTH_MAP[m.group(1).upper()]
+        year = int(m.group(2))
+        return (year, mon, 1, False)
+    m = re.search(r'\b(\d{3,4})\b', date_str)
+    if m:
+        year = int(m.group(1))
+        return (year, 0, 0, False)
+    return None
+
+
+def calculate_age(birth_date_str, event_date_str):
+    """
+    Calculate age (in years) between birth and a given event.
+    Returns formatted age string (e.g. '50', '83') or '' if cannot be computed.
+    """
+    b = parse_date(birth_date_str)
+    e = parse_date(event_date_str)
+    if not b or not e:
+        return ""
+    b_yr, b_mo, b_dy, b_exact = b
+    e_yr, e_mo, e_dy, e_exact = e
+    if e_yr < b_yr:
+        return ""
+    if b_exact and e_exact and b_mo > 0 and e_mo > 0:
+        age = e_yr - b_yr - (1 if (e_mo, e_dy) < (b_mo, b_dy) else 0)
+        return str(age)
+    else:
+        diff = e_yr - b_yr
+        return str(diff)
+
+
 
 def get_name(individual):
     """Extract the name from an individual element."""

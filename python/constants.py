@@ -34,7 +34,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 <ul class="nav" id="dropmenu">
                     <li class = "CurrentSection"><a href="../../individuals.html" title="Individuals">Individuals</a></li>
                     <li><a href="../../index.html" title="Surnames">Surnames</a></li>
-                    <li><a href="../../interactive_graph.html" title="Interactive Graph">Interactive Graph</a></li>
+                    <li><a href="../../interactive_graph.html?indi={clean_pointer}" title="Interactive Graph">Interactive Graph</a></li>
                 </ul>
             </div>
         </div>
@@ -53,6 +53,11 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                         <td class="ColumnAttribute">Gender</td>
                         <td class="ColumnValue">{gender}</td>
                     </tr>
+                    {age_section}
+                    <tr>
+                        <td class="ColumnAttribute">Interactive Graph</td>
+                        <td class="ColumnValue"><a href="../../interactive_graph.html?indi={clean_pointer}">View in Interactive Graph &rarr;</a></td>
+                    </tr>
                 </table>
             </div>
             <div class="subsection" id="events">
@@ -63,6 +68,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                             <th class="ColumnEvent">Event</th>
                             <th class="ColumnDate">Date</th>
                             <th class="ColumnPlace">Place</th>
+                            <th class="ColumnDescription">Description</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -206,12 +212,42 @@ INDEX_HTML_TEMPLATE = """<!DOCTYPE html>
         function navFunction() {{ var x = document.getElementById("dropmenu"); if (x.className === "nav") {{ x.className += " responsive"; }} else {{ x.className = "nav"; }} }}
         function filterTable() {{
             var input = document.getElementById("searchInput");
+            var clearBtn = document.getElementById("clearSearch");
             var filter = input.value.toLowerCase();
             var table = document.getElementById("dataTable");
             var rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
-            for (var i = 0; i < rows.length; i++) {{
+            var countSpan = document.getElementById("searchCount");
+            var total = rows.length;
+            var matches = 0;
+
+            if (clearBtn) {{
+                clearBtn.style.display = filter ? "inline" : "none";
+            }}
+
+            for (var i = 0; i < total; i++) {{
                 var text = rows[i].textContent || rows[i].innerText;
-                rows[i].style.display = text.toLowerCase().indexOf(filter) > -1 ? "" : "none";
+                if (text.toLowerCase().indexOf(filter) > -1) {{
+                    rows[i].style.display = "";
+                    matches++;
+                }} else {{
+                    rows[i].style.display = "none";
+                }}
+            }}
+
+            if (countSpan) {{
+                if (filter) {{
+                    countSpan.textContent = matches === 0 ? "No results found" : "Showing " + matches + " of " + total;
+                }} else {{
+                    countSpan.textContent = "";
+                }}
+            }}
+        }}
+        function clearSearchFilter() {{
+            var input = document.getElementById("searchInput");
+            if (input) {{
+                input.value = "";
+                filterTable();
+                input.focus();
             }}
         }}
     </script>
@@ -234,8 +270,12 @@ INDEX_HTML_TEMPLATE = """<!DOCTYPE html>
         <div class="content" id="SurnameDetail">
             <h3>Surnames</h3>
             <p>This page contains an index of all the surnames in the database. Selecting a name will lead to a page for that surname.</p>
-            <div style="margin: 10px 0 15px 0;">
-                <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search surnames or given names..." style="padding: 6px 10px; width: 300px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;" />
+            <div style="margin: 10px 0 15px 0; display: flex; align-items: center; gap: 8px;">
+                <div style="position: relative; display: inline-block;">
+                    <input type="text" id="searchInput" onkeyup="filterTable()" onkeydown="if(event.key === 'Escape') clearSearchFilter()" placeholder="Search surnames or given names..." style="padding: 6px 28px 6px 10px; width: 300px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;" />
+                    <button id="clearSearch" type="button" onclick="clearSearchFilter()" style="display: none; position: absolute; right: 6px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 16px; cursor: pointer; color: #888; padding: 0 4px;" title="Clear search">&times;</button>
+                </div>
+                <span id="searchCount" style="font-size: 13px; color: #666;"></span>
             </div>
             <table class="infolist" id="dataTable">
                 <thead>
@@ -277,12 +317,42 @@ INDIVIDUALS_HTML_TEMPLATE = """<!DOCTYPE html>
         function navFunction() {{ var x = document.getElementById("dropmenu"); if (x.className === "nav") {{ x.className += " responsive"; }} else {{ x.className = "nav"; }} }}
         function filterTable() {{
             var input = document.getElementById("searchInput");
+            var clearBtn = document.getElementById("clearSearch");
             var filter = input.value.toLowerCase();
             var table = document.getElementById("dataTable");
             var rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
-            for (var i = 0; i < rows.length; i++) {{
+            var countSpan = document.getElementById("searchCount");
+            var total = rows.length;
+            var matches = 0;
+
+            if (clearBtn) {{
+                clearBtn.style.display = filter ? "inline" : "none";
+            }}
+
+            for (var i = 0; i < total; i++) {{
                 var text = rows[i].textContent || rows[i].innerText;
-                rows[i].style.display = text.toLowerCase().indexOf(filter) > -1 ? "" : "none";
+                if (text.toLowerCase().indexOf(filter) > -1) {{
+                    rows[i].style.display = "";
+                    matches++;
+                }} else {{
+                    rows[i].style.display = "none";
+                }}
+            }}
+
+            if (countSpan) {{
+                if (filter) {{
+                    countSpan.textContent = matches === 0 ? "No results found" : "Showing " + matches + " of " + total;
+                }} else {{
+                    countSpan.textContent = "";
+                }}
+            }}
+        }}
+        function clearSearchFilter() {{
+            var input = document.getElementById("searchInput");
+            if (input) {{
+                input.value = "";
+                filterTable();
+                input.focus();
             }}
         }}
     </script>
@@ -304,8 +374,12 @@ INDIVIDUALS_HTML_TEMPLATE = """<!DOCTYPE html>
         </div>
         <div class="content" id="IndividualList">
             <h3>Individuals</h3>
-            <div style="margin: 10px 0 15px 0;">
-                <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search individuals..." style="padding: 6px 10px; width: 300px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;" />
+            <div style="margin: 10px 0 15px 0; display: flex; align-items: center; gap: 8px;">
+                <div style="position: relative; display: inline-block;">
+                    <input type="text" id="searchInput" onkeyup="filterTable()" onkeydown="if(event.key === 'Escape') clearSearchFilter()" placeholder="Search individuals..." style="padding: 6px 28px 6px 10px; width: 300px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;" />
+                    <button id="clearSearch" type="button" onclick="clearSearchFilter()" style="display: none; position: absolute; right: 6px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 16px; cursor: pointer; color: #888; padding: 0 4px;" title="Clear search">&times;</button>
+                </div>
+                <span id="searchCount" style="font-size: 13px; color: #666;"></span>
             </div>
             <table class="infolist primobjlist" id="dataTable">
                 <thead>
@@ -355,12 +429,42 @@ SURNAME_PAGE_TEMPLATE = """<!DOCTYPE html>
         function navFunction() {{ var x = document.getElementById("dropmenu"); if (x.className === "nav") {{ x.className += " responsive"; }} else {{ x.className = "nav"; }} }}
         function filterTable() {{
             var input = document.getElementById("searchInput");
+            var clearBtn = document.getElementById("clearSearch");
             var filter = input.value.toLowerCase();
             var table = document.getElementById("dataTable");
             var rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
-            for (var i = 0; i < rows.length; i++) {{
+            var countSpan = document.getElementById("searchCount");
+            var total = rows.length;
+            var matches = 0;
+
+            if (clearBtn) {{
+                clearBtn.style.display = filter ? "inline" : "none";
+            }}
+
+            for (var i = 0; i < total; i++) {{
                 var text = rows[i].textContent || rows[i].innerText;
-                rows[i].style.display = text.toLowerCase().indexOf(filter) > -1 ? "" : "none";
+                if (text.toLowerCase().indexOf(filter) > -1) {{
+                    rows[i].style.display = "";
+                    matches++;
+                }} else {{
+                    rows[i].style.display = "none";
+                }}
+            }}
+
+            if (countSpan) {{
+                if (filter) {{
+                    countSpan.textContent = matches === 0 ? "No results found" : "Showing " + matches + " of " + total;
+                }} else {{
+                    countSpan.textContent = "";
+                }}
+            }}
+        }}
+        function clearSearchFilter() {{
+            var input = document.getElementById("searchInput");
+            if (input) {{
+                input.value = "";
+                filterTable();
+                input.focus();
             }}
         }}
     </script>
@@ -385,8 +489,12 @@ SURNAME_PAGE_TEMPLATE = """<!DOCTYPE html>
             <p id="description">
             This page contains an index of all the individuals in the database with the surname of {surname}. Selecting the person&#8217;s name will take you to that person&#8217;s individual page.
             </p>
-            <div style="margin: 10px 0 15px 0;">
-                <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search individuals..." style="padding: 6px 10px; width: 300px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;" />
+            <div style="margin: 10px 0 15px 0; display: flex; align-items: center; gap: 8px;">
+                <div style="position: relative; display: inline-block;">
+                    <input type="text" id="searchInput" onkeyup="filterTable()" onkeydown="if(event.key === 'Escape') clearSearchFilter()" placeholder="Search individuals..." style="padding: 6px 28px 6px 10px; width: 300px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;" />
+                    <button id="clearSearch" type="button" onclick="clearSearchFilter()" style="display: none; position: absolute; right: 6px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 16px; cursor: pointer; color: #888; padding: 0 4px;" title="Clear search">&times;</button>
+                </div>
+                <span id="searchCount" style="font-size: 13px; color: #666;"></span>
             </div>
             <table class="infolist primobjlist surname" id="dataTable">
                 <thead>
@@ -442,6 +550,7 @@ EVENT_ROW_TEMPLATE = """<tr>
     <td class="ColumnEvent">{event_name}</td>
     <td class="ColumnDate">{event_date}</td>
     <td class="ColumnPlace">{event_place}</td>
+    <td class="ColumnDescription">{event_description}</td>
 </tr>"""
 
 ATTRIBUTES_SECTION_TEMPLATE = """<div class="subsection" id="attributes">
