@@ -15,7 +15,8 @@ from utils import (
 )
 from data_extraction import get_name, get_birth_data, get_death_data
 from html_generation import (
-    generate_html_for_individual, generate_index_html, generate_individuals_html, generate_surname_pages
+    generate_html_for_individual, generate_index_html, generate_individuals_html,
+    generate_surname_pages, generate_relationship_finder_html
 )
 
 def main():
@@ -73,6 +74,7 @@ def main():
     generate_index_html(individuals_data)
     generate_individuals_html(individuals_data)
     generate_surname_pages(individuals_data)
+    generate_relationship_finder_html(gedcom_parser, individuals_data)
 
     print("HTML generation completed with new directory structure.")
 
