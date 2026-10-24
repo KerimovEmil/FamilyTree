@@ -30,7 +30,7 @@ from constants import (
     FAMILY_ROW_TEMPLATE, CHILD_ROW_TEMPLATE, PEDIGREE_TEMPLATE,
     ANCESTORS_TEMPLATE, INDEX_HTML_TEMPLATE, INDIVIDUALS_HTML_TEMPLATE,
     SURNAME_ENTRY_TEMPLATE, INDIVIDUAL_ENTRY_TEMPLATE, SURNAME_PAGE_TEMPLATE,
-    SURNAME_INDIVIDUAL_ENTRY_TEMPLATE, RELATIONSHIP_FINDER_TEMPLATE, SURNAMES_DIR
+    SURNAME_INDIVIDUAL_ENTRY_TEMPLATE, RELATIONSHIP_FINDER_TEMPLATE, INTERACTIVE_GRAPH_TEMPLATE, GEDCOM_FILE, SURNAMES_DIR
 )
 
 def get_path_for_individual(individual_id, individuals_data):
@@ -565,6 +565,43 @@ def generate_relationship_finder_html(gedcom_parser, individuals_data):
         f.write(html_content)
 
     print("Generated relationship.html with embedded family graph data")
+
+def generate_interactive_graph_html(gedcom_parser, individuals_data):
+    """Generate the interactive_graph.html file with embedded graph data and Topola viewer."""
+    graph = build_family_graph(gedcom_parser, individuals_data)
+
+    # Sort individuals by display name for datalist
+    sorted_people = sorted(graph.values(), key=lambda p: p['name'])
+    datalist_options = []
+    for p in sorted_people:
+        dates = ""
+        if p['birth'] or p['death']:
+            b = f"*{p['birth']}" if p['birth'] else ""
+            d = f"+{p['death']}" if p['death'] else ""
+            dates = f" ({' '.join(filter(None, [b, d]))})"
+        val = f"{p['name']}{dates} [{p['id']}]"
+        datalist_options.append(f'                <option value="{escape_text(val)}"></option>')
+
+    people_datalist_options = "\n".join(datalist_options)
+    graph_json = json.dumps(graph)
+
+    # Read the raw GEDCOM file content
+    gedcom_content = ""
+    if os.path.exists(GEDCOM_FILE):
+        with open(GEDCOM_FILE, 'r', encoding='utf-8') as gf:
+            gedcom_content = gf.read()
+
+    html_content = (
+        INTERACTIVE_GRAPH_TEMPLATE
+        .replace('__PEOPLE_DATALIST_OPTIONS__', people_datalist_options)
+        .replace('__GRAPH_JSON__', graph_json)
+        .replace('__GEDCOM_CONTENT__', gedcom_content)
+    )
+
+    with open('interactive_graph.html', 'w', encoding='utf-8') as f:
+        f.write(html_content)
+
+    print("Generated interactive_graph.html with native Topola viewer")
 
 def generate_pedigree_section(gedcom_parser, element, individual_id, individuals_data):
     """Generate the HTML for the pedigree section."""

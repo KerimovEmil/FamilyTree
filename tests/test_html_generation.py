@@ -19,6 +19,7 @@ from html_generation import (
     generate_surname_pages,
     generate_relationship_finder_html,
     build_family_graph,
+    generate_interactive_graph_html,
 )
 
 
@@ -201,9 +202,31 @@ def test_interactive_graph_page():
     graph_file = root / "interactive_graph.html"
     assert graph_file.exists()
     content = graph_file.read_text(encoding="utf-8")
-    assert 'id="topola-iframe"' in content
-    assert "URLSearchParams" in content
-    assert "indi" in content
+    assert 'id="graph-svg"' in content
+    assert 'id="viewSelect"' in content
+    assert 'id="personSearch"' in content
+    assert 'id="familyGraphData"' in content
+    assert 'id="gedcomData"' in content
+    assert "js/topola-bundle.min.js" in content
+    assert "js/interactive_graph.js" in content
+
+
+def test_generate_interactive_graph_html(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    parser, individuals_data = build_test_environment(tmp_path)
+
+    ged_dir = tmp_path / "ged"
+    ged_dir.mkdir()
+    (ged_dir / "family_tree.ged").write_text("0 HEAD\n1 SOUR TEST\n0 TRLR", encoding="utf-8")
+
+    generate_interactive_graph_html(parser, individuals_data)
+
+    graph_file = tmp_path / "interactive_graph.html"
+    assert graph_file.exists()
+    content = graph_file.read_text(encoding="utf-8")
+    assert 'id="graph-svg"' in content
+    assert 'id="familyGraphData"' in content
+    assert '0 HEAD' in content
 
 
 def test_build_family_graph(tmp_path):
