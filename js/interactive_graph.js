@@ -355,7 +355,7 @@
                 colors: colors,
                 animate: false,
                 updateSvgSize: false,
-                expanders: true,
+                expanders: false,
                 indiCallback: function (info) {
                     handleIndiClick(info.id);
                 }
