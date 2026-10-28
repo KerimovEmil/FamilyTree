@@ -188,6 +188,59 @@ def get_attributes(individual):
 
     return attributes
 
+def _extract_full_text(element):
+    """Reconstruct multi-line text from an element with CONT and CONC children."""
+    text = element.get_value() or ""
+    for child in element.get_child_elements():
+        tag = child.get_tag()
+        val = child.get_value() or ""
+        if tag == "CONT":
+            text += "\n" + val
+        elif tag == "CONC":
+            text += val
+    return text.strip()
+
+def get_notes(gedcom_parser, individual):
+    """Extract notes for an individual, resolving both @N...@ pointers and inline notes."""
+    if not individual:
+        return []
+
+    note_map = {}
+    if gedcom_parser:
+        for root_el in gedcom_parser.get_root_child_elements():
+            if root_el.get_tag() == "NOTE" and root_el.get_pointer():
+                note_map[root_el.get_pointer()] = _extract_full_text(root_el)
+
+    notes = []
+    for child in individual.get_child_elements():
+        if child.get_tag() == "NOTE":
+            val = (child.get_value() or "").strip()
+            if val.startswith("@") and val.endswith("@"):
+                resolved = note_map.get(val, "")
+                if resolved and not resolved.startswith("Records not imported"):
+                    notes.append(resolved)
+            else:
+                inline_text = _extract_full_text(child)
+                if inline_text and not inline_text.startswith("Records not imported"):
+                    notes.append(inline_text)
+
+    return notes
+
+def get_photos(individual):
+    """Extract photo file paths (OBJE -> FILE) for an individual."""
+    if not individual:
+        return []
+
+    photos = []
+    for child in individual.get_child_elements():
+        if child.get_tag() == "OBJE":
+            for sub in child.get_child_elements():
+                if sub.get_tag() == "FILE":
+                    val = (sub.get_value() or "").strip()
+                    if val:
+                        photos.append(val)
+    return photos
+
 def get_parents(gedcom_parser, individual):
     """Get parents information for an individual."""
     families = gedcom_parser.get_families(individual, "FAMC")
