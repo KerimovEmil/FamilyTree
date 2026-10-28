@@ -87,6 +87,12 @@ def test_generate_html_for_individual_with_events_and_attributes(tmp_path):
     assert 'interactive_graph.html?indi=I1' in html
     assert 'relationship.html?p1=I1' in html
 
+    # Notes & Photos rendering assertions
+    assert 'id="notes"' in html
+    assert "Distinguished engineer and family historian." in html
+    assert "Second line of biographical note." in html
+    assert 'images/people/Hadjiismail_Gulcheev.jpg' in html
+
     # Chronological events order in #events section (Birth -> Occupation -> Death)
     events_section = html[html.find('id="events"'):html.find('</div>', html.find('id="events"'))]
     birth_idx = events_section.find("Birth")

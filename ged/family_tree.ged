@@ -77,6 +77,9 @@
 2 GIVN Ahmed
 2 SURN Suleimanov
 1 SEX M
+1 BIRT Y
+2 PLAC Amirjan, Baku Governorate, Russian Empire
+1 DEAT Y
 1 FAMS @F0069@
 1 CHAN
 2 DATE 24 JUL 2022
@@ -1155,8 +1158,10 @@
 1 SEX M
 1 BIRT
 2 DATE 5 DEC 1939
+2 PLAC Surakhani, Baku, Azerbaijan
 1 DEAT
 2 DATE 25 APR 2005
+2 PLAC Surakhani, Baku, Azerbaijan
 1 FAMC @F6000000003244661596@
 2 PEDI birth
 1 FAMS @F6000000003244718136@
@@ -1211,10 +1216,14 @@
 1 SEX F
 1 BIRT
 2 DATE 1912
-1 DEAT Y
+2 PLAC Khizi, Baku Governorate
+1 DEAT
+2 DATE 1992
+2 PLAC Baku, Azerbaijan
 1 FAMC @F6000000003253481626@
 2 PEDI birth
 1 FAMS @F6000000003244590857@
+1 NOTE @N0016@
 1 CHAN
 2 DATE 26 NOV 2014
 3 TIME 18:09:19
@@ -1382,11 +1391,14 @@
 2 PLAC North Ossetian Autonomous Soviet Socialist Republic, Irafsky district, village. Chicola
 1 DEAT Y
 2 DATE 1987
+1 OCCU Senior Lieutenant, 261st Guards Rifle Regiment (WWII)
 1 FAMC @F6000000004371293691@
 2 PEDI birth
 1 FAMC @F0104@
 2 PEDI birth
 1 FAMS @F6000000003244679664@
+1 OBJE
+2 FILE images/people/Hadjiismail_Gulcheev.jpg
 1 NOTE @N0014@
 0 @I6000000003244691055@ INDI
 1 NAME Rena /Zeinalova/
@@ -1730,18 +1742,23 @@
 1 NAME Aligeidar /Suleimanov/
 2 GIVN Aligeidar
 2 SURN Suleimanov
-1 NAME Aligeidar /Suleimanov/
+1 NAME Ali Haydar /Aras/
 2 TYPE married
-2 GIVN Aligeidar
-2 SURN Suleimanov
+2 GIVN Ali Haydar
+2 SURN Aras
 1 SEX M
 1 BIRT
-2 DATE 1906
-1 DEAT Y
+2 DATE 22 MAY 1903
+2 PLAC Amirjan, Baku, Azerbaijan
+1 DEAT
+2 DATE 7 MAR 1967
+2 PLAC Gemiç, Gemlik, Bursa, Turkey
+1 OCCU Judge, Lawyer, Journalist, Estate Manager
 1 FAMC @F0069@
 2 PEDI birth
 1 FAMS @F6000000003244590857@
 1 FAMS @F6000000003692965192@
+1 NOTE @N0015@
 1 CHAN
 2 DATE 24 JUL 2022
 3 TIME 13:37:03
@@ -1904,10 +1921,13 @@
 1 SEX M
 1 BIRT
 2 DATE MAR 1937
+2 PLAC Baku, Azerbaijan
 1 DEAT
 2 DATE 1951
+2 PLAC Baku, Azerbaijan
 1 FAMC @F6000000003244590857@
 2 PEDI birth
+1 NOTE @N0017@
 1 CHAN
 2 DATE 26 NOV 2014
 3 TIME 18:10:31
@@ -2019,6 +2039,7 @@
 1 FAMC @F6000000003253481626@
 2 PEDI birth
 1 FAMS @F6000000004691603038@
+1 NOTE @N0018@
 1 CHAN
 2 DATE 26 NOV 2014
 3 TIME 19:43:09
@@ -2048,6 +2069,7 @@
 2 SURN Kerimova
 1 SEX F
 1 BIRT Y
+2 PLAC Baku Governorate, Russian Empire
 1 DEAT Y
 1 FAMS @F6000000003253481626@
 1 CHAN
@@ -2063,6 +2085,7 @@
 2 SURN Kerimov
 1 SEX M
 1 BIRT Y
+2 PLAC Baku, Baku Governorate, Russian Empire
 1 DEAT Y
 1 FAMS @F6000000003244660800@
 1 CHAN
@@ -2130,6 +2153,7 @@
 1 SEX M
 1 BIRT
 2 DATE 1880
+2 PLAC Khizi / Baku Governorate, Russian Empire
 1 DEAT Y
 1 FAMS @F6000000003253481626@
 1 CHAN
@@ -2253,16 +2277,21 @@
 2 DATE 29 NOV 2014
 3 TIME 10:52:36
 0 @I6000000003692965187@ INDI
-1 NAME ___ /Suleimanova/
-2 GIVN ___
-2 SURN Suleimanova
-1 NAME ? /Suleimanova/
+1 NAME Nazik /Belin/
+2 GIVN Nazik
+2 SURN Belin
+1 NAME Nazik /Aras/
 2 TYPE married
-2 GIVN ?
-2 SURN Suleimanova
+2 GIVN Nazik
+2 SURN Aras
 1 SEX F
 1 BIRT Y
+2 PLAC Turkey
+1 DEAT
+2 DATE 1998
+2 PLAC Turkey
 1 FAMS @F6000000003692965192@
+1 NOTE @N0019@
 1 CHAN
 2 DATE 23 MAR 2025
 3 TIME 20:45:59
@@ -5566,6 +5595,10 @@
 0 @F6000000003692965192@ FAM
 1 HUSB @I6000000003244799397@
 1 WIFE @I6000000003692965187@
+1 CHIL @I0104@
+1 MARR
+2 DATE 1951
+2 PLAC Istanbul, Turkey
 1 CHAN
 2 DATE 24 JUL 2022
 3 TIME 13:42:32
@@ -6069,6 +6102,50 @@
 1 HUSB @I0102@
 1 WIFE @I6000000003244295747@
 1 CHIL @I0103@
+0 @I0104@ INDI
+1 NAME Samiye /Kaplan/
+2 GIVN Samiye
+2 SURN Kaplan
+1 NAME Samiye /Aras/
+2 TYPE birth
+2 GIVN Samiye
+2 SURN Aras
+1 SEX F
+1 BIRT
+2 DATE 6 JAN 1951
+2 PLAC Bilecik, Turkey
+1 OCCU Author, Writer
+1 FAMC @F6000000003692965192@
+2 PEDI adopted
+1 FAMS @F0114@
+1 NOTE @N0020@
+0 @I0105@ INDI
+1 NAME Ozhan /Kaplan/
+2 GIVN Ozhan
+2 SURN Kaplan
+1 SEX M
+1 FAMS @F0114@
+0 @I0106@ INDI
+1 NAME Hakan /Kaplan/
+2 GIVN Hakan
+2 SURN Kaplan
+1 SEX M
+1 FAMC @F0114@
+2 PEDI birth
+0 @I0107@ INDI
+1 NAME Melike /Kaplan/
+2 GIVN Melike
+2 SURN Kaplan
+1 SEX F
+1 FAMC @F0114@
+2 PEDI birth
+0 @F0114@ FAM
+1 HUSB @I0105@
+1 WIFE @I0104@
+1 CHIL @I0106@
+1 CHIL @I0107@
+1 MARR
+2 DATE 24 JAN 1970
 0 @N0005@ NOTE Made the first version of this family tree
 0 @N0006@ NOTE three different wives, and maybe 2/3 kids
 0 @N0007@ NOTE By official documents born in 1931 so as to not to go to war
@@ -6078,9 +6155,19 @@
 0 @N0011@ NOTE got married to a canadian azeri, and lives in canada
 0 @N0012@ NOTE in ukraine
 0 @N0013@ NOTE Aries
-0 @N0014@ NOTE Military rank Senior Lieutenant Military unit 261st Rifle Regiment
-1 CONT Medal "For the Victory over Germany in the Great Patriotic War of 1941-1945"
-1 CONT Medal "For the Liberation of Warsaw"
-1 CONT Medal "For the Defense of Stalingrad"
-1 CONT Medal "For the Capture of Berlin"
+0 @N0014@ NOTE Military rank: Senior Lieutenant | Military unit: 261st Guards Rifle Regiment (WWII)
+1 CONT Campaign Medals: Medal "For the Defense of Stalingrad", Medal "For the Liberation of Warsaw", Medal "For the Capture of Berlin", Medal "For the Victory over Germany in the Great Patriotic War of 1941-1945"
+1 CONT Combat Orders & Badges (verified from uniform portrait): Order of the Patriotic War, Order of the Red Star, Soviet Guards Badge ("Гвардия"), and Combat Wound Stripe ("Нашивка за ранение")
+1 CONT Heritage: Born in Chikola (historically Volno-Magometanskoye), Irafsky District, North Ossetia, from the Digor-Ossetian Gulcheev (Гулчетæ / Гульчеевы) clan.
+0 @N0015@ NOTE Born May 22, 1903 in Amirjan (Əmircan), Baku (previously estimated as 1906). Studied law and served as a judge/jurist in Khizi (Xızı), where he married Kursum (Gülsüm) Kerimova, and later in Baku.
+1 CONT Drafted into the Red Army in 1941 (Crimean Front) during WWII; captured in 1943 and worked as an archivist/journalist for the "Azərbaycan" newspaper in Berlin (1943-1945).
+1 CONT Held in an Allied POW camp in Naples, Italy (1945); rescued from forced Soviet repatriation in February 1946 by King Farouk of Egypt, managing the royal agricultural estate near Cairo (1946-1948).
+1 CONT Emigrated to Turkey in 1948, taking the name Ali Haydar Aras ("Gemiçli Haydar Bey"), managing estates in Istanbul and Gemiç (Gemlik, Bursa), and marrying Nazik Belin in 1951.
+1 CONT Reconnected with his family in Baku by letter in 1966 with the help of conductor Maestro Niyazi shortly before passing away from a heart attack on March 7, 1967 in Gemiç, Gemlik.
+1 CONT His life story is documented in the 340-page biographical book "Yaman Ayrılık" ("Yaman ayrılıq", 2017) written by his adopted daughter Samiye Kaplan.
+0 @N0016@ NOTE Married Aligeidar Suleimanov in Khizi and had 5 children (Sonia, Maxura, Firangiz, Ahmad, Bahram). After Aligeidar went missing in WWII, she never remarried and raised all 5 children in Baku, reconnecting with him by letter via Maestro Niyazi in autumn 1966. Passed away in 1992.
+0 @N0017@ NOTE According to the family biography "Yaman Ayrılık", died tragically at a young age in Baku from a stray police bullet.
+0 @N0018@ NOTE At age 3, he was brought from Khizi to Baku and raised in the household of his elder sister Kursum and brother-in-law Aligeidar Suleimanov to help support his father Halig Kerimov's large family.
+0 @N0019@ NOTE Relative of Canan Hanım at Princess Emine's Mermer Köşk in Istanbul; married Ali Haydar Aras (Aligeidar Suleimanov) in 1951 in Istanbul and raised their adopted daughter Samiye Kaplan.
+0 @N0020@ NOTE Adopted daughter of Ali Haydar Aras (Aligeidar Suleimanov) and Nazik Belin in Gemiç (Gemlik, Bursa); biological daughter of Mustafa Çakıcı. Author of the biographical novel "Yaman Ayrılık" (2017) chronicling her father's life and the 2007/2010 family reunion between Turkey, Germany, and Baku.
 0 TRLR

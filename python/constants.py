@@ -64,7 +64,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                         <td class="ColumnValue"><a href="../../relationship.html?p1={clean_pointer}">Find relationship with... &rarr;</a></td>
                     </tr>
                 </table>
+                {photo_section}
             </div>
+            {notes_section}
             <div class="subsection" id="events">
                 <h4>Events</h4>
                 <table class="infolist eventlist">
@@ -584,6 +586,17 @@ ATTRIBUTE_ROW_TEMPLATE = """<tr>
     <td class="ColumnNotes">{attr_notes}</td>
     <td class="ColumnSources">{attr_sources}</td>
 </tr>"""
+
+NOTES_SECTION_TEMPLATE = """<div class="subsection" id="notes">
+    <h4>Notes &amp; Biography</h4>
+    <div class="grampsstylednote" style="background: #f9fbfd; border-left: 4px solid #2b6cb0; padding: 12px 16px; border-radius: 4px; margin: 8px 0 16px 0; line-height: 1.6;">
+        {notes_items}
+    </div>
+</div>"""
+
+PHOTO_SECTION_TEMPLATE = """<div class="individual-photos" style="margin: 12px 0;">
+    {photo_items}
+</div>"""
 
 
 RELATIONSHIP_FINDER_TEMPLATE = """<!DOCTYPE html>

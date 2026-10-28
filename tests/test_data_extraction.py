@@ -14,6 +14,8 @@ from data_extraction import (
     has_death_event,
     get_occupation,
     get_attributes,
+    get_notes,
+    get_photos,
     get_parents,
     get_families,
     parse_date,
@@ -53,6 +55,14 @@ def test_data_extraction_john_doe():
     assert len(attrs) == 1
     assert attrs[0]['type'] == "RFN"
     assert attrs[0]['value'] == "12345"
+
+    notes = get_notes(parser, john)
+    assert len(notes) == 1
+    assert "Distinguished engineer and family historian." in notes[0]
+    assert "Second line of biographical note." in notes[0]
+
+    photos = get_photos(john)
+    assert photos == ["images/people/Hadjiismail_Gulcheev.jpg"]
 
 
 def test_data_extraction_families_and_single_parent():

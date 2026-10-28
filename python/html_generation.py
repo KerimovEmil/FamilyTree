@@ -12,7 +12,7 @@ from utils import (
 from data_extraction import (
     get_name, get_gender, get_birth_data, get_birth_place, get_death_data,
     get_death_place, has_death_event, get_occupation, get_attributes,
-    get_parents, get_families, parse_date, calculate_age
+    get_notes, get_photos, get_parents, get_families, parse_date, calculate_age
 )
 
 def escape_text(val):
@@ -25,8 +25,8 @@ import json
 from gedcom.element.individual import IndividualElement
 from constants import (
     HTML_TEMPLATE, EVENT_ROW_TEMPLATE, ATTRIBUTES_SECTION_TEMPLATE,
-    ATTRIBUTE_ROW_TEMPLATE, PARENTS_TEMPLATE,
-    PARENT_ROW_TEMPLATE, SIBLING_ROW_TEMPLATE, FAMILIES_TEMPLATE,
+    ATTRIBUTE_ROW_TEMPLATE, NOTES_SECTION_TEMPLATE, PHOTO_SECTION_TEMPLATE,
+    PARENTS_TEMPLATE, PARENT_ROW_TEMPLATE, SIBLING_ROW_TEMPLATE, FAMILIES_TEMPLATE,
     FAMILY_ROW_TEMPLATE, CHILD_ROW_TEMPLATE, PEDIGREE_TEMPLATE,
     ANCESTORS_TEMPLATE, INDEX_HTML_TEMPLATE, INDIVIDUALS_HTML_TEMPLATE,
     SURNAME_ENTRY_TEMPLATE, INDIVIDUAL_ENTRY_TEMPLATE, SURNAME_PAGE_TEMPLATE,
@@ -285,6 +285,43 @@ def generate_attributes_section(element):
 
     return ATTRIBUTES_SECTION_TEMPLATE.format(attributes_rows='\n'.join(attributes_rows))
 
+def generate_notes_section(gedcom_parser, element):
+    """Generate the HTML notes/biography section if notes are present."""
+    notes = get_notes(gedcom_parser, element)
+    if not notes:
+        return ""
+
+    paragraphs = []
+    for note in notes:
+        lines = [escape_text(line) for line in note.splitlines() if line.strip()]
+        if lines:
+            paragraphs.append("<p style=\"margin: 0 0 8px 0;\">" + "<br />".join(lines) + "</p>")
+
+    if not paragraphs:
+        return ""
+
+    return NOTES_SECTION_TEMPLATE.format(notes_items='\n'.join(paragraphs))
+
+def generate_photo_section(element):
+    """Generate the HTML photo section if OBJE -> FILE photos are present."""
+    photos = get_photos(element)
+    if not photos:
+        return ""
+
+    name_esc = escape_text(get_name(element))
+    items = []
+    for photo_path in photos:
+        norm_path = photo_path.replace('\\', '/').lstrip('/')
+        esc_path = escape_text(norm_path)
+        items.append(
+            f'<a href="../../{esc_path}" target="_blank" title="View full portrait of {name_esc}">'
+            f'<img src="../../{esc_path}" alt="Portrait of {name_esc}" '
+            f'style="max-width: 180px; border-radius: 6px; border: 1px solid #cbd5e0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" />'
+            f'</a>'
+        )
+
+    return PHOTO_SECTION_TEMPLATE.format(photo_items='\n'.join(items))
+
 def generate_html_for_individual(gedcom_parser, element, individuals_data):
     """Generate HTML content for an individual"""
     ptr = element.get_pointer() if element else ""
@@ -304,6 +341,10 @@ def generate_html_for_individual(gedcom_parser, element, individuals_data):
                         <td class="ColumnAttribute">Age at Death</td>
                         <td class="ColumnValue">{escape_text(death_age)} years old</td>
                     </tr>"""
+
+    # Generate photo & notes sections
+    photo_section = generate_photo_section(element)
+    notes_section = generate_notes_section(gedcom_parser, element)
 
     # Generate events rows
     events_rows = generate_events_rows(element)
@@ -329,6 +370,8 @@ def generate_html_for_individual(gedcom_parser, element, individuals_data):
         gender=gender,
         clean_pointer=clean_pointer,
         age_section=age_section,
+        photo_section=photo_section,
+        notes_section=notes_section,
         events_rows=events_rows,
         married_name_section="",
         attributes_section=attributes_section,

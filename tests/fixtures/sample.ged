@@ -17,6 +17,9 @@
 2 PLAC Boston, USA
 1 OCCU Engineer
 1 RFN 12345
+1 OBJE
+2 FILE images/people/Hadjiismail_Gulcheev.jpg
+1 NOTE @N1@
 1 FAMS @F1@
 1 FAMS @F2@
 0 @I2@ INDI
@@ -50,4 +53,6 @@
 0 @F2@ FAM
 1 HUSB @I1@
 1 CHIL @I4@
+0 @N1@ NOTE Distinguished engineer and family historian.
+1 CONT Second line of biographical note.
 0 TRLR
