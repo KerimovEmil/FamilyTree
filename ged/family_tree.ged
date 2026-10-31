@@ -96,6 +96,8 @@
 2 PLAC Amirjan, Baku Uyezd, Baku Governorate, Russian Empire
 1 DEAT Y
 1 NOTE @N0023@
+1 FAMC @F0115@
+2 PEDI birth
 1 FAMS @F0069@
 1 CHAN
 2 DATE 24 JUL 2022
@@ -2186,6 +2188,8 @@
 2 PLAC Baku, Baku Governorate, Russian Empire
 1 DEAT Y
 1 NOTE @N0022@
+1 FAMC @F0117@
+2 PEDI birth
 1 FAMS @F6000000003244660800@
 1 CHAN
 2 DATE 26 NOV 2014
@@ -2266,6 +2270,8 @@
 2 PLAC Khizi, Kuba Uyezd, Baku Governorate, Russian Empire
 1 DEAT Y
 1 NOTE @N0021@
+1 FAMC @F0116@
+2 PEDI birth
 1 FAMS @F6000000003253481626@
 1 CHAN
 2 DATE 26 NOV 2014
@@ -4848,6 +4854,8 @@
 2 PLAC Surakhani, Baku Uyezd, Baku Governorate, Russian Empire
 1 DEAT Y
 1 NOTE @N0024@
+1 FAMC @F0118@
+2 PEDI birth
 1 FAMS @F6000000004371641634@
 1 CHAN
 2 DATE 13 DEC 2014
@@ -5451,6 +5459,7 @@
 3 TIME 17:41:27
 0 @F0100@ FAM
 1 HUSB @I0067@
+1 WIFE @I0115@
 1 CHIL @I6000000003244677973@
 1 CHIL @I0068@
 1 CHAN
@@ -5677,6 +5686,7 @@
 1 CHIL @I6000000003253539241@
 1 CHIL @I6000000003253574277@
 1 CHIL @I6000000003253612063@
+1 CHIL @I0111@
 1 CHAN
 2 DATE 13 JUN 2020
 3 TIME 22:58:24
@@ -5901,6 +5911,7 @@
 3 TIME 22:58:25
 0 @F6000000004371641634@ FAM
 1 HUSB @I6000000007514952319@
+1 WIFE @I0114@
 1 CHIL @I6000000003244661591@
 1 CHIL @I6000000004371589557@
 1 CHIL @I6000000004371641630@
@@ -6270,6 +6281,158 @@
 1 CHIL @I0107@
 1 MARR
 2 DATE 24 JAN 1970
+0 @I0108@ INDI
+1 NAME Suleiman /Suleimanov/
+2 GIVN Suleiman
+2 SURN Suleimanov
+1 NAME Süleyman /Süleymanov/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Сулейман /Сулейманов/
+2 TYPE aka
+2 NOTE Russian Cyrillic
+1 NAME سلیمان /سلیمانوف/
+2 TYPE aka
+2 NOTE Arabic script
+1 SEX M
+1 BIRT Y
+2 PLAC Amirjan, Baku Uyezd, Baku Governorate, Russian Empire
+1 DEAT Y
+1 FAMS @F0115@
+1 NOTE @N0026@
+0 @I0109@ INDI
+1 NAME Uncle /Suleimanov/
+2 GIVN Uncle
+2 SURN Suleimanov
+1 NAME Əmi /Süleymanov/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Дядя /Сулейманов/
+2 TYPE aka
+2 NOTE Russian Cyrillic
+1 NAME عمو /سلیمانوف/
+2 TYPE aka
+2 NOTE Arabic script
+1 SEX M
+1 BIRT Y
+2 PLAC Amirjan, Baku Uyezd, Baku Governorate, Russian Empire
+1 DEAT Y
+1 FAMC @F0115@
+2 PEDI birth
+1 NOTE @N0027@
+0 @I0110@ INDI
+1 NAME Kerim /Kerimov/
+2 GIVN Kerim
+2 SURN Kerimov
+1 NAME Kərim /Kərimov/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Керим /Керимов/
+2 TYPE aka
+2 NOTE Russian Cyrillic
+1 NAME کریم /كریموف/
+2 TYPE aka
+2 NOTE Arabic script
+1 SEX M
+1 BIRT Y
+2 PLAC Khizi, Kuba Uyezd, Baku Governorate, Russian Empire
+1 DEAT Y
+1 FAMS @F0116@
+1 NOTE @N0028@
+0 @I0111@ INDI
+1 NAME ___ /Kerimov/
+2 GIVN ___
+2 SURN Kerimov
+1 NAME ___ /Kərimov/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME ___ /Керимов/
+2 TYPE aka
+2 NOTE Russian Cyrillic
+1 SEX U
+1 BIRT Y
+2 PLAC Khizi, Kuba Uyezd, Baku Governorate, Russian Empire
+1 DEAT Y
+1 FAMC @F6000000003253481626@
+2 PEDI birth
+1 NOTE @N0029@
+0 @I0112@ INDI
+1 NAME Kerim /Kerimov/
+2 GIVN Kerim
+2 SURN Kerimov
+1 NAME Kərim /Kərimov/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Керим /Керимов/
+2 TYPE aka
+2 NOTE Russian Cyrillic
+1 NAME کریم /كریموف/
+2 TYPE aka
+2 NOTE Arabic script
+1 SEX M
+1 BIRT Y
+2 PLAC Baku, Baku Governorate, Russian Empire
+1 DEAT Y
+1 FAMS @F0117@
+1 NOTE @N0030@
+0 @I0113@ INDI
+1 NAME Bagir /Bagirov/
+2 GIVN Bagir
+2 SURN Bagirov
+1 NAME Bağır /Bağırov/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Багир /Багиров/
+2 TYPE aka
+2 NOTE Russian Cyrillic
+1 NAME باقر /باقروف/
+2 TYPE aka
+2 NOTE Arabic script
+1 SEX M
+1 BIRT Y
+2 PLAC Surakhani, Baku Uyezd, Baku Governorate, Russian Empire
+1 DEAT Y
+1 FAMS @F0118@
+1 NOTE @N0031@
+0 @I0114@ INDI
+1 NAME ___ /Bagirova/
+2 GIVN ___
+2 SURN Bagirova
+1 NAME ___ /Bağırova/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME ___ /Багирова/
+2 TYPE aka
+2 NOTE Russian Cyrillic
+1 SEX F
+1 BIRT Y
+2 PLAC Surakhani, Baku Uyezd, Baku Governorate, Russian Empire
+1 DEAT Y
+1 FAMS @F6000000004371641634@
+1 NOTE @N0032@
+0 @I0115@ INDI
+1 NAME ___ /___/
+2 GIVN ___
+2 SURN ___
+1 SEX F
+1 BIRT Y
+2 PLAC Surakhani, Baku Uyezd, Baku Governorate, Russian Empire
+1 DEAT Y
+1 FAMS @F0100@
+1 NOTE @N0033@
+0 @F0115@ FAM
+1 HUSB @I0108@
+1 CHIL @I0005@
+1 CHIL @I0109@
+0 @F0116@ FAM
+1 HUSB @I0110@
+1 CHIL @I6000000003253617049@
+0 @F0117@ FAM
+1 HUSB @I0112@
+1 CHIL @I6000000003253535194@
+0 @F0118@ FAM
+1 HUSB @I0113@
+1 CHIL @I6000000007514952319@
 0 @N0005@ NOTE Made the first version of this family tree
 0 @N0006@ NOTE three different wives, and maybe 2/3 kids
 0 @N0007@ NOTE By official documents born in 1931 so as to not to go to war
@@ -6310,4 +6473,30 @@
 1 CONT Father of at least 6 children in Surakhani: Ibragim (father of Kamil Bagirov), Yousif, Bagir (named after ancestral patronymic Bagir), Sona, Hadija, and an unnamed son.
 1 CONT His household is recorded in the 1886 Family Lists of Surakhani village (ARDTA Fond 43, Baku Treasury Chamber), and civil status records are held in the Surakhani Mosque Metric Books under the Transcaucasian Shia Spiritual Board (ARDTA Fond 290).
 0 @N0025@ NOTE Maternal ancestor from Surakhani / Absheron, father of Shirin Bagirova (who married Ibragim Bagirov) and grandfather of Kamil Bagirov (1939-2005). Pre-1920 records are held in the Absheron mosque metric books (ARDTA Fond 290).
+0 @N0026@ NOTE Patriarch of the Suleimanov family of Amirjan (Baku Uyezd, Baku Governorate).
+1 CONT Recorded as head of household in the 1886 Family Lists of Amirjan village (ARDTA Fond 43, Baku Treasury Chamber).
+1 CONT Father of Ahmed Suleimanov (@I0005@) and Aligeidar's uncle (@I0109@), and paternal grandfather of Aligeidar Suleimanov (@I6000000003244799397@).
+0 @N0027@ NOTE Brother of Ahmed Suleimanov (@I0005@), son of Suleiman Suleimanov (@I0108@), and paternal uncle of Aligeidar Suleimanov (@I6000000003244799397@) in Amirjan (Baku Uyezd).
+1 CONT Featured prominently in the courtship lore of Aligeidar and Kursum Kerimova in Khizi.
+1 CONT When Halig Kerimov sent an emissary to Amirjan to investigate Aligeidar's lineage and character, the first person the relative met upon arrival was Aligeidar's uncle, whose glowing report confirmed the Suleimanov family's honor and convinced Halig to consent to the marriage.
+0 @N0028@ NOTE Patriarch of the Kerimov lineage in Khizi (historically Khizi-Barmak section, Kuba Uyezd, Baku Governorate).
+1 CONT Head of household in the 1886 Family Lists of Khizi village (ARDTA Fond 43, Baku Treasury Chamber), where his son Halig Kerimov (b. 1880) was recorded as a young boy.
+1 CONT Paternal grandfather of Kursum Kerimova (@I6000000003244590852@) and Negmatin Kerimov (@I6000000003253364983@).
+0 @N0029@ NOTE Seventh child of Halig Kerimov (@I6000000003253617049@) and Javahir Kerimova (@I6000000003253500332@) in Khizi.
+1 CONT The biographical novel "Yaman Ayrılık" and family records document that Halig and Javahir had 7 children in Khizi (including Kursum, Negmatin, Zarifa, Ruhsara, Manii, and Mirzakerim).
+1 CONT Birth registered in the Khizi Mosque Metric Books under the Transcaucasian Shia Spiritual Board (ARDTA Fond 290).
+0 @N0030@ NOTE Patriarch of the Kerimov family in Baku City.
+1 CONT Father of Agakerim Kerimov (@I6000000003253535194@) and grandfather of Baba Kerimov (@I6000000003244579993@, 1932-1995).
+1 CONT The name Agakerim preserves his patronymic (Aga-Kerim = master/elder Kerim, son of Kerim).
+1 CONT Civil and household records are preserved in the Baku City Shia Mosque Metric Books (ARDTA Fond 290) and the Baku Treasury Chamber census registers (ARDTA Fond 43 and Fond 50).
+0 @N0031@ NOTE Patriarch of the Bagirov lineage in Surakhani (Baku Uyezd, Baku Governorate).
+1 CONT Recorded as head of household in the 1886 Family Lists of Surakhani village (ARDTA Fond 43, Baku Treasury Chamber).
+1 CONT Father of Mehti Bagirov (@I6000000007514952319@) and great-grandfather of Kamil Bagirov (@I6000000003244677980@, 1939-2005).
+1 CONT In accordance with Absheron naming customs, his grandson Bagir Bagirov (@I6000000004371641630@) was named in his honor.
+0 @N0032@ NOTE Matriarch of the Bagirov family in Surakhani (Baku Uyezd, Baku Governorate).
+1 CONT Wife of Mehti Bagirov (@I6000000007514952319@) and mother of their children (Ibragim, Yousif, Bagir, Sona, Hadija, and an unnamed son).
+1 CONT Marriage registered in the Surakhani Mosque Metric Books under the Transcaucasian Shia Spiritual Board (ARDTA Fond 290).
+0 @N0033@ NOTE Mother of Shirin Bagirova (@I6000000003244677973@) and her sister (@I0068@) in Surakhani (Baku Uyezd), and maternal grandmother of Kamil Bagirov (1939-2005).
+1 CONT Wife of Baba (@I0067@).
+1 CONT Marriage registered in the Surakhani Mosque Metric Books under the Transcaucasian Shia Spiritual Board (ARDTA Fond 290).
 0 TRLR
