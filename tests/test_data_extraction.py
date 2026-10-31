@@ -20,6 +20,7 @@ from data_extraction import (
     get_families,
     parse_date,
     calculate_age,
+    get_alternative_names,
 )
 
 
@@ -58,6 +59,11 @@ def test_data_extraction_john_doe():
 
     notes = get_notes(parser, john)
     assert len(notes) == 1
+
+    alts = get_alternative_names(john)
+    assert len(alts) == 1
+    assert alts[0]['name'] == "Johnny Doe"
+    assert alts[0]['label'] == "Nickname"
     assert "Distinguished engineer and family historian." in notes[0]
     assert "Second line of biographical note." in notes[0]
 

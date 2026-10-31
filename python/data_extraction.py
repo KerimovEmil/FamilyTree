@@ -241,6 +241,44 @@ def get_photos(individual):
                         photos.append(val)
     return photos
 
+def get_alternative_names(individual):
+    """Extract alternative/aka names from an individual element."""
+    if not individual:
+        return []
+
+    alt_names = []
+    name_elements = [c for c in individual.get_child_elements() if c.get_tag() == "NAME"]
+    if len(name_elements) > 1:
+        primary_name_tuple = individual.get_name()
+        if isinstance(primary_name_tuple, tuple):
+            primary_given, primary_surn = primary_name_tuple
+            primary_full = f"{primary_given} {primary_surn}".strip().lower()
+        else:
+            primary_full = str(primary_name_tuple).strip().lower()
+
+        for name_elem in name_elements[1:]:
+            val = (name_elem.get_value() or "").strip()
+            if not val:
+                continue
+            parts = [p.strip() for p in val.split('/') if p.strip()]
+            display_name = " ".join(parts)
+            if display_name.lower() == primary_full:
+                continue
+
+            note_val = None
+            type_val = None
+            for sub in name_elem.get_child_elements():
+                if sub.get_tag() == "NOTE":
+                    note_val = (sub.get_value() or "").strip()
+                elif sub.get_tag() == "TYPE":
+                    type_val = (sub.get_value() or "").strip()
+
+            label = note_val or (type_val.title() if type_val else "AKA")
+            if not any(a['name'] == display_name for a in alt_names):
+                alt_names.append({'name': display_name, 'label': label})
+
+    return alt_names
+
 def get_parents(gedcom_parser, individual):
     """Get parents information for an individual."""
     families = gedcom_parser.get_families(individual, "FAMC")

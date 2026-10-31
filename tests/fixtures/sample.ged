@@ -8,6 +8,9 @@
 1 NAME John /Doe/
 2 GIVN John
 2 SURN Doe
+1 NAME Johnny /Doe/
+2 TYPE aka
+2 NOTE Nickname
 1 SEX M
 1 BIRT
 2 DATE 1 JAN 1970

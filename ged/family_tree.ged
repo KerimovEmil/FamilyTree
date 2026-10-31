@@ -76,6 +76,21 @@
 1 NAME Ahmed /Suleimanov/
 2 GIVN Ahmed
 2 SURN Suleimanov
+1 NAME Əhməd /Süleymanov/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Ахмед /Сулейманов/
+2 TYPE aka
+2 NOTE Russian Cyrillic
+1 NAME Ахмед /Сюлейманов/
+2 TYPE aka
+2 NOTE Imperial Russian records
+1 NAME Ahmad /Suleymanov/
+2 TYPE aka
+2 NOTE Variant Latin
+1 NAME احمد /سلیمانوف/
+2 TYPE aka
+2 NOTE Arabic script
 1 SEX M
 1 BIRT Y
 2 PLAC Amirjan, Baku Uyezd, Baku Governorate, Russian Empire
@@ -690,6 +705,15 @@
 1 NAME Baba /___/
 2 GIVN Baba
 2 SURN ___
+1 NAME Baba
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Баба
+2 TYPE aka
+2 NOTE Russian Cyrillic
+1 NAME بابا
+2 TYPE aka
+2 NOTE Arabic script
 1 SEX M
 1 BIRT Y
 2 PLAC Surakhani, Baku Uyezd, Baku Governorate, Russian Empire
@@ -1213,10 +1237,24 @@
 1 NAME Kursum /Suleimanova/
 2 GIVN Kursum
 2 SURN Suleimanova
-1 NAME Kursum /Suleimanova/
-2 TYPE married
-2 GIVN Kursum
-2 SURN Suleimanova
+1 NAME Kürsüm /Süleymanova/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Gülsüm /Kərimova/
+2 TYPE birth
+2 NOTE Maiden name (Azerbaijani Latin)
+1 NAME Курсум /Сулейманова/
+2 TYPE aka
+2 NOTE Russian Cyrillic
+1 NAME Гюльсум /Керимова/
+2 TYPE aka
+2 NOTE Russian Cyrillic maiden name
+1 NAME Gulsum /Kerimova/
+2 TYPE aka
+2 NOTE Variant Latin
+1 NAME كلثوم /كریموا/
+2 TYPE aka
+2 NOTE Arabic script
 1 SEX F
 1 BIRT
 2 DATE 1912
@@ -1318,10 +1356,15 @@
 1 NAME Ibragim /Bagirov/
 2 GIVN Ibragim
 2 SURN Bagirov
-1 NAME Ibragim /Bagirov/
-2 TYPE married
-2 GIVN Ibragim
-2 SURN Bagirov
+1 NAME İbrahim /Bağırov/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Ибрагим /Багиров/
+2 TYPE aka
+2 NOTE Russian Cyrillic
+1 NAME ابراهیم /باقروف/
+2 TYPE aka
+2 NOTE Arabic script
 1 SEX M
 1 BIRT Y
 1 DEAT Y
@@ -1371,10 +1414,15 @@
 1 NAME Shirin /Bagirova/
 2 GIVN Shirin
 2 SURN Bagirova
-1 NAME Shirin /Bagirova/
-2 TYPE married
-2 GIVN Shirin
-2 SURN Bagirova
+1 NAME Şirin /Bağırova/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Ширин /Багирова/
+2 TYPE aka
+2 NOTE Russian Cyrillic
+1 NAME شیرین /باقرووا/
+2 TYPE aka
+2 NOTE Arabic script
 1 SEX F
 1 BIRT Y
 1 DEAT Y
@@ -1387,8 +1435,22 @@
 0 @I6000000003244679659@ INDI
 1 NAME Hadjiismail /Gulcheev/
 2 GIVN Hadjiismail
-2 SURN Gulchiev
-2 TYPE married
+2 SURN Gulcheev
+1 NAME Хаджиисмаил /Гульчеев/
+2 TYPE aka
+2 NOTE Russian / Soviet military records
+1 NAME Хаджи-Исмаил /Гульчиев/
+2 TYPE aka
+2 NOTE Russian variant
+1 NAME Хаджисмел /Гулчеев/
+2 TYPE aka
+2 NOTE North Ossetian records
+1 NAME Hadjismail /Gulcheev/
+2 TYPE aka
+2 NOTE Variant Latin
+1 NAME Гулчетæ /Хадзыисмайл/
+2 TYPE aka
+2 NOTE Digor-Ossetian
 1 SEX M
 1 BIRT Y
 2 DATE 29 APR 1906
@@ -1748,8 +1810,19 @@
 2 SURN Suleimanov
 1 NAME Ali Haydar /Aras/
 2 TYPE married
-2 GIVN Ali Haydar
-2 SURN Aras
+2 NOTE Emigration name in Turkey ("Gemiçli Haydar Bey")
+1 NAME Əliheydər /Süleymanov/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Алигейдар /Сулейманов/
+2 TYPE aka
+2 NOTE Russian Cyrillic
+1 NAME Aliheydar /Suleymanov/
+2 TYPE aka
+2 NOTE Modern Latin variant
+1 NAME علی حیدر /سلیمانوف/
+2 TYPE aka
+2 NOTE Arabic script
 1 SEX M
 1 BIRT
 2 DATE 22 MAY 1903
@@ -2018,10 +2091,15 @@
 1 NAME Fatima /Kerimova/
 2 GIVN Fatima
 2 SURN Kerimova
-1 NAME Fatima /Kerimova/
-2 TYPE married
-2 GIVN Fatima
-2 SURN Kerimova
+1 NAME Fatma /Kərimova/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Фатима /Керимова/
+2 TYPE aka
+2 NOTE Russian Cyrillic
+1 NAME فاطمه /كریموا/
+2 TYPE aka
+2 NOTE Arabic script
 1 SEX F
 1 BIRT Y
 1 DEAT Y
@@ -2067,10 +2145,15 @@
 1 NAME Javahir /Kerimova/
 2 GIVN Javahir
 2 SURN Kerimova
-1 NAME Javahir /Kerimova/
-2 TYPE married
-2 GIVN Javahir
-2 SURN Kerimova
+1 NAME Cəvahir /Kərimova/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Джавахир /Керимова/
+2 TYPE aka
+2 NOTE Russian Cyrillic
+1 NAME جواهر /كریموا/
+2 TYPE aka
+2 NOTE Arabic script
 1 SEX F
 1 BIRT Y
 2 PLAC Baku Governorate, Russian Empire
@@ -2083,10 +2166,21 @@
 1 NAME Agakerim /Kerimov/
 2 GIVN Agakerim
 2 SURN Kerimov
-1 NAME Agakerim /Kerimov/
-2 TYPE married
-2 GIVN Agakerim
-2 SURN Kerimov
+1 NAME Ağakərim /Kərimov/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Агакерим /Керимов/
+2 TYPE aka
+2 NOTE Russian Cyrillic
+1 NAME Ага Керим /Керим-оглы/
+2 TYPE aka
+2 NOTE Imperial Russian records
+1 NAME Aghakerim /Kerimov/
+2 TYPE aka
+2 NOTE Variant Latin
+1 NAME آقاكریم /كریموف/
+2 TYPE aka
+2 NOTE Arabic script
 1 SEX M
 1 BIRT Y
 2 PLAC Baku, Baku Governorate, Russian Empire
@@ -2151,10 +2245,21 @@
 1 NAME Halig /Kerimov/
 2 GIVN Halig
 2 SURN Kerimov
-1 NAME Halig /Kerimov/
-2 TYPE married
-2 GIVN Halig
-2 SURN Kerimov
+1 NAME Xaliq /Kərimov/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Халиг /Керимов/
+2 TYPE aka
+2 NOTE Russian Cyrillic
+1 NAME Халик /Керим-оглы/
+2 TYPE aka
+2 NOTE Imperial Russian records
+1 NAME Khalig /Kerimov/
+2 TYPE aka
+2 NOTE Variant Latin
+1 NAME خالق /كریموف/
+2 TYPE aka
+2 NOTE Arabic script
 1 SEX M
 1 BIRT
 2 DATE 1880
@@ -4723,10 +4828,21 @@
 1 NAME Mehti /Bagirov/
 2 GIVN Mehti
 2 SURN Bagirov
-1 NAME Mehti /Bagirov/
-2 TYPE married
-2 GIVN Mehti
-2 SURN Bagirov
+1 NAME Mehdi /Bağırov/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Мехти /Багиров/
+2 TYPE aka
+2 NOTE Russian Cyrillic
+1 NAME Мехди /Багир-оглы/
+2 TYPE aka
+2 NOTE Imperial Russian records
+1 NAME Mehdi /Baghirov/
+2 TYPE aka
+2 NOTE Variant Latin
+1 NAME مهدی /باقروف/
+2 TYPE aka
+2 NOTE Arabic script
 1 SEX M
 1 BIRT Y
 2 PLAC Surakhani, Baku Uyezd, Baku Governorate, Russian Empire
