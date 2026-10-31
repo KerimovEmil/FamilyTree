@@ -7,6 +7,11 @@ The HTML files will be saved in the ppl directory organized by surname.
 import os
 import sys
 
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+if hasattr(sys.stderr, 'reconfigure'):
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+
 # Add the python directory to the path
 sys.path.append(os.path.join(os.path.dirname(__file__), 'python'))
 
