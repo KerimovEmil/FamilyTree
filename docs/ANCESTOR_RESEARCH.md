@@ -69,11 +69,102 @@ Because Digor-Ossetian Muslim names beginning with `Хаджи-` (*Hadjiismail* 
 
 ---
 
-## 3. Baku Governorate & Absheron Archival Guide (Pre-1920 Ancestors)
+## 3. Pre-1920 Baku Governorate Archival Systems & Census Records
 
-| Lineage | Key Ancestors | Verified Location | Archival Fonds at the National Archive of the Republic of Azerbaijan (ARDTA) |
+Prior to Sovietization on April 28, 1920 and the establishment of Soviet Civil Registry Offices (ZAGS / *ЗАГС*), civil status in Azerbaijan was maintained under imperial Russian confessional administration. Two major primary record groups held at the **National Archive of the Republic of Azerbaijan** (*Azərbaycan Respublikasının Dövlət Tarix Arxivi* — **ARDTA**, historically **ГИААР**) preserve these ancestral records:
+
+### A. Mosque Metric Books (Метрические книги мечетей) — ARDTA Fond 290 & Fond 291
+Under the 1872 imperial statute (*"Положение об управлении Закавказским мусульманским духовенством"*), parish Muslim clergy (Mollas and Akhunds) maintained official bound annual metric books in dual Russian and Azerbaijani (written in Arabic/Perso-Arabic Nastaliq and Naskh script).
+* **Fond 290 (*Закавказское мусульманское духовное правление шиитского учения*):** Transcaucasian Shia Spiritual Board (1872–1919), holding consistorial copies of metric books for Shia communities across Baku Uyezd, Kuba Uyezd, Shamakhi Uyezd, Lankaran Uyezd, and Baku City.
+* **Fond 291 (*Закавказское мусульманское духовное правление суннитского учения*):** Transcaucasian Sunni Spiritual Board (1872–1920).
+* **Standard 4-Part Structure of Metric Books:**
+  1. **Part I: Births & Namings (*О родившихся / Doğum haqqında*):** Records child's given name, exact birth and naming/circumcision dates, parents' full names and patronymics (`... oğlu / ... qızı`), social estate (`kəndli / rayat`, `bəy`, `tacir / kupec`, `meşşan`), mahalla/village, and officiating Akhund.
+  2. **Part II: Marriages (*О бракосочетавшихся / Kəbin haqqında*):** Records groom's name, age, estate, residence; bride's name, age, estate, father's name and residence; authorized legal representatives (*vəkil*); wedding witnesses (*şahidlər*); and the agreed *mahr* (dower in gold tomans/chervontsy/rubles or property).
+  3. **Part III: Divorces (*О расторгнувших брак / Talaq haqqında*):** Records conditions, grounds, and dates of divorce.
+  4. **Part IV: Deaths (*Об умерших / Vəfat edənlər haqqında*):** Records deceased's name, age, cause of death, burial date, and cemetery.
+
+### B. Censuses & Household Lists (Посемейные списки) — ARDTA Fond 43 & Fond 50
+* **Fond 43 (*Бакинское губернское податное управление / Бакинская казенная палата*):** Baku Governorate Tax Administration and Baku Treasury Chamber (1840–1921), comprising over 15,800 archival files.
+  * **1886 Family Lists (*Посемейные списки 1886 года*):** Conducted pursuant to the military conscription and tax reforms of the Russian Empire. These lists document **every single household (*двор / tüstü*)** in every village of Baku Uyezd and Kuba Uyezd:
+    * Head of household (full patronymic);
+    * All male family members with exact ages, physical fitness, and conscription category;
+    * All female family members (wives, daughters, mothers, sisters);
+    * Degree of kinship to household head;
+    * Social estate (*сословие* — state peasants, beks, seyyids, merchants, petty bourgeois);
+    * Landholdings, orchards, livestock, and real estate.
+  * **Earlier Revisions (*Ревизские сказки / Камеральные описания*):** Revisions for Baku and Kuba provinces dating to 1831, 1849, 1863, and 1873.
+  * **1897 First General Imperial Census (*Первая всеобщая перепись населения 1897 г.*):** Primary census schedules (Forms A and B) for settlements in Baku Governorate.
+* **Fond 50 (*Бакинское градоначальство / Бакинская мещанская управа*):** Municipal registry of Baku city residents, merchants, and petty bourgeois (*мещане*).
+
+---
+
+## 4. Ancestral Profiles & Archival Dossiers (Pre-1920)
+
+| Lineage / Ancestor | Key Individual(s) | Pre-1920 Administrative Jurisdiction | Primary Archival Records |
 | :--- | :--- | :--- | :--- |
-| **Bagirov Line** | **Mehti Bagirov** (`@I6000000007514952319@`) → **Ibragim Bagirov** (`@I6000000003244661591@`) & **Shirin Bagirova** (`@I6000000003244677973@`) → **Kamil Bagirov** (`@I6000000003244534928@`, 1939–2005) | **Surakhani (Suraxanı), Baku, Azerbaijan** | **ARDTA Fond 290** (*Transcaucasian Shia Spiritual Board — Mosque Metric Books of Surakhani village*) & **ARDTA Fond 43** (*Baku Treasury Chamber — 1886 Family Lists / Посемейные списки с. Сураханы Бакинского уезда*) |
-| **Suleimanov Line** | **Ahmed Suleimanov** (`@I0005@`, b. <1885) & **Sona** (`@I0006@`) → **Aligeidar Suleimanov** (`@I6000000003244799397@`, 1903–1967) | **Amirjan (Əmircan), Baku, Azerbaijan** | **ARDTA Fond 290** (*Mosque Metric Books of Amirjan / Əmircan village, Baku uyezd*) & **ARDTA Fond 43** (*1886 Family Lists of Amirjan village*) |
-| **Kerimov Line (Paternal)** | **Agakerim Kerimov** (`@I6000000003253535194@`) & **Fatima Kerimova** (`@I6000000003253353833@`) → **Baba Kerimov** (`@I6000000003244579993@`, 1932–1995) | **Baku, Baku Governorate** | **ARDTA Fond 290** (*Baku city mosque metric books*) & **ARDTA Fond 43 / Fond 50** (*Baku city census and family lists*) |
-| **Kerimov Line (Khizi / Baku)** | **Halig Kerimov** (`@I6000000003253617049@`, b. 1880) & **Javahir Kerimova** (`@I6000000003253500332@`, b. ~1885) → **Kursum Suleimanova** (`@I6000000003244590852@`, 1912–1992) | **Khizi (Xızı) & Baku, Baku Governorate** | **ARDTA Fond 290 & Fond 43** (*Khizi / Barmak district family lists and metric books*) |
+| **Kerimov Line (Khizi)** | **Halig Kerimov** (`@I6000000003253617049@`, b. 1880) & **Javahir Kerimova** (`@I6000000003253500332@`, b. ~1885) | **Khizi (Xızı)**, Khizi-Barmak section, **Kuba Uyezd (Кубинский уезд)**, Baku Governorate | **ARDTA Fond 43** (1886 Family Lists of Khizi village, Kuba Uyezd) & **ARDTA Fond 290** (Metric books of Khizi Juma Mosque) |
+| **Kerimov Line (Baku)** | **Agakerim Kerimov** (`@I6000000003253535194@`) & **Fatima Kerimova** (`@I6000000003253353833@`) | **Baku City (Баку)**, Baku Uyezd / Baku City Governorate (*Бакинское градоначальство*) | **ARDTA Fond 290** (Baku city Shia mosque metric books) & **ARDTA Fond 43 / Fond 50** (Baku municipal registers & family lists) |
+| **Suleimanov Line** | **Ahmed Suleimanov** (`@I0005@`, b. ~1870–1880) & **Sona** (`@I0006@`) | **Amirjan (Əmircan)**, 2nd Police Section, **Baku Uyezd (Бакинский уезд)**, Baku Governorate | **ARDTA Fond 43** (1886 Family Lists of Amirjan village) & **ARDTA Fond 290** (1903 Amirjan Mosque Metric Book, birth of Aligeidar) |
+| **Bagirov Line (Paternal)** | **Mehti Bagirov** (`@I6000000007514952319@`, b. ~1870–1885) | **Surakhani (Suraxanı)**, **Baku Uyezd (Бакинский уезд)**, Baku Governorate | **ARDTA Fond 43** (1886 Family Lists of Surakhani village) & **ARDTA Fond 290** (Surakhani Mosque Metric Books) |
+| **Maternal Ancestor (Surakhani)** | **Baba /___/** (`@I0067@`), father of **Shirin Bagirova** (`@I6000000003244677973@`) | **Surakhani (Suraxanı)**, **Baku Uyezd (Бакинский уезд)**, Baku Governorate | **ARDTA Fond 290** (Surakhani Mosque Metric Books — marriage of Shirin and Ibragim Bagirov) |
+
+### 1. Halig Kerimov (b. 1880) & Javahir Kerimova (~1885) — Khizi Lineage
+* **Historical Geography:** Although Khizi is geographically linked to Absheron via modern roads, under the Russian Empire Khizi was the administrative center of the **Khizi-Barmak section (*Хызинско-Бармахский участок*)** of **Kuba Uyezd (*Кубинский уезд*)** in Baku Governorate. Searches in ARDTA must be directed to **Kuba Uyezd**, not Baku Uyezd.
+* **1886 Family Lists (ARDTA Fond 43):** Halig Kerimov was born in 1880, meaning he was approximately **6 years old** when the 1886 Family Lists were compiled. He is registered as a young boy in the household of his father (the ancestral patriarch `[Name] Kerim-ogly / Kərim oğlu`) in the village list of **село Хизы, Кубинский уезд**. Finding this entry reveals the grandfather and great-grandfather of Kursum Kerimova and Negmatin Kerimov.
+* **Mosque Metric Books (ARDTA Fond 290):**
+  * Birth and naming record of Halig (c. 1880) in the metric books of the **Khizi Juma Mosque (*Xızı Cümə məscidi*)**.
+  * Marriage record (*kəbin*) of Halig Kerimov and **Javahir Kerimova** (c. 1905–1910), detailing Javahir's father's name and family origin in Khizi.
+  * Birth records of their 7 children, including daughter **Kursum (Kürsüm / Gülsüm, b. 1912)** and son **Negmatin (Nəcməddin, b. ~1928)**.
+* **Biographical Details from Family History (*Yaman Ayrılık*):**
+  * Halig was a respected elder and homeowner in Khizi. When young jurist **Aligeidar Suleimanov** completed his legal education and was posted as a judge to Khizi, he rented a room in Halig Kerimov's home. There Aligeidar fell in love with and married Halig's daughter Kursum.
+  * When Aligeidar was transferred back to Baku, to ease the financial burden of raising 7 children on Halig and ensure young Negmatin received the finest education, Aligeidar brought 3-year-old Negmatin to Baku and raised him in his own home.
+
+### 2. Agakerim Kerimov & Fatima Kerimova — Baku City Lineage
+* **Historical Geography & Naming Conventions:** Lived in **Baku City**. In Azerbaijani naming traditions, the name **Agakerim (*Ağakərim*)** is an honorific compound combining *Ağa* (elder, respected master) with the root *Kərim*. This reflects a classic patronymic rotation (*Ağakərim* -> *Kərimov*).
+* **Descendants:** Father of **Baba Kerimov (`@I6000000003244579993@`, 1932–1995)**, who married **Firangiz Kerimova (`@I6000000003244583152@`, 1935–2025)**. The naming of his son *Baba* (meaning grandfather/elder in Azerbaijani) preserved the memory of an earlier generation patriarch.
+* **Archival Records in ARDTA:**
+  * **Fond 290 (Baku Shia Mosques):** Marriage entry for Agakerim Kerimov and Fatima Kerimova, registered at one of the historical inner-city Baku mosques (such as Taza Pir, Icherisheher Juma Mosque, or local mahalla mosques).
+  * **Fond 50 / Fond 43:** Baku City Administration (*Бакинское градоначальство*) and Petty Bourgeois Guild lists (*Бакинская мещанская управа*), recording urban household real estate and guild memberships.
+
+### 3. Ahmed Suleimanov & Sona — Amirjan Lineage
+* **Historical Geography:** Lived in **Amirjan (*Əmircan*)**, Baku Uyezd, 2nd Police Section. Amirjan is one of the oldest settlements of Absheron, home to the 14th-century Nizamaddin Mosque (1384) and the ancestral home of prominent Azerbaijani philanthropists Murtuza Mukhtarov and Shamsi Asadullayev.
+* **1886 Family Lists (ARDTA Fond 43):** Ahmed Suleimanov was born in the 1870s/1880s. In the 1886 Family Lists of Amirjan village (*село Амирджаны Бакинского уезда*), the household is registered under his father **Suleiman (*Süleyman*)**, with Ahmed listed as a young son.
+* **Vital Record — Aligeidar Suleimanov's Birth Entry (May 22, 1903):**
+  * Registered in **Part I (Births) of the 1903 Metric Book of the Amirjan Mosque** (**ARDTA Fond 290**, Baku Uyezd file for 1903).
+  * Record specifies: Child **Ali Heydar (*Əliheydər*)**, born May 22, 1903; Father: **Ahmed son of Suleiman (*Əhməd Süleyman oğlu*)**; Mother: **Sona**.
+
+### 4. Mehti Bagirov & Baba — Surakhani Lineage
+* **Historical Geography:** Lived in **Surakhani (*Suraxanı*)**, Baku Uyezd. Surakhani was the historic hub of the Absheron oil industry surrounding the ancient Ateshgah temple. The indigenous population was composed of ancient Absheron farming and oilfield worker families.
+* **1886 Family Lists (ARDTA Fond 43):** Mehti Bagirov was born c. 1870–1885. In the 1886 Family Lists of Surakhani village (*село Сураханы Бакинского уезда*), his father **Bagir (*Bağır*)** is recorded as head of household (*tüstü başçısı*), with Mehti listed as son.
+* **Ancestral Patronymic Preservation:** Demonstrating the traditional naming custom, Mehti named one of his own sons **Bagir Bagirov (`@I6000000004371641630@`)**, naming him after the grandfather Bagir.
+* **Children in Surakhani:** Mehti Bagirov was the father of at least 6 children in Surakhani:
+  1. **Ibragim Bagirov (`@I6000000003244661591@`)**, who married **Shirin Bagirova (`@I6000000003244677973@`)**, daughter of **Baba (`@I0067@`)**, and had **Kamil Bagirov (1939–2005)**.
+  2. **Yousif Bagirov (`@I6000000004371589557@`)**
+  3. **Bagir Bagirov (`@I6000000004371641630@`)**
+  4. **Sona Bagirova (`@I6000000007514987236@`)**
+  5. **Hadija Bagirova (`@I6000000007514703149@`)**
+  6. **___ Bagirov (`@I6000000004371671883@`)**
+* **Archival Inquiries:** Both Mehti Bagirov's household and the family of Baba (`@I0067@`) are traceable in the **1886 Surakhani Family Lists (Fond 43)** and the **Surakhani Mosque Metric Books (Fond 290)**.
+
+---
+
+## 5. Practical Guide: Submitting Archival Requests to ARDTA
+
+To obtain certified archival extracts (*arxiv arayışı / архивная справка*) or digitized copies of the original Arabic/Russian records, family researchers can contact the State Historical Archive of Azerbaijan:
+
+* **Institution:** Central State Historical Archive of the Republic of Azerbaijan (*Azərbaycan Respublikasının Dövlət Tarix Arxivi* — ARDTA)
+* **Parent Agency:** National Archival Department under the Cabinet of Ministers of the Republic of Azerbaijan (*Milli Arxiv İdarəsi*)
+* **Official Inquiries Email:** `ardta@milliarxiv.gov.az` / `contact@milliarxiv.gov.az`
+* **Address:** 3 Ziya Bunyadov Avenue, Baku, Azerbaijan (AZ1108)
+
+### Recommended Request Format & Parameters:
+1. **Specify Exact Administrative Geography:**
+   * For **Halig Kerimov**: *Baku Governorate, Kuba Uyezd, Khizi-Barmak section, village of Khizi* (*село Хизы, Хызинский участок, Кубинский уезд, Бакинская губерния*).
+   * For **Ahmed Suleimanov / Aligeidar Suleimanov**: *Baku Governorate, Baku Uyezd, village of Amirjan* (*село Амирджаны, Бакинский уезд, Бакинская губерния*).
+   * For **Mehti Bagirov / Baba / Ibragim Bagirov**: *Baku Governorate, Baku Uyezd, village of Surakhani* (*село Сураханы, Бакинский уезд, Бакинская губерния*).
+   * For **Agakerim Kerimov**: *City of Baku, Shia parish mosques / Baku Petty Bourgeois Board* (*г. Баку, приходские шиитские мечети / Бакинская мещанская управа*).
+2. **Specify Archival Collections:**
+   * **Fond 43 (*Бакинская казенная палата*):** Request lookup in the **1886 Family Lists (*Посемейные списки 1886 г.*)** for the respective village (Khizi, Amirjan, or Surakhani).
+   * **Fond 290 (*Закавказское шиитское духовное правление*):** Request lookup in the **Mosque Metric Books (*Метрические книги мечетей*)** for birth, marriage, or death records across the 1872–1919 period.
+3. **Language of Records:**
+   * Records are indexed in Russian and Arabic script (*Əski əlifba* / Perso-Arabic). Including both Cyrillic and Azerbaijani Latin spellings of names and patronymics facilitates staff indexing.
