@@ -49,6 +49,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                         {name}
                         </td>
                     </tr>
+                    {alt_names_section}
                     {married_name_section}
                     <tr>
                         <td class="ColumnAttribute">Gender</td>

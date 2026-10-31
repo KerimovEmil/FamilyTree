@@ -12,7 +12,7 @@ from utils import (
 from data_extraction import (
     get_name, get_gender, get_birth_data, get_birth_place, get_death_data,
     get_death_place, has_death_event, get_occupation, get_attributes,
-    get_notes, get_photos, get_parents, get_families, parse_date, calculate_age
+    get_notes, get_photos, get_parents, get_families, parse_date, calculate_age, get_alternative_names
 )
 
 def escape_text(val):
@@ -322,6 +322,26 @@ def generate_photo_section(element):
 
     return PHOTO_SECTION_TEMPLATE.format(photo_items='\n'.join(items))
 
+def generate_alternative_names_section(element):
+    """Generate HTML row for alternative names / spellings in the summary table."""
+    alt_names = get_alternative_names(element)
+    if not alt_names:
+        return ""
+
+    alt_items = []
+    for a in alt_names:
+        name_esc = escape_text(a['name'])
+        label_esc = escape_text(a['label'])
+        alt_items.append(f"<span>{name_esc} <small style='color: #666;'>({label_esc})</small></span>")
+
+    alt_html = "<br />\r\n                        ".join(alt_items)
+    return f"""<tr>
+                        <td class="ColumnAttribute">Alternative Names</td>
+                        <td class="ColumnValue">
+                        {alt_html}
+                        </td>
+                    </tr>"""
+
 def generate_html_for_individual(gedcom_parser, element, individuals_data):
     """Generate HTML content for an individual"""
     ptr = element.get_pointer() if element else ""
@@ -345,6 +365,7 @@ def generate_html_for_individual(gedcom_parser, element, individuals_data):
     # Generate photo & notes sections
     photo_section = generate_photo_section(element)
     notes_section = generate_notes_section(gedcom_parser, element)
+    alt_names_section = generate_alternative_names_section(element)
 
     # Generate events rows
     events_rows = generate_events_rows(element)
@@ -372,6 +393,7 @@ def generate_html_for_individual(gedcom_parser, element, individuals_data):
         age_section=age_section,
         photo_section=photo_section,
         notes_section=notes_section,
+        alt_names_section=alt_names_section,
         events_rows=events_rows,
         married_name_section="",
         attributes_section=attributes_section,
