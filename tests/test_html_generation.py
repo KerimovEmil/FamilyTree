@@ -77,6 +77,9 @@ def test_generate_html_for_individual_with_events_and_attributes(tmp_path):
     assert "Boston, USA" in html
     assert "Engineer" in html
     assert "12345" in html  # RFN attribute
+    assert "Alternative Names" in html
+    assert "Johnny Doe" in html
+    assert "(Nickname)" in html
     assert "Birth" in html
     assert "Death" in html
 

@@ -30,6 +30,13 @@ Aligeidar Suleimanov's life is the subject of the 340-page biographical novel **
 4. **1948–1967 (Turkey as "Ali Haydar Aras"):** Emigrated to Turkey in 1948 under a special Turkish Grand National Assembly (TBMM) naturalization decree, adopting the surname **Aras**. He stayed at Princess Emine's *Mermer Köşk* in Istanbul, married **Nazik Belin** in 1951, and managed agricultural estates in Halkalı (*Ada Çiftliği*), Sarıyer (*Bozkurt Tavuk Çiftliği*), **Gemiç village in Gemlik (Bursa)**, and General Şükrü Pasha's **Tuzla Çiftliği**.
 5. **1966–1967 (Reconnection via Maestro Niyazi & Passing):** In 1966, renowned Azerbaijani conductor **Maestro Niyazi** carried a letter, photos, and gold gifts from Aligeidar in Turkey to his family in Baku, returning with a letter titled *"Həyat yoldaşım"* (*My spouse*) from Kursum and family photographs. Having suffered his first heart attack during captivity in Italy, Aligeidar died of a second heart attack on **March 7, 1967** in Gemlik and was buried in Gemiç Village Cemetery.
 
+### Courtship in Khizi: Family Lore & The "Bucket of Water" Story
+An authentic, vivid oral tradition preserved within the family recounts the dramatic story of how Aligeidar Suleimanov and Kursum Kerimova met in Khizi:
+
+1. **The Bucket of Water from the Second Floor:** In traditional rural Khizi, strict modesty customs meant that young unmarried women kept their faces veiled or covered in the presence of strangers and guests. Aligeidar, who was renting a room on the upper floor of Halig Kerimov's house, was eager to see Kursum's face. He devised a clever ruse: from the second floor, he arranged to pour or drop a bucket of water down near or onto Kursum. Startled and soaked, Kursum instinctively looked straight up to see where the water had come from—giving Aligeidar a clear, direct view of her face. He was instantly captivated by her beauty and resolved that she was the woman he must marry.
+2. **The Conflict with Halig Kerimov & The Jail Episode:** When Aligeidar formally asked for Kursum's hand, her father Halig Kerimov (`@I6000000003253617049@`) adamantly refused to give his blessing to an outsider from Baku. As a young judge and chief legal authority posted to the Khizi court, Aligeidar was not accustomed to being denied; in an audacious exercise of judicial leverage, he ordered Halig temporarily locked up in the local jail to compel him to reconsider his refusal!
+3. **The Emissary to Amirjan & The Uncle's Good Word:** Halig remained determined to protect his daughter and dispatched a trusted relative from Khizi across the province to Amirjan (Aligeidar's native village on the Absheron peninsula) to conduct a discreet background check on Aligeidar's family, character, and lineage. In an extraordinary stroke of fate, the very first local resident the relative met upon arriving in Amirjan and asked about Aligeidar happened to be **Aligeidar's own uncle**! The uncle gave an honorable, highly respected account of Aligeidar and the Suleimanov family, reassuring the relative and convincing Halig to drop his objections and joyfully consent to the marriage.
+
 ### Published Sources
 * Dilqəm Əhməd, *"Misir kralının xilas etdiyi azərbaycanlı: Süleymanovun təsirli həyat hekayəsi"* — [Teleqraf.az (Feb 21, 2020)](https://teleqraf.az/news/toplum/238604.html) / [Aqreqator.az](https://aqreqator.az/az/medeniyyet/3463907)
 * Metin Es, *"Alihaydar Süleymanov’un hayatını yazdı"* — [Hürriyet (Jan 30, 2018)](https://www.hurriyet.com.tr/dunya/alihaydar-suleymanovun-hayatini-yazdi-40725936)
@@ -115,8 +122,9 @@ Under the 1872 imperial statute (*"Положение об управлении 
   * Birth and naming record of Halig (c. 1880) in the metric books of the **Khizi Juma Mosque (*Xızı Cümə məscidi*)**.
   * Marriage record (*kəbin*) of Halig Kerimov and **Javahir Kerimova** (c. 1905–1910), detailing Javahir's father's name and family origin in Khizi.
   * Birth records of their 7 children, including daughter **Kursum (Kürsüm / Gülsüm, b. 1912)** and son **Negmatin (Nəcməddin, b. ~1928)**.
-* **Biographical Details from Family History (*Yaman Ayrılık*):**
-  * Halig was a respected elder and homeowner in Khizi. When young jurist **Aligeidar Suleimanov** completed his legal education and was posted as a judge to Khizi, he rented a room in Halig Kerimov's home. There Aligeidar fell in love with and married Halig's daughter Kursum.
+* **Biographical Details from Family History (*Yaman Ayrılık* & Oral Lore):**
+  * Halig was a respected elder and homeowner in Khizi. When young jurist **Aligeidar Suleimanov** completed his legal education and was posted as a judge to Khizi, he rented a room in Halig Kerimov's home.
+  * **The Courtship Impasse:** Aligeidar fell in love with Kursum after dropping a bucket of water from the second floor to catch a glimpse of her face. When Halig refused his initial proposal, Aligeidar briefly jailed him using his judicial power. Halig dispatched a relative to Amirjan to investigate Aligeidar's family; by coincidence, the first person the relative asked was Aligeidar's uncle, whose honorable report persuaded Halig to consent.
   * When Aligeidar was transferred back to Baku, to ease the financial burden of raising 7 children on Halig and ensure young Negmatin received the finest education, Aligeidar brought 3-year-old Negmatin to Baku and raised him in his own home.
 
 ### 2. Agakerim Kerimov & Fatima Kerimova — Baku City Lineage
@@ -168,3 +176,27 @@ To obtain certified archival extracts (*arxiv arayışı / архивная сп
    * **Fond 290 (*Закавказское шиитское духовное правление*):** Request lookup in the **Mosque Metric Books (*Метрические книги мечетей*)** for birth, marriage, or death records across the 1872–1919 period.
 3. **Language of Records:**
    * Records are indexed in Russian and Arabic script (*Əski əlifba* / Perso-Arabic). Including both Cyrillic and Azerbaijani Latin spellings of names and patronymics facilitates staff indexing.
+
+
+---
+
+## 6. Comprehensive Multilingual & Transliteration Reference Table
+
+Because Russian imperial clerks, Soviet ZAGS registrars, Arabic-script Islamic mollas, and modern Azerbaijani registries transcribed names differently, use the following multilingual matrix when querying archives or databases:
+
+| GEDCOM Primary Name | Azerbaijani Latin | Russian Cyrillic (Imperial & Soviet) | Arabic Script (*Əski əlifba*) | Variant Transliterations |
+| :--- | :--- | :--- | :--- | :--- |
+| **Halig Kerimov** (`@I6000000003253617049@`) | Xaliq Kərimov / Xaliq Kərim oğlu | Халиг Керимов / Халик Керим-оглы | خالق كریموف / خالق كریم اوغلو | Khalig Kerimov, Khaliq Karimov |
+| **Agakerim Kerimov** (`@I6000000003253535194@`) | Ağakərim Kərimov / Ağakərim Kərim oğlu | Агакерим Керимов / Ага Керим Керим-оглы | آقاكریم كریموف / آقا كریم كریم اوغلو | Aghakerim Kerimov, Agakarim Karimov |
+| **Ahmed Suleimanov** (`@I0005@`) | Əhməd Süleymanov / Əhməd Süleyman oğlu | Ахмед Сулейманов / Ахмед Сюлейманов | احمد سلیمانوف / احمد سلیمان اوغلو | Ahmad Suleymanov, Akhmed Suleymanov |
+| **Mehti Bagirov** (`@I6000000007514952319@`) | Mehdi Bağırov / Mehdi Bağır oğlu | Мехти Багиров / Мехди Багир-оглы | مهدی باقروف / مهدی باقر اوغلو | Mehdi Baghirov, Mekhti Bagirov |
+| **Baba** (`@I0067@`) | Baba | Баба | بابا | Baba |
+| **Aligeidar Suleimanov** (`@I6000000003244799397@`) | Əliheydər Süleymanov / Ali Haydar Aras | Алигейдар Сулейманов / Али-Гейдар | علی حیدر سلیمانوف | Aliheydar Suleymanov, Gemiçli Haydar Bey |
+| **Kursum Suleimanova** (`@I6000000003244590852@`) | Kürsüm Süleymanova / Gülsüm Kərimova | Курсум Сулейманова / Гюльсум Керимова | كلثوم كريموا / كلثوم خالق قیزی | Gulsum Kerimova, Kulsum Suleymanova |
+| **Javahir Kerimova** (`@I6000000003253500332@`) | Cəvahir Kərimova | Джавахир Керимова / Джаваир Керимова | جواهر كريموا | Dzhavakhir Kerimova |
+| **Fatima Kerimova** (`@I6000000003253353833@`) | Fatma Kərimova / Fatimə Kərimova | Фатима Керимова / Фатма Керимова | فاطمه كريموا | Fatma Kerimova |
+| **Ibragim Bagirov** (`@I6000000003244661591@`) | İbrahim Bağırov / İbrahim Mehdi oğlu | Ибрагим Багиров / Ибрагим Мехти-оглы | ابراهیم باقروف | Ibrahim Bagirov, Ibrahim Baghirov |
+| **Shirin Bagirova** (`@I6000000003244677973@`) | Şirin Bağırova / Şirin Baba qızı | Ширин Багирова / Ширин Баба-кызы | شیرین باقرووا | Shirin Bagirova |
+| **Hadjiismail Gulcheev** (`@I6000000003244679659@`) | Hadjiismail Gulcheev | Хаджиисмаил Гульчеев / Хаджи-Исмаил Гульчиев | — | Hadjismail Gulcheev, Гулчетæ Хадзыисмайл |
+
+*Ready-to-send archival request email templates in Azerbaijani, Russian, and English are available in [`docs/ARDTA_ARCHIVAL_REQUEST_EMAIL.md`](ARDTA_ARCHIVAL_REQUEST_EMAIL.md).*
