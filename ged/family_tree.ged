@@ -6453,9 +6453,12 @@
 1 FAMS @F0100@
 1 NOTE @N0033@
 0 @I0116@ INDI
-1 NAME Mustafa /Çakıcı/
+1 NAME Mustafa /Cakici/
 2 GIVN Mustafa
-2 SURN Çakıcı
+2 SURN Cakici
+1 NAME Mustafa /Çakıcı/
+2 TYPE aka
+2 NOTE Turkish
 1 SEX M
 1 BIRT
 2 DATE ABT 1920
