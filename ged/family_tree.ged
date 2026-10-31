@@ -2427,6 +2427,8 @@
 1 DEAT
 2 DATE 1998
 2 PLAC Turkey
+1 FAMC @F0120@
+2 PEDI birth
 1 FAMS @F6000000003692965192@
 1 NOTE @N0019@
 1 CHAN
@@ -5848,6 +5850,8 @@
 2 DATE 13 JUN 2020
 3 TIME 22:58:24
 0 @F6000000004371293691@ FAM
+1 HUSB @I0121@
+1 WIFE @I0122@
 1 CHIL @I6000000003244679659@
 1 CHIL @I6000000004371293686@
 1 CHIL @I6000000007514876787@
@@ -6273,6 +6277,8 @@
 1 OCCU Author, Writer
 1 FAMC @F6000000003692965192@
 2 PEDI adopted
+1 FAMC @F0119@
+2 PEDI birth
 1 FAMS @F0114@
 1 NOTE @N0020@
 0 @I0105@ INDI
@@ -6323,18 +6329,15 @@
 1 FAMS @F0115@
 1 NOTE @N0026@
 0 @I0109@ INDI
-1 NAME Uncle /Suleimanov/
-2 GIVN Uncle
+1 NAME ___ /Suleimanov/
+2 GIVN ___
 2 SURN Suleimanov
-1 NAME Əmi /Süleymanov/
+1 NAME ___ /Süleymanov/
 2 TYPE aka
 2 NOTE Azerbaijani Latin
-1 NAME Дядя /Сулейманов/
+1 NAME ___ /Сулейманов/
 2 TYPE aka
 2 NOTE Russian Cyrillic
-1 NAME عمو /سلیمانوف/
-2 TYPE aka
-2 NOTE Arabic script
 1 SEX M
 1 BIRT
 2 DATE ABT 1878
@@ -6449,6 +6452,91 @@
 1 DEAT Y
 1 FAMS @F0100@
 1 NOTE @N0033@
+0 @I0116@ INDI
+1 NAME Mustafa /Cakici/
+2 GIVN Mustafa
+2 SURN Cakici
+1 NAME Mustafa /Çakıcı/
+2 TYPE aka
+2 NOTE Turkish
+1 SEX M
+1 BIRT
+2 DATE ABT 1920
+2 PLAC Turkey
+1 DEAT Y
+1 FAMS @F0119@
+1 NOTE @N0034@
+0 @I0117@ INDI
+1 NAME ___ /Belin/
+2 GIVN ___
+2 SURN Belin
+1 SEX M
+1 BIRT
+2 DATE ABT 1895
+2 PLAC Turkey
+1 DEAT Y
+1 FAMS @F0120@
+0 @I0118@ INDI
+1 NAME ___ /___/
+2 GIVN ___
+2 SURN ___
+1 SEX F
+1 BIRT
+2 DATE ABT 1900
+2 PLAC Turkey
+1 DEAT Y
+1 FAMC @F0121@
+2 PEDI birth
+1 FAMS @F0120@
+0 @I0119@ INDI
+1 NAME Canan /___/
+2 GIVN Canan
+2 SURN ___
+1 SEX F
+1 BIRT
+2 DATE ABT 1895
+2 PLAC Istanbul, Ottoman Empire
+1 DEAT Y
+1 FAMC @F0121@
+2 PEDI birth
+1 NOTE @N0035@
+0 @I0120@ INDI
+1 NAME ___ /___/
+2 GIVN ___
+2 SURN ___
+1 SEX M
+1 BIRT
+2 DATE ABT 1870
+2 PLAC Ottoman Empire
+1 DEAT Y
+1 FAMS @F0121@
+0 @I0121@ INDI
+1 NAME ___ /Gulcheev/
+2 GIVN ___
+2 SURN Gulcheev
+1 NAME ___ /Гульчеев/
+2 TYPE aka
+2 NOTE Russian Cyrillic
+1 NAME ___ /Гулчетæ/
+2 TYPE aka
+2 NOTE Digor-Ossetian
+1 SEX M
+1 BIRT
+2 DATE ABT 1875
+2 PLAC Chikola, Vladikavkaz Okrug, Terek Oblast, Russian Empire
+1 DEAT Y
+1 FAMS @F6000000004371293691@
+1 NOTE @N0036@
+0 @I0122@ INDI
+1 NAME ___ /___/
+2 GIVN ___
+2 SURN ___
+1 SEX F
+1 BIRT
+2 DATE ABT 1880
+2 PLAC Chikola, Vladikavkaz Okrug, Terek Oblast, Russian Empire
+1 DEAT Y
+1 FAMS @F6000000004371293691@
 0 @F0115@ FAM
 1 HUSB @I0108@
 1 CHIL @I0005@
@@ -6462,6 +6550,17 @@
 0 @F0118@ FAM
 1 HUSB @I0113@
 1 CHIL @I6000000007514952319@
+0 @F0119@ FAM
+1 HUSB @I0116@
+1 CHIL @I0104@
+0 @F0120@ FAM
+1 HUSB @I0117@
+1 WIFE @I0118@
+1 CHIL @I6000000003692965187@
+0 @F0121@ FAM
+1 HUSB @I0120@
+1 CHIL @I0118@
+1 CHIL @I0119@
 0 @N0005@ NOTE Made the first version of this family tree
 0 @N0006@ NOTE three different wives, and maybe 2/3 kids
 0 @N0007@ NOTE By official documents born in 1931 so as to not to go to war
@@ -6486,8 +6585,8 @@
 1 CONT Married Aligeidar and raised 5 children in Baku (Sonia, Maxura, Firangiz, Ahmad, Bahram). After Aligeidar went missing in WWII, she never remarried, reconnecting with him by letter via Maestro Niyazi in autumn 1966 before passing away in 1992.
 0 @N0017@ NOTE According to the family biography "Yaman Ayrılık", died tragically at a young age in Baku from a stray police bullet.
 0 @N0018@ NOTE At age 3, he was brought from Khizi to Baku and raised in the household of his elder sister Kursum and brother-in-law Aligeidar Suleimanov to help support his father Halig Kerimov's large family.
-0 @N0019@ NOTE Relative of Canan Hanım at Princess Emine's Mermer Köşk in Istanbul; married Ali Haydar Aras (Aligeidar Suleimanov) in 1951 in Istanbul and raised their adopted daughter Samiye Kaplan.
-0 @N0020@ NOTE Adopted daughter of Ali Haydar Aras (Aligeidar Suleimanov) and Nazik Belin in Gemiç (Gemlik, Bursa); biological daughter of Mustafa Çakıcı. Author of the biographical novel "Yaman Ayrılık" (2017) chronicling her father's life and the 2007/2010 family reunion between Turkey, Germany, and Baku.
+0 @N0019@ NOTE Daughter of ___ Belin (@I0117@) and niece of Canan (@I0119@) at Princess Emine's Mermer Köşk in Istanbul; married Ali Haydar Aras (Aligeidar Suleimanov, @I6000000003244799397@) in 1951 in Istanbul and raised their adopted daughter Samiye Kaplan (@I0104@).
+0 @N0020@ NOTE Adopted daughter of Ali Haydar Aras (Aligeidar Suleimanov, @I6000000003244799397@) and Nazik Belin (@I6000000003692965187@) in Gemiç (Gemlik, Bursa); biological daughter of Mustafa Çakıcı (@I0116@). Author of the biographical novel "Yaman Ayrılık" (2017) chronicling her father's life and the 2007/2010 family reunion between Turkey, Germany, and Baku.
 0 @N0021@ NOTE Respected elder and homeowner in Khizi (historically Kuba Uyezd, Baku Governorate). Father of 7 children with his wife Javahir Kerimova (@I6000000003253500332@), including Kursum Kerimova (@I6000000003244590852@) and Negmatin Kerimov (@I6000000003253364983@).
 1 CONT When young jurist Aligeidar Suleimanov (@I6000000003244799397@) was appointed to the Khizi court, he rented a room in Halig Kerimov's house, where Aligeidar fell in love with Kursum after dropping a bucket of water from the second floor to see her face.
 1 CONT When Halig initially refused his consent, Aligeidar briefly held Halig in the local jail. Halig sent a relative to Amirjan to investigate Aligeidar's family, and the first person the relative asked happened to be Aligeidar's uncle (@I0109@), who gave a glowing report that resolved the impasse.
@@ -6527,5 +6626,8 @@
 1 CONT Marriage registered in the Surakhani Mosque Metric Books under the Transcaucasian Shia Spiritual Board (ARDTA Fond 290).
 0 @N0033@ NOTE Mother of Shirin Bagirova (@I6000000003244677973@) and her sister (@I0068@) in Surakhani (Baku Uyezd), and maternal grandmother of Kamil Bagirov (@I6000000003244534928@, 1939-2005).
 1 CONT Wife of Baba (@I0067@).
-1 CONT Marriage registered in the Surakhani Mosque Metric Books under the Transcaucasian Shia Spiritual Board (ARDTA Fond 290).
+0 @N0034@ NOTE Biological father of Samiye Kaplan (@I0104@). Seasonal agricultural and olive worker in Gemiç (Gemlik, Bursa, Turkey).
+0 @N0035@ NOTE Senior administrator and prominent household figure at Princess Emine Tevhide's Mermer Köşk in Istanbul. Maternal aunt of Nazik Belin (@I6000000003692965187@); arranged the introduction and marriage of Nazik Belin to Ali Haydar Aras (Aligeidar Suleimanov, @I6000000003244799397@) in Istanbul in 1951.
+0 @N0036@ NOTE Patriarch of the Gulcheev (Гулчетæ) family in Chikola (historically Volno-Magometanskoye), Irafsky District, North Ossetia. Father of Hadjiismail Gulcheev (@I6000000003244679659@), Hagjimurad Gulchiev (@I6000000004371293686@), Lisa Gulchieva (@I6000000007514876787@), and Rosa Gulchieva (@I6000000007515168201@).
+1 CONT Household recorded in the 1886 Family Lists of Volno-Magometanskoye (Chikola), Vladikavkaz Okrug, Terek Oblast.
 0 TRLR

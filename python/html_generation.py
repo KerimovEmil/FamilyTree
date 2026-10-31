@@ -296,7 +296,7 @@ def linkify_individual_references(text, individuals_data):
         return escape_text(text)
 
     pattern = re.compile(
-        r"(?P<name>(?:[A-Z][a-zA-Z\u00C0-\u024F\u0400-\u04FF']*(?:'s)?(?:\s+(?:[A-Z][a-zA-Z\u00C0-\u024F\u0400-\u04FF']+|uncle|sister))*|her sister))"
+        r"(?P<name>(?:[A-Z\u00C0-\u024F\u0400-\u04FF_][a-zA-Z\u00C0-\u024F\u0400-\u04FF'_]*(?:'s)?(?:\s+(?:[A-Z\u00C0-\u024F\u0400-\u04FF_][a-zA-Z\u00C0-\u024F\u0400-\u04FF'_]*|uncle|sister))*|her sister))"
         r'\s*\((?P<paren>[^()]*?@(I[0-9a-zA-Z_]+)@[^()]*?)\)'
     )
 

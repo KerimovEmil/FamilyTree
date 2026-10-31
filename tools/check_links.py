@@ -25,7 +25,10 @@ HREF_RE = re.compile(r'href="([^"#]*)"')
 def fetch(url):
     """Return (url, status, body) for a URL; status is an int or error string."""
     try:
-        with urllib.request.urlopen(url, timeout=20) as resp:
+        parsed = urllib.parse.urlsplit(url)
+        quoted_path = urllib.parse.quote(parsed.path)
+        quoted_url = urllib.parse.urlunsplit((parsed.scheme, parsed.netloc, quoted_path, parsed.query, parsed.fragment))
+        with urllib.request.urlopen(quoted_url, timeout=20) as resp:
             return url, resp.status, resp.read().decode('utf-8', 'replace')
     except Exception as exc:  # noqa: BLE001 - report any failure as broken
         return url, getattr(exc, 'code', str(exc)), ''
