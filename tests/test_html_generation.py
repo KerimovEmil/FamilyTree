@@ -20,6 +20,7 @@ from html_generation import (
     generate_relationship_finder_html,
     build_family_graph,
     generate_interactive_graph_html,
+    linkify_individual_references,
 )
 
 
@@ -265,3 +266,29 @@ def test_build_family_graph(tmp_path):
     solo = graph["I4"]
     assert "I1" in solo["parents"]
     assert len(solo["parents"]) == 1
+
+
+def test_linkify_individual_references():
+    individuals_data = {
+        'id_john': {'path': 'ppl/doe/john_123.html'},
+        'id_jane': {'path': 'ppl/smith/jane_456.html'}
+    }
+    # Mock generate_id_from_pointer behavior for the test
+    # In real code: generate_id_from_pointer("@I1@") -> md5 prefix
+    # Let's import generate_id_from_pointer
+    from utils import generate_id_from_pointer
+
+    id1 = generate_id_from_pointer("@I1@")
+    id2 = generate_id_from_pointer("@I2@")
+    ind_data = {
+        id1: {'path': 'ppl/doe/john_123.html'},
+        id2: {'path': 'ppl/smith/jane_456.html'}
+    }
+
+    note_text = "Paternal grandfather of John Doe (@I1@) and Jane Smith (@I2@)."
+    result = linkify_individual_references(note_text, ind_data)
+    assert '<a href="../../ppl/doe/john_123.html">John Doe</a>' in result
+    assert '<a href="../../ppl/smith/jane_456.html">Jane Smith</a>' in result
+    assert '@I1@' not in result
+    assert '@I2@' not in result
+    assert 'Paternal grandfather of ' in result

@@ -4,6 +4,7 @@ Functions for generating HTML content from GEDCOM data with new directory struct
 """
 
 import html
+import re
 import os
 from utils import (
     generate_id_from_pointer, get_surname_file_path, get_surname_relative_path,
@@ -285,7 +286,49 @@ def generate_attributes_section(element):
 
     return ATTRIBUTES_SECTION_TEMPLATE.format(attributes_rows='\n'.join(attributes_rows))
 
-def generate_notes_section(gedcom_parser, element):
+def linkify_individual_references(text, individuals_data):
+    """
+    Detect references to individuals like 'Name (@I...NUMBER...@)' in notes text,
+    and convert the name into a hyperlink pointing to the individual's profile page,
+    omitting the raw ID number from the visible text.
+    """
+    if not individuals_data or '@I' not in text:
+        return escape_text(text)
+
+    pattern = re.compile(
+        r"(?P<name>(?:[A-Z][a-zA-Z\u00C0-\u024F\u0400-\u04FF']*(?:'s)?(?:\s+(?:[A-Z][a-zA-Z\u00C0-\u024F\u0400-\u04FF']+|uncle|sister))*|her sister))"
+        r'\s*\((?P<paren>[^()]*?@(I[0-9a-zA-Z_]+)@[^()]*?)\)'
+    )
+
+    last_end = 0
+    pieces = []
+    for m in pattern.finditer(text):
+        pieces.append(escape_text(text[last_end:m.start()]))
+
+        name = m.group('name')
+        paren_content = m.group('paren')
+        indi_ptr = m.group(3)
+
+        ind_id = generate_id_from_pointer(f"@{indi_ptr}@")
+        if ind_id in individuals_data:
+            path = individuals_data[ind_id]['path']
+            clean_paren = re.sub(rf',?\s*@{indi_ptr}@\s*,?', '', paren_content).strip()
+            clean_paren = re.sub(r'^,\s*|,\s*$', '', clean_paren).strip()
+
+            link = f'<a href="../../{path}">{escape_text(name)}</a>'
+            if clean_paren:
+                pieces.append(f"{link} ({escape_text(clean_paren)})")
+            else:
+                pieces.append(link)
+        else:
+            pieces.append(escape_text(m.group(0)))
+
+        last_end = m.end()
+
+    pieces.append(escape_text(text[last_end:]))
+    return "".join(pieces)
+
+def generate_notes_section(gedcom_parser, element, individuals_data=None):
     """Generate the HTML notes/biography section if notes are present."""
     notes = get_notes(gedcom_parser, element)
     if not notes:
@@ -293,7 +336,15 @@ def generate_notes_section(gedcom_parser, element):
 
     paragraphs = []
     for note in notes:
-        lines = [escape_text(line) for line in note.splitlines() if line.strip()]
+        lines = []
+        for line in note.splitlines():
+            line_str = line.strip()
+            if not line_str:
+                continue
+            if individuals_data:
+                lines.append(linkify_individual_references(line_str, individuals_data))
+            else:
+                lines.append(escape_text(line_str))
         if lines:
             paragraphs.append("<p style=\"margin: 0 0 8px 0;\">" + "<br />".join(lines) + "</p>")
 
@@ -301,6 +352,7 @@ def generate_notes_section(gedcom_parser, element):
         return ""
 
     return NOTES_SECTION_TEMPLATE.format(notes_items='\n'.join(paragraphs))
+
 
 def generate_photo_section(element):
     """Generate the HTML photo section if OBJE -> FILE photos are present."""
@@ -364,7 +416,7 @@ def generate_html_for_individual(gedcom_parser, element, individuals_data):
 
     # Generate photo & notes sections
     photo_section = generate_photo_section(element)
-    notes_section = generate_notes_section(gedcom_parser, element)
+    notes_section = generate_notes_section(gedcom_parser, element, individuals_data)
     alt_names_section = generate_alternative_names_section(element)
 
     # Generate events rows
