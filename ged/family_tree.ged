@@ -408,13 +408,19 @@
 1 NAME Ramiz /Kerimov/
 2 GIVN Ramiz
 2 SURN Kerimov
+1 NAME Ramiz /Kərimov/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
 1 SEX M
+1 BIRT
+2 DATE 7 AUG 1958
 1 FAMC @F0084@
 2 PEDI birth
 1 FAMS @F6000000004371454463@
+1 NOTE Son of Mirzakerim (Mirzə-Kərim oğlu)
 1 CHAN
-2 DATE 24 JUL 2022
-3 TIME 15:32:52
+2 DATE 7 NOV 2026
+3 TIME 12:00:00
 0 @I0036@ INDI
 1 NAME Anahamin /Kerimova/
 2 GIVN Anahamin
@@ -2767,22 +2773,26 @@
 2 DATE 24 JUL 2022
 3 TIME 14:52:39
 0 @I6000000004371156636@ INDI
-1 NAME Nasila /Kerimova/
-2 GIVN Nasila
+1 NAME Nazila /Kerimova/
+2 GIVN Nazila
 2 SURN Kerimova
+1 NAME Nazilə /Kərimova/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
 1 NAME Nasila /Kerimova/
-2 TYPE married
-2 GIVN Nasila
-2 SURN Kerimova
+2 TYPE aka
+2 NOTE Alternate transliteration
 1 SEX F
-1 BIRT Y
+1 BIRT
+2 DATE 21 APR 1958
 1 OCCU
 1 FAMC @F6000000004370927754@
 2 PEDI birth
 1 FAMS @F6000000004371454463@
+1 NOTE Daughter of Anver (Ənvər qızı)
 1 CHAN
-2 DATE 2 DEC 2014
-3 TIME 20:41:42
+2 DATE 7 NOV 2026
+3 TIME 12:00:00
 0 @I6000000004371156782@ INDI
 1 NAME Tural /Agazadeh/
 2 GIVN Tural
@@ -3115,21 +3125,31 @@
 2 DATE 23 MAR 2025
 3 TIME 20:28:23
 0 @I6000000004371334544@ INDI
-1 NAME Engie /Kerimova/
-2 GIVN Engie
+1 NAME Inci /Kerimova/
+2 GIVN Inci
 2 SURN Kerimova
-1 NAME Engie /Kerimova/
+1 NAME İnci /Kərimova/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Inci /Kangarli/
 2 TYPE married
-2 GIVN Engie
-2 SURN Kerimova
+2 NOTE Married name
+1 NAME İnci /Kəngərli/
+2 TYPE aka
+2 NOTE Azerbaijani Latin (Married)
+1 NAME Engie /Kerimova/
+2 TYPE aka
+2 NOTE Anglicized spelling
 1 SEX F
-1 BIRT Y
+1 BIRT
+2 DATE 15 MAY 1995
 1 FAMC @F6000000004371454463@
 2 PEDI birth
 1 FAMS @F0079@
+1 NOTE Daughter of Ramiz (Ramiz qızı)
 1 CHAN
-2 DATE 24 JUL 2022
-3 TIME 15:32:52
+2 DATE 7 NOV 2026
+3 TIME 12:00:00
 0 @I6000000004371349096@ INDI
 1 NAME Ilaha /Ahmedova/
 2 GIVN Ilaha
@@ -3280,18 +3300,23 @@
 1 NAME Orhan /Kerimov/
 2 GIVN Orhan
 2 SURN Kerimov
-1 NAME Orhan /Kerimov/
-2 TYPE married
-2 GIVN Orhan
-2 SURN Kerimov
+1 NAME Orxan /Kərimov/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Orkhan /Kerimov/
+2 TYPE aka
+2 NOTE Alternate transliteration
 1 SEX M
-1 BIRT Y
+1 BIRT
+2 DATE 29 SEP 1989
 1 OCCU
 1 FAMC @F6000000004371454463@
 2 PEDI birth
+1 FAMS @F0122@
+1 NOTE Son of Ramiz (Ramiz oğlu)
 1 CHAN
-2 DATE 24 JUL 2022
-3 TIME 15:32:52
+2 DATE 7 NOV 2026
+3 TIME 12:00:00
 0 @I6000000004371510455@ INDI
 1 NAME Saida /___/
 2 GIVN Saida
@@ -5333,10 +5358,12 @@
 2 DATE 24 JUL 2022
 3 TIME 14:55:21
 0 @F0079@ FAM
+1 HUSB @I0123@
 1 WIFE @I6000000004371334544@
+1 CHIL @I0124@
 1 CHAN
-2 DATE 24 JUL 2022
-3 TIME 15:05:14
+2 DATE 7 NOV 2026
+3 TIME 12:00:00
 0 @F0080@ FAM
 1 HUSB @I6000000004371496044@
 1 CHIL @I0022@
@@ -6537,6 +6564,44 @@
 2 PLAC Chikola, Vladikavkaz Okrug, Terek Oblast, Russian Empire
 1 DEAT Y
 1 FAMS @F6000000004371293691@
+0 @I0123@ INDI
+1 NAME Orkhan /Kangarli/
+2 GIVN Orkhan
+2 SURN Kangarli
+1 NAME Orxan /Kəngərli/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 SEX M
+1 BIRT
+2 DATE 13 NOV 1992
+1 FAMS @F0079@
+1 NOTE Son of Nazim (Nazim oğlu)
+0 @I0124@ INDI
+1 NAME Cahan /Kangarli/
+2 GIVN Cahan
+2 SURN Kangarli
+1 NAME Cahan /Kəngərli/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 SEX F
+1 BIRT
+2 DATE 18 DEC 2021
+1 FAMC @F0079@
+2 PEDI birth
+1 NOTE Daughter of Orkhan (Orxan qızı)
+0 @I0125@ INDI
+1 NAME Nazila /Kerimova/
+2 GIVN Nazila
+2 SURN Kerimova
+1 NAME Nazilə /Kərimova/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 SEX F
+1 BIRT
+2 DATE 25 SEP 2015
+1 FAMC @F0122@
+2 PEDI birth
+1 NOTE Daughter of Orhan (Orxan qızı)
 0 @F0115@ FAM
 1 HUSB @I0108@
 1 CHIL @I0005@
@@ -6561,6 +6626,12 @@
 1 HUSB @I0120@
 1 CHIL @I0118@
 1 CHIL @I0119@
+0 @F0122@ FAM
+1 HUSB @I6000000004371510077@
+1 CHIL @I0125@
+1 CHAN
+2 DATE 7 NOV 2026
+3 TIME 12:00:00
 0 @N0005@ NOTE Made the first version of this family tree
 0 @N0006@ NOTE three different wives, and maybe 2/3 kids
 0 @N0007@ NOTE By official documents born in 1931 so as to not to go to war
