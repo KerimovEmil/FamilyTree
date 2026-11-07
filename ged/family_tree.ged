@@ -215,25 +215,40 @@
 2 DATE 24 JUL 2022
 3 TIME 14:25:11
 0 @I0016@ INDI
-1 NAME ___ /___/
-2 GIVN ___
-2 SURN ___
+1 NAME Leyla /Rasulova/
+2 GIVN Leyla
+2 SURN Rasulova
+1 NAME Leyla /Rəsulova/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
 1 SEX F
+1 BIRT
+2 DATE 27 OCT 2020
 1 FAMC @F0074@
 2 PEDI birth
+1 NOTE Daughter of Boyukaga Rasulov and Ilaha Ahmedova
 1 CHAN
-2 DATE 23 MAR 2025
-3 TIME 20:27:59
+2 DATE 7 NOV 2026
+3 TIME 12:00:00
 0 @I0017@ INDI
+1 NAME Sona /Ahmadzada/
+2 GIVN Sona
+2 SURN Ahmadzada
+1 NAME Sona /Əhmədzadə/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
 1 NAME Sonia /Ahmedova/
-2 GIVN Sonia
-2 SURN Ahmedova
+2 TYPE aka
+2 NOTE Russian / patronymic surname
 1 SEX F
+1 BIRT
+2 DATE 16 JUN 2012
 1 FAMC @F0075@
 2 PEDI birth
+1 NOTE Daughter of Samad (Səməd qızı)
 1 CHAN
-2 DATE 24 JUL 2022
-3 TIME 14:44:11
+2 DATE 7 NOV 2026
+3 TIME 12:00:00
 0 @I0018@ INDI
 1 NAME Adan /___/
 2 GIVN Adan
@@ -2643,22 +2658,26 @@
 2 DATE 29 NOV 2014
 3 TIME 10:53:47
 0 @I6000000004370915745@ INDI
-1 NAME Babash /Ahmedov/
-2 GIVN Babash
+1 NAME Boyukaga /Ahmedov/
+2 GIVN Boyukaga
 2 SURN Ahmedov
+1 NAME Böyükağa /Əhmədov/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
 1 NAME Babash /Ahmedov/
-2 TYPE married
-2 GIVN Babash
-2 SURN Ahmedov
+2 TYPE aka
+2 NOTE Traditional family nickname
 1 SEX M
-1 BIRT Y
+1 BIRT
+2 DATE 28 FEB 1957
 1 OCCU
 1 FAMC @F6000000004371230149@
 2 PEDI birth
 1 FAMS @F6000000004371357057@
+1 NOTE Son of Ahmed (Əhməd oğlu)
 1 CHAN
-2 DATE 2 DEC 2014
-3 TIME 20:41:12
+2 DATE 7 NOV 2026
+3 TIME 12:00:00
 0 @I6000000004370927749@ INDI
 1 NAME Anver /Agayev/
 2 GIVN Anver
@@ -2724,22 +2743,26 @@
 2 DATE 24 JUL 2022
 3 TIME 15:08:08
 0 @I6000000004371128405@ INDI
-1 NAME Samed /Ahmedov/
-2 GIVN Samed
-2 SURN Ahmedov
 1 NAME Samad /Ahmedov/
-2 TYPE married
 2 GIVN Samad
 2 SURN Ahmedov
+1 NAME Səməd /Əhmədov/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Samed /Ahmedov/
+2 TYPE aka
+2 NOTE Alternate spelling
 1 SEX M
-1 BIRT Y
+1 BIRT
+2 DATE 2 AUG 1985
 1 OCCU
 1 FAMC @F6000000004371357057@
 2 PEDI birth
 1 FAMS @F0075@
+1 NOTE Son of Boyukaga (Böyükağa oğlu)
 1 CHAN
-2 DATE 24 JUL 2022
-3 TIME 14:41:31
+2 DATE 7 NOV 2026
+3 TIME 12:00:00
 0 @I6000000004371128454@ INDI
 1 NAME Kanan /Ahmedov/
 2 GIVN Kanan
@@ -3051,19 +3074,20 @@
 1 NAME Nijat /Ahmedov/
 2 GIVN Nijat
 2 SURN Ahmedov
-1 NAME Nijat /Ahmedov/
-2 TYPE married
-2 GIVN Nijat
-2 SURN Ahmedov
+1 NAME Nicat /Əhmədov/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
 1 SEX M
-1 BIRT Y
+1 BIRT
+2 DATE 14 JUL 1989
 1 OCCU
 1 FAMC @F6000000004371357057@
 2 PEDI birth
 1 FAMS @F0076@
+1 NOTE Son of Boyukaga (Böyükağa oğlu)
 1 CHAN
-2 DATE 24 JUL 2022
-3 TIME 14:46:24
+2 DATE 7 NOV 2026
+3 TIME 12:00:00
 0 @I6000000004371320896@ INDI
 1 NAME Khatira /Agayeva/
 2 GIVN Khatira
@@ -3154,34 +3178,42 @@
 1 NAME Ilaha /Ahmedova/
 2 GIVN Ilaha
 2 SURN Ahmedova
-1 NAME Ilhama /Ahmedova/
+1 NAME İlahə /Əhmədova/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Ilaha /Rasulova/
 2 TYPE married
-2 GIVN Ilhama
-2 SURN Ahmedova
+2 NOTE Married name
+1 NAME İlahə /Rəsulova/
+2 TYPE aka
+2 NOTE Azerbaijani Latin (Married)
 1 SEX F
-1 BIRT Y
+1 BIRT
+2 DATE 21 OCT 1983
 1 OCCU
 1 FAMC @F6000000004371357057@
 2 PEDI birth
 1 FAMS @F0074@
+1 NOTE Daughter of Boyukaga (Böyükağa qızı)
 1 CHAN
-2 DATE 24 JUL 2022
-3 TIME 14:38:42
+2 DATE 7 NOV 2026
+3 TIME 12:00:00
 0 @I6000000004371357053@ INDI
 1 NAME Narmina /Ahmedova/
 2 GIVN Narmina
 2 SURN Ahmedova
-1 NAME Narmina /Ahmedova/
-2 TYPE married
-2 GIVN Narmina
-2 SURN Ahmedova
+1 NAME Nərminə /Əhmədova/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
 1 SEX F
-1 BIRT Y
+1 BIRT
+2 DATE 15 JUL 1960
 1 OCCU
 1 FAMS @F6000000004371357057@
+1 NOTE Daughter of Ajdar (Əjdər qızı)
 1 CHAN
-2 DATE 2 DEC 2014
-3 TIME 20:41:12
+2 DATE 7 NOV 2026
+3 TIME 12:00:00
 0 @I6000000004371381583@ INDI
 1 NAME Farah /Agazadeh/
 2 GIVN Farah
@@ -5326,23 +5358,29 @@
 2 DATE 24 JUL 2022
 3 TIME 14:25:11
 0 @F0074@ FAM
+1 HUSB @I0126@
 1 WIFE @I6000000004371349096@
 1 CHIL @I0016@
 1 CHAN
-2 DATE 24 JUL 2022
-3 TIME 14:39:06
+2 DATE 7 NOV 2026
+3 TIME 12:00:00
 0 @F0075@ FAM
 1 HUSB @I6000000004371128405@
+1 WIFE @I0127@
 1 CHIL @I0017@
+1 CHIL @I0128@
 1 CHAN
-2 DATE 24 JUL 2022
-3 TIME 14:41:31
+2 DATE 7 NOV 2026
+3 TIME 12:00:00
 0 @F0076@ FAM
 1 HUSB @I6000000004371320344@
+1 WIFE @I0129@
+1 CHIL @I0130@
+1 CHIL @I0131@
 1 NOTE @N0010@
 1 CHAN
-2 DATE 24 JUL 2022
-3 TIME 14:46:24
+2 DATE 7 NOV 2026
+3 TIME 12:00:00
 0 @F0077@ FAM
 1 WIFE @I6000000004371174594@
 1 CHIL @I0018@
@@ -6602,6 +6640,93 @@
 1 FAMC @F0122@
 2 PEDI birth
 1 NOTE Daughter of Orhan (Orxan qızı)
+0 @I0126@ INDI
+1 NAME Boyukaga /Rasulov/
+2 GIVN Boyukaga
+2 SURN Rasulov
+1 NAME Böyükağa /Rəsulov/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 SEX M
+1 BIRT
+2 DATE 20 FEB 1979
+1 FAMS @F0074@
+1 NOTE Husband of Ilaha Ahmedova
+0 @I0127@ INDI
+1 NAME Aishe /Gulieva/
+2 GIVN Aishe
+2 SURN Gulieva
+1 NAME Aişə /Quliyeva/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Aishe /Ahmedova/
+2 TYPE married
+2 NOTE Married name
+1 NAME Aişə /Əhmədova/
+2 TYPE aka
+2 NOTE Azerbaijani Latin (Married)
+1 SEX F
+1 BIRT
+2 DATE 12 OCT 1986
+1 FAMS @F0075@
+1 NOTE Married to Samad Ahmedov. Sister of Lala Gulieva (two brothers married two sisters).
+0 @I0128@ INDI
+1 NAME Hatam /Ahmadzada/
+2 GIVN Hatam
+2 SURN Ahmadzada
+1 NAME Hatəm /Əhmədzadə/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 SEX M
+1 BIRT
+2 DATE 25 JUN 2016
+1 FAMC @F0075@
+2 PEDI birth
+1 NOTE Son of Samad (Səməd oğlu)
+0 @I0129@ INDI
+1 NAME Lala /Gulieva/
+2 GIVN Lala
+2 SURN Gulieva
+1 NAME Lalə /Quliyeva/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Lala /Ahmedova/
+2 TYPE married
+2 NOTE Married name
+1 NAME Lalə /Əhmədova/
+2 TYPE aka
+2 NOTE Azerbaijani Latin (Married)
+1 SEX F
+1 BIRT
+2 DATE 12 FEB 1992
+1 FAMS @F0076@
+1 NOTE Married to Nijat Ahmedov. Sister of Aishe Gulieva (two brothers married two sisters).
+0 @I0130@ INDI
+1 NAME Ahmad /Ahmadzada/
+2 GIVN Ahmad
+2 SURN Ahmadzada
+1 NAME Əhməd /Əhmədzadə/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 SEX M
+1 BIRT
+2 DATE 12 FEB 2017
+1 FAMC @F0076@
+2 PEDI birth
+1 NOTE Son of Nijat (Nicat oğlu)
+0 @I0131@ INDI
+1 NAME Kamal /Ahmadzada/
+2 GIVN Kamal
+2 SURN Ahmadzada
+1 NAME Kamal /Əhmədzadə/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 SEX M
+1 BIRT
+2 DATE 9 SEP 2021
+1 FAMC @F0076@
+2 PEDI birth
+1 NOTE Son of Nijat (Nicat oğlu)
 0 @F0115@ FAM
 1 HUSB @I0108@
 1 CHIL @I0005@
