@@ -205,6 +205,17 @@ def test_site_generation_end_to_end(tmp_path, monkeypatch):
     assert 'id="findBtn"' in rel_content
     assert 'id="familyGraphData"' in rel_content
     assert 'Doe, John' in rel_content
+    # Verify relationship tree view elements
+    assert 'id="viewToggle"' in rel_content
+    assert 'id="viewModeTreeBtn"' in rel_content
+    assert 'id="viewModeChainBtn"' in rel_content
+    assert 'id="treeViewContainer"' in rel_content
+    assert 'id="treeSvg"' in rel_content
+    assert 'id="treeZoomIn"' in rel_content
+    assert 'id="treeZoomOut"' in rel_content
+    assert 'id="treeFitBtn"' in rel_content
+    assert 'layoutTree' in rel_content
+    assert 'renderTreeSvg' in rel_content
 
 
 def test_interactive_graph_page():
@@ -292,3 +303,25 @@ def test_linkify_individual_references():
     assert '@I1@' not in result
     assert '@I2@' not in result
     assert 'Paternal grandfather of ' in result
+
+
+def test_relationship_finder_full_page():
+    root = Path(__file__).resolve().parent.parent
+    rel_file = root / "relationship.html"
+    assert rel_file.exists()
+    content = rel_file.read_text(encoding="utf-8")
+    assert 'id="viewToggle"' in content
+    assert 'id="viewModeTreeBtn"' in content
+    assert 'id="viewModeChainBtn"' in content
+    assert 'id="treeViewContainer"' in content
+    assert 'id="treeSvg"' in content
+    assert 'id="treeZoomGroup"' in content
+    assert 'id="treeZoomIn"' in content
+    assert 'id="treeZoomOut"' in content
+    assert 'id="treeFitBtn"' in content
+    assert 'id="treeResetBtn"' in content
+    assert 'id="treeExploreBtn"' in content
+    assert 'layoutTree' in content
+    assert 'renderTreeSvg' in content
+    assert 'switchView' in content
+    assert 'fitTree' in content
