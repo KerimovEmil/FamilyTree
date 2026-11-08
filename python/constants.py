@@ -1972,7 +1972,7 @@ RELATIONSHIP_FINDER_TEMPLATE = """<!DOCTYPE html>
             }});
 
             var titleEl = createSvgEl("title");
-            titleEl.textContent = person.name + "\nClick to view individual profile";
+            titleEl.textContent = person.name + " (click to view profile)";
             nodeLink.appendChild(titleEl);
 
             var cardBgColor = "#ffffff";
