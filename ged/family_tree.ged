@@ -260,34 +260,60 @@
 2 DATE 23 MAR 2025
 3 TIME 20:28:10
 0 @I0019@ INDI
-1 NAME ___ /Ahmedova/
-2 GIVN ___
+1 NAME Aygun /Ahmedova/
+2 GIVN Aygun
 2 SURN Ahmedova
+1 NAME Aygün /Əhmədova/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
 1 SEX F
+1 BIRT
+2 DATE 31 JAN 1985
 1 FAMS @F0078@
+1 NOTE Wife of Imran Ahmedov
 1 CHAN
-2 DATE 23 MAR 2025
-3 TIME 20:26:21
+2 DATE 8 NOV 2026
+3 TIME 12:00:00
 0 @I0020@ INDI
+1 NAME Hasan /Ahmadzada/
+2 GIVN Hasan
+2 SURN Ahmadzada
+1 NAME Həsən /Əhmədzadə/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
 1 NAME Hassan /Ahmedov/
-2 GIVN Hassan
-2 SURN Ahmedov
+2 TYPE aka
+2 NOTE Alternate surname
 1 SEX M
+1 BIRT
+2 DATE 16 JUL 2010
+1 DEAT Y
+2 DATE 7 JAN 2025
 1 FAMC @F0078@
 2 PEDI birth
+1 NOTE Son of Imran and Aygun
 1 CHAN
-2 DATE 24 JUL 2022
-3 TIME 14:55:21
+2 DATE 8 NOV 2026
+3 TIME 12:00:00
 0 @I0021@ INDI
-1 NAME ___ /Ahmedov/
-2 GIVN ___
-2 SURN Ahmedov
+1 NAME Yusif /Ahmadzada/
+2 GIVN Yusif
+2 SURN Ahmadzada
+1 NAME Yusif /Əhmədzadə/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Yusif /Ahmedov/
+2 TYPE aka
+2 NOTE Alternate surname
 1 SEX M
+1 BIRT
+2 DATE 19 NOV 2016
 1 FAMC @F0078@
 2 PEDI birth
+1 NOTE Son of Imran and Aygun
 1 CHAN
-2 DATE 23 MAR 2025
-3 TIME 20:26:30
+2 DATE 8 NOV 2026
+3 TIME 12:00:00
 0 @I0022@ INDI
 1 NAME ___ /Malikov/
 2 GIVN ___
@@ -2697,21 +2723,21 @@
 1 NAME Latifa /Ahmedova/
 2 GIVN Latifa
 2 SURN Ahmedova
-1 NAME Latifa /Ahmedova/
-2 TYPE married
-2 GIVN Latifa
-2 SURN Ahmedova
+1 NAME Lətifə /Əhmədova/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
 1 SEX F
-1 BIRT Y
-1 DEAT
-2 DATE 2020
+1 BIRT
+2 DATE 13 SEP 1950
+1 DEAT Y
+2 DATE 18 SEP 2020
 1 OCCU
 1 FAMC @F0110@
 2 PEDI birth
 1 FAMS @F6000000004370966639@
 1 CHAN
-2 DATE 22 MAR 2025
-3 TIME 01:04:41
+2 DATE 8 NOV 2026
+3 TIME 12:00:00
 0 @I6000000004371122628@ INDI
 1 NAME Dilshad /Suleimanova/
 2 GIVN Dilshad
@@ -2764,21 +2790,25 @@
 2 DATE 7 NOV 2026
 3 TIME 12:00:00
 0 @I6000000004371128454@ INDI
-1 NAME Kanan /Ahmedov/
+1 NAME Kanan /Ahmadzada/
 2 GIVN Kanan
-2 SURN Ahmedov
-1 NAME ? /Ahmedov/
-2 TYPE married
-2 GIVN ?
-2 SURN Ahmedov
+2 SURN Ahmadzada
+1 NAME Kənan /Əhmədzadə/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Kanan /Ahmedov/
+2 TYPE aka
+2 NOTE Alternate surname
 1 SEX M
-1 BIRT Y
+1 BIRT
+2 DATE 30 APR 2003
 1 OCCU
 1 FAMC @F6000000004371128458@
 2 PEDI birth
+1 NOTE Son of Rashad and Elnara
 1 CHAN
-2 DATE 24 JUL 2022
-3 TIME 14:56:02
+2 DATE 8 NOV 2026
+3 TIME 12:00:00
 0 @I6000000004371131502@ INDI
 1 NAME Agadair /Mechtiv/
 2 GIVN Agadair
@@ -2852,21 +2882,25 @@
 2 DATE 24 JUL 2022
 3 TIME 14:48:13
 0 @I6000000004371178481@ INDI
-1 NAME ___ /Ahmedov/
-2 GIVN ___
-2 SURN Ahmedov
-1 NAME ? /Ahmedov/
-2 TYPE married
-2 GIVN ?
-2 SURN Ahmedov
+1 NAME Ravan /Ahmadzada/
+2 GIVN Ravan
+2 SURN Ahmadzada
+1 NAME Rəvan /Əhmədzadə/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Ravan /Ahmedov/
+2 TYPE aka
+2 NOTE Alternate surname
 1 SEX M
-1 BIRT Y
+1 BIRT
+2 DATE 20 OCT 2006
 1 OCCU
 1 FAMC @F6000000004371128458@
 2 PEDI birth
+1 NOTE Son of Rashad and Elnara
 1 CHAN
-2 DATE 23 MAR 2025
-3 TIME 20:27:48
+2 DATE 8 NOV 2026
+3 TIME 12:00:00
 0 @I6000000004371198550@ INDI
 1 NAME Shahine /Suleimanov/
 2 GIVN Shahine
@@ -2922,38 +2956,39 @@
 1 NAME Hassan /Ahmedov/
 2 GIVN Hassan
 2 SURN Ahmedov
-1 NAME Hassan /Ahmedov/
-2 TYPE married
-2 GIVN Hassan
-2 SURN Ahmedov
+1 NAME Həsən /Əhmədov/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
 1 SEX M
-1 BIRT Y
-1 DEAT
-2 DATE 2019
+1 BIRT
+2 DATE 16 OCT 1949
+1 DEAT Y
+2 DATE 21 SEP 2019
 1 OCCU
 1 FAMC @F6000000004371230149@
 2 PEDI birth
 1 FAMS @F6000000004370966639@
 1 CHAN
-2 DATE 2 DEC 2014
-3 TIME 20:41:06
+2 DATE 8 NOV 2026
+3 TIME 12:00:00
 0 @I6000000004371255263@ INDI
 1 NAME Imran /Ahmedov/
 2 GIVN Imran
 2 SURN Ahmedov
-1 NAME Imran /Ahmedov/
-2 TYPE married
-2 GIVN Imran
-2 SURN Ahmedov
+1 NAME İmran /Əhmədov/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
 1 SEX M
-1 BIRT Y
+1 BIRT
+2 DATE 27 NOV 1982
 1 OCCU
 1 FAMC @F6000000004370966639@
 2 PEDI birth
 1 FAMS @F0078@
+1 NOTE Son of Hassan and Latifa
 1 CHAN
-2 DATE 24 JUL 2022
-3 TIME 14:55:21
+2 DATE 8 NOV 2026
+3 TIME 12:00:00
 0 @I6000000004371264366@ INDI
 1 NAME Samed /Ahmedov/
 2 GIVN Samed
@@ -2971,39 +3006,44 @@
 2 DATE 24 JUL 2022
 3 TIME 14:44:44
 0 @I6000000004371277382@ INDI
-1 NAME Raschad /Ahmedov/
-2 GIVN Raschad
+1 NAME Rashad /Ahmedov/
+2 GIVN Rashad
 2 SURN Ahmedov
+1 NAME Rəşad /Əhmədov/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
 1 NAME Raschad /Ahmedov/
-2 TYPE married
-2 GIVN Raschad
-2 SURN Ahmedov
+2 TYPE aka
+2 NOTE Alternate spelling
 1 SEX M
-1 BIRT Y
+1 BIRT
+2 DATE 19 SEP 1977
 1 DEAT Y
 2 DATE 25 DEC 2024
 1 OCCU
 1 FAMC @F6000000004370966639@
 2 PEDI birth
 1 FAMS @F6000000004371128458@
+1 NOTE Son of Hassan and Latifa
 1 CHAN
-2 DATE 2 DEC 2014
-3 TIME 20:41:08
+2 DATE 8 NOV 2026
+3 TIME 12:00:00
 0 @I6000000004371280528@ INDI
 1 NAME Elnara /Ahmedova/
 2 GIVN Elnara
 2 SURN Ahmedova
-1 NAME ? /Ahmedova/
-2 TYPE married
-2 GIVN ?
-2 SURN Ahmedova
+1 NAME Elnarə /Əhmədova/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
 1 SEX F
-1 BIRT Y
+1 BIRT
+2 DATE 10 SEP 1977
 1 OCCU
 1 FAMS @F6000000004371128458@
+1 NOTE Wife of Rashad Ahmedov
 1 CHAN
-2 DATE 24 JUL 2022
-3 TIME 14:55:52
+2 DATE 8 NOV 2026
+3 TIME 12:00:00
 0 @I6000000004371293110@ INDI
 1 NAME Tahmina /Mechtiva/
 2 GIVN Tahmina
