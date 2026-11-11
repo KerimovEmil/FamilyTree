@@ -250,15 +250,24 @@
 2 DATE 7 NOV 2026
 3 TIME 12:00:00
 0 @I0018@ INDI
-1 NAME Adan /___/
-2 GIVN Adan
-2 SURN ___
+1 NAME Ayan /Aliyeva/
+2 GIVN Ayan
+2 SURN Aliyeva
+1 NAME Ayan /Əliyeva/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Алиева Аян Айдын
+2 TYPE aka
+2 NOTE Full patronymic: Daughter of Aydin (Aydın qızı)
 1 SEX F
-1 FAMC @F0077@
+1 BIRT
+2 DATE 21 APR 2011
+1 NOTE Daughter of Aydin Aliyev and Sevinch (Seva) Mehtiyeva.
+1 FAMC @F6000000004371334140@
 2 PEDI birth
 1 CHAN
-2 DATE 23 MAR 2025
-3 TIME 20:28:10
+2 DATE 11 NOV 2026
+3 TIME 14:55:00
 0 @I0019@ INDI
 1 NAME Aygun /Ahmedova/
 2 GIVN Aygun
@@ -2857,21 +2866,28 @@
 2 DATE 8 NOV 2026
 3 TIME 12:00:00
 0 @I6000000004371131502@ INDI
-1 NAME Agadair /Mechtiv/
-2 GIVN Agadair
-2 SURN Mechtiv
+1 NAME Agadai /Mehtiyev/
+2 GIVN Agadai
+2 SURN Mehtiyev
 2 NICK Dais
-1 NAME Dais /Mechtiv/
-2 TYPE married
-2 GIVN Dais
-2 SURN Mechtiv
+1 NAME Ağadayı /Mehtiyev/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Agadair /Mechtiv/
+2 TYPE aka
+2 NOTE Alternative transcription
+1 NAME Агадаи Гасан оглы /Мехтиев/
+2 TYPE aka
+2 NOTE Patronymic: Son of Hasan (Həsən oğlu)
 1 SEX M
-1 BIRT Y
+1 BIRT
+2 DATE 2 MAY 1949
+1 NOTE Son of Hasan (Həsən oğlu).
 1 OCCU
 1 FAMS @F6000000004371317043@
 1 CHAN
-2 DATE 24 JUL 2022
-3 TIME 14:52:39
+2 DATE 11 NOV 2026
+3 TIME 14:55:00
 0 @I6000000004371156636@ INDI
 1 NAME Nazila /Kerimova/
 2 GIVN Nazila
@@ -2911,23 +2927,28 @@
 2 DATE 24 JUL 2022
 3 TIME 15:11:35
 0 @I6000000004371174594@ INDI
+1 NAME Sevinch /Mehtiyeva/
+2 GIVN Sevinch
+2 SURN Mehtiyeva
+2 NICK Seva
+1 NAME Sevinc (Seva) /Mehtiyeva/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Seva /Mehtiyeva/
+2 TYPE aka
 1 NAME Sevinch /Mechtiva/
-2 GIVN Sevinch
-2 SURN Mechtiva
-1 NAME Sevinch /?/
-2 TYPE married
-2 GIVN Sevinch
-2 SURN ?
+2 TYPE aka
+2 NOTE Alternative transcription
 1 SEX F
-1 BIRT Y
+1 BIRT
+2 DATE 23 OCT 1983
 1 OCCU
 1 FAMC @F6000000004371317043@
 2 PEDI birth
 1 FAMS @F6000000004371334140@
-1 FAMS @F0077@
 1 CHAN
-2 DATE 24 JUL 2022
-3 TIME 14:48:13
+2 DATE 11 NOV 2026
+3 TIME 14:55:00
 0 @I6000000004371178481@ INDI
 1 NAME Ravan /Ahmadzada/
 2 GIVN Ravan
@@ -2966,22 +2987,33 @@
 2 DATE 24 JUL 2022
 3 TIME 13:59:26
 0 @I6000000004371230145@ INDI
-1 NAME Hanum /Mechtiva/
+1 NAME Hanum /Mehtiyeva/
 2 GIVN Hanum
-2 SURN Mechtiva
-1 NAME Hanum /Mechtiva/
-2 TYPE married
+2 SURN Mehtiyeva
+1 NAME Hanum /Ahmedova/
+2 TYPE birth
 2 GIVN Hanum
-2 SURN Mechtiva
+2 SURN Ahmedova
+1 NAME Xanım /Mehtiyeva/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 NAME Hanum /Mechtiva/
+2 TYPE aka
+2 NOTE Alternative transcription
+1 NAME Ханум Самед гызы /Мехтиева/
+2 TYPE aka
+2 NOTE Patronymic: Daughter of Samed (Səməd qızı)
 1 SEX F
-1 BIRT Y
+1 BIRT
+2 DATE 15 JAN 1952
+1 NOTE Daughter of Samed Ahmedov and Sonia Ahmedova (Səməd qızı).
 1 OCCU
 1 FAMC @F6000000004371230149@
 2 PEDI birth
 1 FAMS @F6000000004371317043@
 1 CHAN
-2 DATE 2 DEC 2014
-3 TIME 20:41:01
+2 DATE 11 NOV 2026
+3 TIME 14:55:00
 0 @I6000000004371234987@ INDI
 1 NAME Aligaydar /Suleimanov/
 2 GIVN Aligaydar
@@ -3092,21 +3124,24 @@
 2 DATE 8 NOV 2026
 3 TIME 12:00:00
 0 @I6000000004371293110@ INDI
-1 NAME Tahmina /Mechtiva/
+1 NAME Tahmina /Mehtiyeva/
 2 GIVN Tahmina
-2 SURN Mechtiva
+2 SURN Mehtiyeva
+1 NAME Təhminə /Mehtiyeva/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
 1 NAME Tahmina /Mechtiva/
-2 TYPE married
-2 GIVN Tahmina
-2 SURN Mechtiva
+2 TYPE aka
+2 NOTE Alternative transcription
 1 SEX F
-1 BIRT Y
+1 BIRT
+2 DATE 15 SEP 1981
 1 OCCU
 1 FAMC @F6000000004371317043@
 2 PEDI birth
 1 CHAN
-2 DATE 2 DEC 2014
-3 TIME 20:41:03
+2 DATE 11 NOV 2026
+3 TIME 14:55:00
 0 @I6000000004371293686@ INDI
 1 NAME Hagjimurad /Gulchiev/
 2 GIVN Hagjimurad
@@ -3142,21 +3177,24 @@
 2 DATE 24 JUL 2022
 3 TIME 15:09:55
 0 @I6000000004371317039@ INDI
-1 NAME Narmina /Mechtiva/
+1 NAME Narmina /Mehtiyeva/
 2 GIVN Narmina
-2 SURN Mechtiva
+2 SURN Mehtiyeva
+1 NAME Nərminə /Mehtiyeva/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
 1 NAME Narmina /Mechtiva/
-2 TYPE married
-2 GIVN Narmina
-2 SURN Mechtiva
+2 TYPE aka
+2 NOTE Alternative transcription
 1 SEX F
-1 BIRT Y
+1 BIRT
+2 DATE 19 JUN 1979
 1 OCCU
 1 FAMC @F6000000004371317043@
 2 PEDI birth
 1 CHAN
-2 DATE 2 DEC 2014
-3 TIME 20:41:02
+2 DATE 11 NOV 2026
+3 TIME 14:55:00
 0 @I6000000004371320344@ INDI
 1 NAME Nijat /Ahmedov/
 2 GIVN Nijat
@@ -3222,19 +3260,18 @@
 2 DATE 27 JUL 2022
 3 TIME 17:35:20
 0 @I6000000004371334136@ INDI
-1 NAME ___ /___/
-2 GIVN ___
-2 SURN ___
-1 NAME ? /?/
-2 TYPE married
-2 GIVN ?
-2 SURN ?
+1 NAME Aydin /Aliyev/
+2 GIVN Aydin
+2 SURN Aliyev
+1 NAME Aydın /Əliyev/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
 1 SEX M
 1 BIRT Y
 1 FAMS @F6000000004371334140@
 1 CHAN
-2 DATE 23 MAR 2025
-3 TIME 20:28:23
+2 DATE 11 NOV 2026
+3 TIME 14:55:00
 0 @I6000000004371334544@ INDI
 1 NAME Inci /Kerimova/
 2 GIVN Inci
@@ -5477,12 +5514,6 @@
 1 CHAN
 2 DATE 7 NOV 2026
 3 TIME 12:00:00
-0 @F0077@ FAM
-1 WIFE @I6000000004371174594@
-1 CHIL @I0018@
-1 CHAN
-2 DATE 24 JUL 2022
-3 TIME 14:48:13
 0 @F0078@ FAM
 1 HUSB @I6000000004371255263@
 1 WIFE @I0019@
@@ -6049,9 +6080,10 @@
 0 @F6000000004371334140@ FAM
 1 HUSB @I6000000004371334136@
 1 WIFE @I6000000004371174594@
+1 CHIL @I0018@
 1 CHAN
-2 DATE 13 JUN 2020
-3 TIME 22:58:25
+2 DATE 11 NOV 2026
+3 TIME 14:55:00
 0 @F6000000004371357057@ FAM
 1 HUSB @I6000000004370915745@
 1 WIFE @I6000000004371357053@
