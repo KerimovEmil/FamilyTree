@@ -384,6 +384,7 @@ INDIVIDUALS_HTML_TEMPLATE = """<!DOCTYPE html>
         </div>
         <div class="content" id="IndividualList">
             <h3>Individuals</h3>
+            <p id="totalCount" style="margin: 5px 0 12px 0; color: #555; font-size: 14px;">Total number of people: <strong>{total_individuals}</strong></p>
             <div style="margin: 10px 0 15px 0; display: flex; align-items: center; gap: 8px;">
                 <div style="position: relative; display: inline-block;">
                     <input type="text" id="searchInput" onkeyup="filterTable()" onkeydown="if(event.key === 'Escape') clearSearchFilter()" placeholder="Search individuals..." style="padding: 6px 28px 6px 10px; width: 300px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;" />
@@ -2202,6 +2203,7 @@ INTERACTIVE_GRAPH_TEMPLATE = """<!DOCTYPE html>
                 <div class="graph-tool-group">
                     <label for="viewSelect">View:</label>
                     <select id="viewSelect">
+                        <option value="all">All</option>
                         <option value="relatives" selected>Relatives</option>
                         <option value="hourglass">Hourglass</option>
                         <option value="ancestors">Ancestors</option>

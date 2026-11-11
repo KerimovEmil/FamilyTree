@@ -181,6 +181,8 @@ def test_site_generation_end_to_end(tmp_path, monkeypatch):
     assert "Smith, Jane" in ind_content
     assert "Doe, Junior" in ind_content
     assert "Doe, Solo" in ind_content
+    assert 'id="totalCount"' in ind_content
+    assert "Total number of people: <strong>4</strong>" in ind_content
     assert 'id="searchInput"' in ind_content
     assert 'id="clearSearch"' in ind_content
     assert 'id="searchCount"' in ind_content
@@ -225,6 +227,7 @@ def test_interactive_graph_page():
     content = graph_file.read_text(encoding="utf-8")
     assert 'id="graph-svg"' in content
     assert 'id="viewSelect"' in content
+    assert '<option value="all">All</option>' in content
     assert 'id="personSearch"' in content
     assert 'id="homeBtn"' in content
     assert 'id="clearSearchBtn"' in content
@@ -233,6 +236,12 @@ def test_interactive_graph_page():
     assert 'id="gedcomData"' in content
     assert "js/topola-bundle.min.js" in content
     assert "js/interactive_graph.js" in content
+
+    js_file = root / "js" / "interactive_graph.js"
+    assert js_file.exists()
+    js_content = js_file.read_text(encoding="utf-8")
+    assert "Topola.KinshipChart" in js_content
+    assert "all: window.Topola ? Topola.KinshipChart : null" in js_content
 
 
 def test_generate_interactive_graph_html(tmp_path, monkeypatch):
@@ -249,6 +258,7 @@ def test_generate_interactive_graph_html(tmp_path, monkeypatch):
     assert graph_file.exists()
     content = graph_file.read_text(encoding="utf-8")
     assert 'id="graph-svg"' in content
+    assert '<option value="all">All</option>' in content
     assert 'id="familyGraphData"' in content
     assert '0 HEAD' in content
 

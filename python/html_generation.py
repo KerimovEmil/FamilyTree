@@ -513,6 +513,7 @@ def generate_individuals_html(individuals_data):
     """Generate the individuals.html file with all individuals."""
     # Sort individuals by name
     sorted_individuals = sorted(individuals_data.items(), key=lambda x: x[1]['name'])
+    total_individuals = len(sorted_individuals)
 
     # Generate individual entries
     individual_entries = ""
@@ -531,7 +532,8 @@ def generate_individuals_html(individuals_data):
 
     # Fill in the template
     html_content = INDIVIDUALS_HTML_TEMPLATE.format(
-        individual_entries=individual_entries
+        individual_entries=individual_entries,
+        total_individuals=total_individuals
     )
 
     # Write to file

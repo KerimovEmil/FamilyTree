@@ -22,6 +22,7 @@
     let lastClickTime = 0;
 
     const CHART_MAP = {
+        all: window.Topola ? Topola.KinshipChart : null,
         relatives: window.Topola ? Topola.RelativesChart : null,
         hourglass: window.Topola ? Topola.HourglassChart : null,
         ancestors: window.Topola ? Topola.AncestorChart : null,
@@ -41,6 +42,7 @@
         }
 
         // Initialize chart map references
+        CHART_MAP.all = Topola.KinshipChart;
         CHART_MAP.relatives = Topola.RelativesChart;
         CHART_MAP.hourglass = Topola.HourglassChart;
         CHART_MAP.ancestors = Topola.AncestorChart;
@@ -373,7 +375,7 @@
             const scaleY = (containerHeight - 60) / (info.size[1] || 800);
             const fitScale = Math.min(scaleX, scaleY);
 
-            if (viewType === 'relatives' || fitScale < 0.65) {
+            if (viewType === 'all' || viewType === 'relatives' || fitScale < 0.65) {
                 centerOnPerson(startIndi, 0.9, false);
             } else {
                 fitToScreen(false);
