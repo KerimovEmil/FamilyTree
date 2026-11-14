@@ -2268,9 +2268,12 @@
 1 NAME Агакерим /Керимов/
 2 TYPE aka
 2 NOTE Russian Cyrillic
-1 NAME Ага Керим /Керим-оглы/
+1 NAME Ага Керим /Мюрсал-оглы/
 2 TYPE aka
-2 NOTE Imperial Russian records
+2 NOTE Imperial Russian records (patronymic: son of Mürsəl)
+1 NAME Ağakərim Mürsəl oğlu /Kərimov/
+2 TYPE aka
+2 NOTE Azerbaijani Latin full patronymic
 1 NAME Aghakerim /Kerimov/
 2 TYPE aka
 2 NOTE Variant Latin
@@ -2279,10 +2282,10 @@
 2 NOTE Arabic script
 1 NAME Aghakerim /Kerimov Myursel/
 2 TYPE aka
-2 NOTE Traditional family name with Myursel
+2 NOTE Traditional family name with Myursel (patronymic)
 1 NAME Ağakərim /Kərimov (Mürsəl)/
 2 TYPE aka
-2 NOTE Azerbaijani Latin (Mürsəl branch)
+2 NOTE Azerbaijani Latin
 1 SEX M
 1 BIRT
 2 DATE ABT 1898
@@ -2295,8 +2298,8 @@
 1 OBJE
 2 FILE images/people/Aghakerim_Kerimov.jpg
 1 CHAN
-2 DATE 8 NOV 2026
-3 TIME 12:00:00
+2 DATE 14 NOV 2026
+3 TIME 17:25:00
 0 @I6000000003253539241@ INDI
 1 NAME Ruhsara /Rzaeva/
 2 GIVN Ruhsara
@@ -6510,16 +6513,16 @@
 2 PEDI birth
 1 NOTE @N0029@
 0 @I0112@ INDI
-1 NAME Kerim /Kerimov/
-2 GIVN Kerim
+1 NAME Mursel /Kerimov/
+2 GIVN Mursel
 2 SURN Kerimov
-1 NAME Kərim /Kərimov/
+1 NAME Mürsəl /Kərimov/
 2 TYPE aka
 2 NOTE Azerbaijani Latin
-1 NAME Керим /Керимов/
+1 NAME Мюрсал /Керимов/
 2 TYPE aka
 2 NOTE Russian Cyrillic
-1 NAME کریم /كریموف/
+1 NAME مرسل /كریموف/
 2 TYPE aka
 2 NOTE Arabic script
 1 SEX M
@@ -6529,6 +6532,9 @@
 1 DEAT Y
 1 FAMS @F0117@
 1 NOTE @N0030@
+1 CHAN
+2 DATE 14 NOV 2026
+3 TIME 17:25:00
 0 @I0113@ INDI
 1 NAME Bagir /Bagirov/
 2 GIVN Bagir
@@ -6857,9 +6863,9 @@
 1 CONT When Halig initially refused his consent, Aligeidar briefly held Halig in the local jail. Halig sent a relative to Amirjan to investigate Aligeidar's family, and the first person the relative asked happened to be Aligeidar's uncle (@I0109@), who gave a glowing report that resolved the impasse.
 1 CONT Born c. 1880, Halig appears as a child in the 1886 Family Lists of Khizi village (ARDTA Fond 43, Baku Treasury Chamber), and civil/religious status records for his family were kept in the Khizi Mosque Metric Books under the Transcaucasian Shia Spiritual Board (ARDTA Fond 290).
 0 @N0022@ NOTE Paternal ancestor of the Kerimov lineage in Baku, married to Fatima Kerimova and father of Baba Kerimov (1932-1995).
-1 CONT The name Agakerim combines the honorific title "Aga" with the ancestral root "Kerim", reflecting the Absheron tradition of patronymic continuity (Agakerim -> Kerimov).
+1 CONT Son of Mürsəl Kerimov (@I0112@).
 1 CONT Pre-1920 civil and household records are preserved in the Baku City Shia Mosque Metric Books (ARDTA Fond 290) and the Baku municipal/treasury census registers (ARDTA Fond 43 and Fond 50).
-1 CONT Also remembered in family tradition by the three-part name "Aghakerim Kerimov Myursel" (Ağakərim Kərimov Mürsəl). In late 19th- and early 20th-century Absheron onomastics, "Mürsəl" represents either a patronymic (Mürsəl oğlu / Mursel-ogly), an ancestral lineage branch identifier (the Mürsəllər branch of the Kerimovs), or a double religious given name (Ağakərim-Mürsəl).
+1 CONT Also remembered in family tradition by the three-part name "Aghakerim Kerimov Myursel" (Ağakərim Kərimov Mürsəl / Агакерим Керимов Мюрсал), reflecting his patronymic as the son of Mürsəl (Mürsəl oğlu / Мюрсал-оглы).
 0 @N0023@ NOTE Resident of the ancient Absheron settlement of Amirjan (Baku Uyezd, Baku Governorate), married to Sona and father of Aligeidar Suleimanov (Ali Haydar Aras, 1903-1967).
 1 CONT In the 1886 Family Lists of Amirjan village (ARDTA Fond 43, Baku Treasury Chamber), the household is recorded under Ahmed's father Suleyman.
 1 CONT The birth of his son Aligeidar on May 22, 1903 is registered in Part I (Births) of the 1903 Amirjan Mosque Metric Book (ARDTA Fond 290, Transcaucasian Shia Spiritual Board).
@@ -6881,7 +6887,7 @@
 1 CONT Birth registered in the Khizi Mosque Metric Books under the Transcaucasian Shia Spiritual Board (ARDTA Fond 290).
 0 @N0030@ NOTE Patriarch of the Kerimov family in Baku City. Born circa 1868.
 1 CONT Father of Agakerim Kerimov (b. c. 1898, @I6000000003253535194@) and grandfather of Baba Kerimov (@I6000000003244579993@, 1932-1995).
-1 CONT The name Agakerim preserves his patronymic (Aga-Kerim = master/elder Kerim, son of Kerim).
+1 CONT His patronymic is preserved in Agakerim's traditional family designation "Aghakerim Kerimov Myursel" (Ağakərim Mürsəl oğlu / Агакерим Мюрсал оглы).
 1 CONT Civil and household records are preserved in the Baku City Shia Mosque Metric Books (ARDTA Fond 290) and the Baku Treasury Chamber census registers (ARDTA Fond 43 and Fond 50).
 0 @N0031@ NOTE Patriarch of the Bagirov lineage in Surakhani (Baku Uyezd, Baku Governorate). Born circa 1848.
 1 CONT Recorded as head of household in the 1886 Family Lists of Surakhani village (ARDTA Fond 43, Baku Treasury Chamber), where he was approximately 38 years old.
