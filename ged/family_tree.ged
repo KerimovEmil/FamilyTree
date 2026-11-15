@@ -1303,9 +1303,10 @@
 1 FAMC @F6000000003244660800@
 2 PEDI birth
 1 FAMS @F6000000004691573166@
+1 NOTE Had brown eyes — the only brother among the sons of Agakerim Kerimov and Fatima Kerimova with brown eyes; all of his brothers (Baba, Salim, Saidular, Yavar, Sultan) had blue eyes.
 1 CHAN
-2 DATE 26 NOV 2014
-3 TIME 18:10:37
+2 DATE 15 NOV 2026
+3 TIME 18:00:00
 0 @I6000000003244579993@ INDI
 1 NAME Baba /Kerimov/
 2 GIVN Baba
@@ -1324,8 +1325,8 @@
 1 FAMS @F6000000003244659233@
 1 NOTE @N0007@
 1 CHAN
-2 DATE 24 JUL 2022
-3 TIME 14:09:40
+2 DATE 15 NOV 2026
+3 TIME 18:00:00
 0 @I6000000003244590852@ INDI
 1 NAME Kursum /Suleimanova/
 2 GIVN Kursum
@@ -1442,9 +1443,10 @@
 1 FAMC @F6000000003244660800@
 2 PEDI birth
 1 FAMS @F6000000004691999224@
+1 NOTE Had blue eyes (like his brothers Baba, Saidular, Yavar, and Sultan; only their brother Asad had brown eyes).
 1 CHAN
-2 DATE 26 NOV 2014
-3 TIME 18:10:33
+2 DATE 15 NOV 2026
+3 TIME 18:00:00
 0 @I6000000003244661591@ INDI
 1 NAME Ibragim /Bagirov/
 2 GIVN Ibragim
@@ -1789,9 +1791,10 @@
 1 FAMC @F6000000003244660800@
 2 PEDI birth
 1 FAMS @F6000000004691679054@
+1 NOTE Had blue eyes (like his brothers Baba, Salim, Yavar, and Sultan; only their brother Asad had brown eyes).
 1 CHAN
-2 DATE 24 JUL 2022
-3 TIME 14:06:39
+2 DATE 15 NOV 2026
+3 TIME 18:00:00
 0 @I6000000003244764841@ INDI
 1 NAME Taira /Bagirova/
 2 GIVN Taira
@@ -1976,9 +1979,10 @@
 1 FAMC @F6000000003244660800@
 2 PEDI birth
 1 FAMS @F6000000004691599273@
+1 NOTE Had blue eyes (like his brothers Baba, Salim, Saidular, and Sultan; only their brother Asad had brown eyes).
 1 CHAN
-2 DATE 26 NOV 2014
-3 TIME 18:10:39
+2 DATE 15 NOV 2026
+3 TIME 18:00:00
 0 @I6000000003244817917@ INDI
 1 NAME Namik /Bagirov/
 2 GIVN Namik
@@ -4131,9 +4135,10 @@
 1 DEAT Y
 1 FAMC @F6000000003244660800@
 2 PEDI birth
+1 NOTE Had blue eyes (like his brothers Baba, Salim, Saidular, and Yavar; only their brother Asad had brown eyes).
 1 CHAN
-2 DATE 24 JUL 2022
-3 TIME 14:04:56
+2 DATE 15 NOV 2026
+3 TIME 18:00:00
 0 @I6000000004691476802@ INDI
 1 NAME Samandar /Rzaev/
 2 GIVN Samandar
@@ -6893,6 +6898,7 @@
 0 @N0005@ NOTE Made the first version of this family tree
 0 @N0006@ NOTE three different wives, and maybe 2/3 kids
 0 @N0007@ NOTE By official documents born in 1931 so as to not to go to war
+1 CONT Had blue eyes (like his brothers Salim, Saidular, Yavar, and Sultan; only their brother Asad had brown eyes).
 0 @N0008@ NOTE had 3 kids from 3 different wives. Last child was named Marina
 0 @N0009@ NOTE Was adopted
 0 @N0010@ NOTE two brothers married two sisters
@@ -6923,6 +6929,7 @@
 0 @N0022@ NOTE Paternal ancestor of the Kerimov lineage in Baku, married to Fatima Kerimova and father of Baba Kerimov (1932-1995).
 1 CONT Prominent farmer in the Baku region.
 1 CONT Son of Mürsəl Kerimov (@I0112@).
+1 CONT Father of 6 sons: Baba, Salim, Saidular, Yavar, and Sultan all had blue eyes; only their brother Asad had brown eyes.
 1 CONT Pre-1920 civil and household records are preserved in the Baku City Shia Mosque Metric Books (ARDTA Fond 290) and the Baku municipal/treasury census registers (ARDTA Fond 43 and Fond 50).
 1 CONT Also remembered in family tradition by the three-part name "Aghakerim Kerimov Myursel" (Ağakərim Kərimov Mürsəl / Агакерим Керимов Мюрсал), reflecting his patronymic as the son of Mürsəl (Mürsəl oğlu / Мюрсал-оглы).
 0 @N0023@ NOTE Resident of the ancient Absheron settlement of Amirjan (Baku Uyezd, Baku Governorate), married to Sona and father of Aligeidar Suleimanov (Ali Haydar Aras, 1903-1967).
