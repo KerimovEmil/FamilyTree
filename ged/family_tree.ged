@@ -6839,6 +6839,16 @@
 1 FAMC @F0123@
 2 PEDI birth
 1 NOTE Son of Sadik (Sadiq oğlu)
+0 @I0136@ INDI
+1 NAME Safura /Rzaeva/
+2 GIVN Safura
+2 SURN Rzaeva
+1 NAME Səfurə /Rzayeva/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 SEX F
+1 FAMS @F0123@
+1 NOTE Wife of Sadik Rzaev
 0 @F0115@ FAM
 1 HUSB @I0108@
 1 CHIL @I0005@
@@ -6871,6 +6881,7 @@
 3 TIME 12:00:00
 0 @F0123@ FAM
 1 HUSB @I6000000004691792206@
+1 WIFE @I0136@
 1 CHIL @I0133@
 1 CHIL @I0134@
 1 CHIL @I0135@
