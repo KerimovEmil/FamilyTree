@@ -446,7 +446,7 @@ Under the 1872 imperial statute (*"Положение об управлении 
 
 
 
-| **Kerimov Line (Baku)** | **Mürsəl Kerimov** (`@I0112@`, Patriarch), **Agakerim Kerimov** (`@I6000000003253535194@`) & **Fatima Kerimova** (`@I6000000003253353833@`) | **Baku City (Баку)**, Baku Uyezd / Baku City Governorate (*Бакинское градоначальство*) | **ARDTA Fond 290** (Baku city Shia mosque metric books) & **ARDTA Fond 43 / Fond 50** (Baku municipal registers & family lists) |
+| **Kerimov Line (Baku)** | **Mürsəl Kerimov** (`@I0112@`, Patriarch; fighter/wrestler, Dagestan origin), **Agakerim Kerimov** (`@I6000000003253535194@`, prominent farmer) & **Fatima Kerimova** (`@I6000000003253353833@`) | **Baku City (Баку)**, Baku Uyezd / Baku City Governorate (*Бакинское градоначальство*); Dagestan origin | **ARDTA Fond 290** (Baku city Shia mosque metric books) & **ARDTA Fond 43 / Fond 50** (Baku municipal registers & family lists); TsGA RD |
 
 
 
@@ -544,25 +544,16 @@ Under the 1872 imperial statute (*"Положение об управлении 
 
 ### 2. Agakerim Kerimov, Mürsəl Kerimov (Patriarch), & Fatima Kerimova — Baku City Lineage
 
+* **Historical Geography & Naming Conventions:** Lived in **Baku City**. Agakerim was the son of **Mürsəl Kerimov (`@I0112@`)**, which explains his preserved traditional appellation **"Aghakerim Kerimov Myursel"** (*Ağakərim Kərimov Mürsəl* / patronymic *Mürsəl oğlu* / *Мюрсал-оглы*). Agakerim was a **prominent farmer** in the Baku region.
 
-
-* **Historical Geography & Naming Conventions:** Lived in **Baku City**. Agakerim was the son of **Mürsəl Kerimov (`@I0112@`)**, which explains his preserved traditional appellation **"Aghakerim Kerimov Myursel"** (*Ağakərim Kərimov Mürsəl* / patronymic *Mürsəl oğlu* / *Мюрсал-оглы*).
-
-
+* **Patriarch Mürsəl Kerimov & Family Origins:** Family oral tradition recalls Mürsəl Kerimov as a formidable **fighter and wrestler** (*pəhləvan*). According to family lore, he is believed to have originated from the **Dagestan** region of the Caucasus. A notable family story recounts that he was pressured to throw a fight/match, but defiantly refused to do so and won; because of this, he was forced to flee his home region to Azerbaijan, where he settled in Baku and established the Kerimov family.
 
 * **Descendants:** Father of **Baba Kerimov (`@I6000000003244579993@`, 1932–1995)**, who married **Firangiz Kerimova (`@I6000000003244583152@`, 1935–2025)**. The naming of his son *Baba* (meaning grandfather/elder in Azerbaijani) preserved the memory of an earlier generation patriarch.
 
-
-
-* **Archival Records in ARDTA:**
-
-
-
+* **Archival Records in ARDTA & Regional Repositories:**
   * **Fond 290 (Baku Shia Mosques):** Marriage entry for Agakerim Kerimov and Fatima Kerimova, registered at one of the historical inner-city Baku mosques (such as Taza Pir, Icherisheher Juma Mosque, or local mahalla mosques).
-
-
-
   * **Fond 50 / Fond 43:** Baku City Administration (*Бакинское градоначальство*) and Petty Bourgeois Guild lists (*Бакинская мещанская управа*), recording urban household real estate and guild memberships.
+  * **Regional Inquiries in Dagestan (TsGA RD):** Central State Archive of the Republic of Dagestan (*ЦГА РД*) for wrestling/athletic or metric references in southern Dagestan / Derbent / Samur Okrug.
 
 
 
