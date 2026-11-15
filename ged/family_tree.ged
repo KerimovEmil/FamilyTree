@@ -4531,13 +4531,17 @@
 2 TYPE married
 2 GIVN Sadik
 2 SURN Rzaev
+1 NAME Sadiq /Rzayev/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
 1 SEX M
 1 BIRT Y
 1 FAMC @F6000000004691476807@
 2 PEDI birth
+1 FAMS @F0123@
 1 CHAN
-2 DATE 24 JUL 2022
-3 TIME 17:41:27
+2 DATE 15 NOV 2026
+3 TIME 17:45:00
 0 @I6000000004691879046@ INDI
 1 NAME Simran /Rzaev/
 2 GIVN Simran
@@ -6802,6 +6806,39 @@
 2 DATE 23 AUG 1987
 1 FAMS @F0080@
 1 NOTE Wife of Aydin Malikov. Surname is Malikov (not Malikova).
+0 @I0133@ INDI
+1 NAME Sudaba /Rzaeva/
+2 GIVN Sudaba
+2 SURN Rzaeva
+1 NAME Südabə /Rzayeva/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 SEX F
+1 FAMC @F0123@
+2 PEDI birth
+1 NOTE Daughter of Sadik (Sadiq qızı)
+0 @I0134@ INDI
+1 NAME Nigar /Rzaeva/
+2 GIVN Nigar
+2 SURN Rzaeva
+1 NAME Nigar /Rzayeva/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 SEX F
+1 FAMC @F0123@
+2 PEDI birth
+1 NOTE Daughter of Sadik (Sadiq qızı)
+0 @I0135@ INDI
+1 NAME Samandar /Rzaev/
+2 GIVN Samandar
+2 SURN Rzaev
+1 NAME Səməndər /Rzayev/
+2 TYPE aka
+2 NOTE Azerbaijani Latin
+1 SEX M
+1 FAMC @F0123@
+2 PEDI birth
+1 NOTE Son of Sadik (Sadiq oğlu)
 0 @F0115@ FAM
 1 HUSB @I0108@
 1 CHIL @I0005@
@@ -6832,6 +6869,14 @@
 1 CHAN
 2 DATE 7 NOV 2026
 3 TIME 12:00:00
+0 @F0123@ FAM
+1 HUSB @I6000000004691792206@
+1 CHIL @I0133@
+1 CHIL @I0134@
+1 CHIL @I0135@
+1 CHAN
+2 DATE 15 NOV 2026
+3 TIME 17:45:00
 0 @N0005@ NOTE Made the first version of this family tree
 0 @N0006@ NOTE three different wives, and maybe 2/3 kids
 0 @N0007@ NOTE By official documents born in 1931 so as to not to go to war
