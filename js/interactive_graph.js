@@ -269,6 +269,18 @@
             });
         }
 
+        const popoverSuggestBtn = document.getElementById('popover-suggest-btn');
+        if (popoverSuggestBtn) {
+            popoverSuggestBtn.addEventListener('click', function () {
+                if (selectedIndiId && window.openSuggestionModal) {
+                    const p = familyGraph[selectedIndiId];
+                    const name = p ? (p.name || selectedIndiId) : selectedIndiId;
+                    window.openSuggestionModal(selectedIndiId, name);
+                    hidePopover();
+                }
+            });
+        }
+
         // Dismiss popover on outside click or Escape key
         document.addEventListener('click', function (e) {
             const popover = document.getElementById('person-popover');

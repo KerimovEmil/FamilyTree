@@ -41,6 +41,14 @@ A modern, static site generator and interactive exploration platform for genealo
 - **Chronological Timeline:** Events ordered chronologically (Birth, Marriages, Occupations, Death).
 - **Milestone Age Calculations:** Displays calculated ages at milestone events and age at death (e.g., *"Age 24"*, *"Age at Death: 74 years"*).
 - **Cross-Navigation Links:** Every profile includes direct action links to view the person in the Interactive Graph (`?indi=<id>`) and find their relationship to others (`?p1=<id>`).
+- **One-Click Suggestion Link:** Directly triggers the suggestion modal pre-populated with that person's name and ID.
+
+### ✏️ Community Suggestions & Feedback Modal
+- **Zero-Friction In-Page Modal:** Allows relatives and visitors to submit corrections, missing dates/places, spouses, children, occupations, and family memories without leaving the page.
+- **Context-Aware:** Automatically captures the person's name and GEDCOM ID (`[Ixxxx]`) from profile pages or the interactive graph.
+- **Universal Access:** Accessible from individual profile summaries, interactive graph node popovers, and the global footer on all pages (for unlisted/new individuals).
+- **Spam Protected:** Includes a hidden bot honeypot and client-side validation.
+- **Instant Email Delivery:** Powered by Web3Forms for direct delivery to your personal inbox without requiring a backend server.
 
 ### 📑 Surname Indexes & Real-Time Filtering (`surnames/...`)
 - Comprehensive surname directory and individual listings.
@@ -63,12 +71,14 @@ FamilyTree/
 │   ├── behaviour.css             # Base behavior and typography
 │   ├── interactive-graph.css     # Interactive graph toolbar, canvas & popover styles
 │   ├── narrative-print.css       # Print layout stylesheet
-│   └── narrative-screen.css      # Gramps narrative web report theme
+│   ├── narrative-screen.css      # Gramps narrative web report theme
+│   └── suggestions.css           # Suggestion modal overlay and form styles
 ├── ged/
 │   └── family_tree.ged           # Single source of truth (GEDCOM file)
 ├── images/                       # Favicons and site assets
 ├── js/
 │   ├── interactive_graph.js      # Client controller for the interactive graph viewer
+│   ├── suggestions.js            # Suggestion modal controller & Web3Forms integration
 │   ├── topola-bundle.min.js      # Minified standalone Topola + D3 zoom bundle (~178 KB)
 │   └── README.md                 # Documentation on client JavaScript bundles
 ├── ppl/                          # Generated individual HTML pages by surname

@@ -21,6 +21,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <link href="../../css/narrative-print.css" media="print" rel="stylesheet" type="text/css" />
     <link href="../../css/narrative-screen.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="../../css/ancestortree.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../../css/suggestions.css" media="screen" rel="stylesheet" type="text/css" />
     <script>function navFunction() {{ var x = document.getElementById("dropmenu"); if (x.className === "nav") {{ x.className += " responsive"; }} else {{ x.className = "nav"; }} }}</script>
 </head>
 <body>
@@ -64,6 +65,10 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                         <td class="ColumnAttribute">Relationship</td>
                         <td class="ColumnValue"><a href="../../relationship.html?p1={clean_pointer}">Find relationship with... &rarr;</a></td>
                     </tr>
+                    <tr>
+                        <td class="ColumnAttribute">Suggestions</td>
+                        <td class="ColumnValue"><a href="javascript:void(0);" class="suggest-edit-link" data-person-id="{clean_pointer}" data-person-name="{name}">✏️ Suggest an edit / Add info &rarr;</a></td>
+                    </tr>
                 </table>
                 {photo_section}
             </div>
@@ -93,13 +98,14 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         <div class="fullclear"></div>
         <div id="footer">
             <p id="createdate">
-            Inspired by GRAMPS software.
+            Inspired by GRAMPS software. &bull; <a href="javascript:void(0);" class="suggest-general-link">Suggest an edit or story</a>
             </p>
             <p id="copyright">
 
             </p>
         </div>
     </div>
+    <script src="../../js/suggestions.js"></script>
 </body>
 </html>
 """
@@ -216,6 +222,7 @@ INDEX_HTML_TEMPLATE = """<!DOCTYPE html>
     <link href="images/favicon2.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="css/narrative-print.css" media="print" rel="stylesheet" type="text/css" />
     <link href="css/narrative-screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="css/suggestions.css" media="screen" rel="stylesheet" type="text/css" />
         <script>
         function navFunction() {{ var x = document.getElementById("dropmenu"); if (x.className === "nav") {{ x.className += " responsive"; }} else {{ x.className = "nav"; }} }}
         function filterTable() {{
@@ -301,12 +308,13 @@ INDEX_HTML_TEMPLATE = """<!DOCTYPE html>
         <div class="fullclear"></div>
         <div id="footer">
             <p id="createdate">
-            Inspired by GRAMPS software.
+            Inspired by GRAMPS software. &bull; <a href="javascript:void(0);" class="suggest-general-link">Suggest an edit or story</a>
             </p>
             <p id="copyright">
             </p>
         </div>
     </div>
+    <script src="js/suggestions.js"></script>
 </body>
 </html>
 """
@@ -322,6 +330,7 @@ INDIVIDUALS_HTML_TEMPLATE = """<!DOCTYPE html>
     <link href="images/favicon2.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="css/narrative-print.css" media="print" rel="stylesheet" type="text/css" />
     <link href="css/narrative-screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="css/suggestions.css" media="screen" rel="stylesheet" type="text/css" />
         <script>
         function navFunction() {{ var x = document.getElementById("dropmenu"); if (x.className === "nav") {{ x.className += " responsive"; }} else {{ x.className = "nav"; }} }}
         function filterTable() {{
@@ -408,12 +417,13 @@ INDIVIDUALS_HTML_TEMPLATE = """<!DOCTYPE html>
         <div class="fullclear"></div>
         <div id="footer">
             <p id="createdate">
-            Inspired by GRAMPS software.
+            Inspired by GRAMPS software. &bull; <a href="javascript:void(0);" class="suggest-general-link">Suggest an edit or story</a>
             </p>
             <p id="copyright">
             </p>
         </div>
     </div>
+    <script src="js/suggestions.js"></script>
 </body>
 </html>
 """
@@ -436,6 +446,7 @@ SURNAME_PAGE_TEMPLATE = """<!DOCTYPE html>
     <link href="../images/favicon2.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="../css/narrative-print.css" media="print" rel="stylesheet" type="text/css" />
     <link href="../css/narrative-screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../css/suggestions.css" media="screen" rel="stylesheet" type="text/css" />
     <script>
         function navFunction() {{ var x = document.getElementById("dropmenu"); if (x.className === "nav") {{ x.className += " responsive"; }} else {{ x.className = "nav"; }} }}
         function filterTable() {{
@@ -523,12 +534,13 @@ SURNAME_PAGE_TEMPLATE = """<!DOCTYPE html>
         <div class="fullclear"></div>
         <div id="footer">
             <p id="createdate">
-            Inspired by GRAMPS software.
+            Inspired by GRAMPS software. &bull; <a href="javascript:void(0);" class="suggest-general-link">Suggest an edit or story</a>
             </p>
             <p id="copyright">
             </p>
         </div>
     </div>
+    <script src="../js/suggestions.js"></script>
 </body>
 </html>
 """
@@ -612,6 +624,7 @@ RELATIONSHIP_FINDER_TEMPLATE = """<!DOCTYPE html>
     <link href="images/favicon2.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="css/narrative-print.css" media="print" rel="stylesheet" type="text/css" />
     <link href="css/narrative-screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="css/suggestions.css" media="screen" rel="stylesheet" type="text/css" />
     <style>
         .rel-controls {{
             display: flex;
@@ -1052,7 +1065,7 @@ RELATIONSHIP_FINDER_TEMPLATE = """<!DOCTYPE html>
         <div class="fullclear"></div>
         <div id="footer">
             <p id="createdate">
-            Inspired by GRAMPS software.
+            Inspired by GRAMPS software. &bull; <a href="javascript:void(0);" class="suggest-general-link">Suggest an edit or story</a>
             </p>
             <p id="copyright">
             </p>
@@ -2161,6 +2174,7 @@ RELATIONSHIP_FINDER_TEMPLATE = """<!DOCTYPE html>
 
     window.addEventListener("DOMContentLoaded", init);
     </script>
+    <script src="js/suggestions.js"></script>
 </body>
 </html>
 """
@@ -2178,6 +2192,7 @@ INTERACTIVE_GRAPH_TEMPLATE = """<!DOCTYPE html>
     <link href="images/favicon2.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="css/narrative-print.css" media="print" rel="stylesheet" type="text/css" />
     <link href="css/narrative-screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="css/suggestions.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="css/interactive-graph.css" media="screen" rel="stylesheet" type="text/css" />
     <script>function navFunction() { var x = document.getElementById("dropmenu"); if (x.className === "nav") { x.className += " responsive"; } else { x.className = "nav"; } }</script>
 </head>
@@ -2248,6 +2263,7 @@ INTERACTIVE_GRAPH_TEMPLATE = """<!DOCTYPE html>
                         <a id="popover-view-btn" href="#" class="popover-btn primary-btn">View Profile &rarr;</a>
                         <button type="button" id="popover-center-btn" class="popover-btn">Center Tree Here</button>
                         <a id="popover-rel-btn" href="#" class="popover-btn">Find Relationship &rarr;</a>
+                        <button type="button" id="popover-suggest-btn" class="popover-btn">Suggest Edit &rarr;</button>
                     </div>
                 </div>
             </div>
@@ -2269,7 +2285,7 @@ __GEDCOM_CONTENT__
         <div class="fullclear"></div>
         <div id="footer">
             <p id="createdate">
-                Generated by <a href="http://gramps-project.org/">Gramps</a> AIO64-5.1.5-1 on 2025-03-23
+                Inspired by GRAMPS software. &bull; <a href="javascript:void(0);" class="suggest-general-link">Suggest an edit or story</a>
             </p>
             <p id="copyright">
             </p>
@@ -2277,6 +2293,7 @@ __GEDCOM_CONTENT__
     </div>
     <script src="js/topola-bundle.min.js"></script>
     <script src="js/interactive_graph.js"></script>
+    <script src="js/suggestions.js"></script>
 </body>
 </html>
 """

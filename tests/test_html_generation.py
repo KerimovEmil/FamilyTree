@@ -91,6 +91,13 @@ def test_generate_html_for_individual_with_events_and_attributes(tmp_path):
     assert 'interactive_graph.html?indi=I1' in html
     assert 'relationship.html?p1=I1' in html
 
+    # Suggestions link & scripts assertions
+    assert 'suggest-edit-link' in html
+    assert 'data-person-id="I1"' in html
+    assert 'suggestions.css' in html
+    assert 'suggestions.js' in html
+    assert 'suggest-general-link' in html
+
     # Notes & Photos rendering assertions
     assert 'id="notes"' in html
     assert "Distinguished engineer and family historian." in html
@@ -335,3 +342,13 @@ def test_relationship_finder_full_page():
     assert 'renderTreeSvg' in content
     assert 'switchView' in content
     assert 'fitTree' in content
+
+
+def test_suggestions_integration_in_interactive_graph():
+    root = Path(__file__).resolve().parent.parent
+    graph_file = root / "interactive_graph.html"
+    assert graph_file.exists()
+    content = graph_file.read_text(encoding="utf-8")
+    assert 'id="popover-suggest-btn"' in content
+    assert 'css/suggestions.css' in content
+    assert 'js/suggestions.js' in content
